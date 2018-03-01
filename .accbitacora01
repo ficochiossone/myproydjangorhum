@@ -1,0 +1,292 @@
+PASO CUANDO QUISE 
+dentro virtualenv crear con manage.py base de datos para django mysql 
+no tenia modulo MySQLdb instalado 
+al intentar instalarlo dendro del virtualenv falla 
+faltaban python-dev
+
+
+(myprdjenv)fico@dell6320:~/myprojdjango/myprdjenv$ pip install python-mysqldb
+Collecting python-mysqldb
+  Could not find a version that satisfies the requirement python-mysqldb (from versions: )
+No matching distribution found for python-mysqldb
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install MySQL-python
+Collecting MySQL-python
+  Using cached MySQL-python-1.2.5.zip
+Building wheels for collected packages: MySQL-python
+  Running setup.py bdist_wheel for MySQL-python ... error
+  Complete output from command /home/fico/myprojdjango/myprdjenv/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-nl2TGQ/MySQL-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/tmpSzsHjRpip-wheel- --python-tag cp27:
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-i686-2.7
+  copying _mysql_exceptions.py -> build/lib.linux-i686-2.7
+  creating build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/__init__.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/converters.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/connections.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/cursors.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/release.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/times.py -> build/lib.linux-i686-2.7/MySQLdb
+  creating build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/__init__.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/CR.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/FIELD_TYPE.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/ER.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/FLAG.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/REFRESH.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/CLIENT.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  running build_ext
+  building '_mysql' extension
+  creating build/temp.linux-i686-2.7
+  i586-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Dversion_info=(1,2,5,'final',1) -D__version__=1.2.5 -I/usr/include/mysql -I/usr/include/python2.7 -c _mysql.c -o build/temp.linux-i686-2.7/_mysql.o -DBIG_JOINS=1 -fno-strict-aliasing -DTAOCRYPT_DISABLE_X86ASM -g -DNDEBUG
+  _mysql.c:29:20: fatal error: Python.h: No existe el fichero o el directorio
+   #include "Python.h"
+                      ^
+  compilation terminated.
+  error: command 'i586-linux-gnu-gcc' failed with exit status 1
+  
+  ----------------------------------------
+  Failed building wheel for MySQL-python
+  Running setup.py clean for MySQL-python
+Failed to build MySQL-python
+Installing collected packages: MySQL-python
+  Running setup.py install for MySQL-python ... error
+    Complete output from command /home/fico/myprojdjango/myprdjenv/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-nl2TGQ/MySQL-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-MVK0Rc-record/install-record.txt --single-version-externally-managed --compile --install-headers /home/fico/myprojdjango/myprdjenv/include/site/python2.7/MySQL-python:
+    running install
+    running build
+    running build_py
+    creating build
+    creating build/lib.linux-i686-2.7
+    copying _mysql_exceptions.py -> build/lib.linux-i686-2.7
+    creating build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/__init__.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/converters.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/connections.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/cursors.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/release.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/times.py -> build/lib.linux-i686-2.7/MySQLdb
+    creating build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/__init__.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/CR.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/FIELD_TYPE.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/ER.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/FLAG.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/REFRESH.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/CLIENT.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    running build_ext
+    building '_mysql' extension
+    creating build/temp.linux-i686-2.7
+    i586-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Dversion_info=(1,2,5,'final',1) -D__version__=1.2.5 -I/usr/include/mysql -I/usr/include/python2.7 -c _mysql.c -o build/temp.linux-i686-2.7/_mysql.o -DBIG_JOINS=1 -fno-strict-aliasing -DTAOCRYPT_DISABLE_X86ASM -g -DNDEBUG
+    _mysql.c:29:20: fatal error: Python.h: No existe el fichero o el directorio
+     #include "Python.h"
+                        ^
+    compilation terminated.
+    error: command 'i586-linux-gnu-gcc' failed with exit status 1
+    
+    ----------------------------------------
+Command "/home/fico/myprojdjango/myprdjenv/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-nl2TGQ/MySQL-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-MVK0Rc-record/install-record.txt --single-version-externally-managed --compile --install-headers /home/fico/myprojdjango/myprdjenv/include/site/python2.7/MySQL-python" failed with error code 1 in /tmp/pip-build-nl2TGQ/MySQL-python/
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install python-dev
+Collecting python-dev
+  Could not find a version that satisfies the requirement python-dev (from versions: )
+No matching distribution found for python-dev
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ sudo apt-get install python-dev
+
+[sudo] password for fico: 
+Sorry, try again.
+[sudo] password for fico: 
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+Los paquetes indicados a continuación se instalaron de forma automática y ya no son necesarios.
+  libruby2.1 libyaml-0-2 vim-gui-common
+Utilice «apt-get autoremove» para eliminarlos.
+Se instalarán los siguientes paquetes extras:
+  libexpat1-dev libpython-dev libpython2.7-dev python2.7-dev
+Se instalarán los siguientes paquetes NUEVOS:
+  libexpat1-dev libpython-dev libpython2.7-dev python-dev python2.7-dev
+0 actualizados, 5 nuevos se instalarán, 0 para eliminar y 0 no actualizados.
+Se necesita descargar 18,8 MB de archivos.
+Se utilizarán 28,1 MB de espacio de disco adicional después de esta operación.
+¿Desea continuar? [S/n] 
+Des:1 http://ftp.ca.debian.org/debian/ jessie/main libexpat1-dev i386 2.1.0-6+deb8u4 [127 kB]
+Des:2 http://ftp.ca.debian.org/debian/ jessie/main libpython2.7-dev i386 2.7.9-2+deb8u1 [18,4 MB]
+Des:3 http://ftp.ca.debian.org/debian/ jessie/main libpython-dev i386 2.7.9-1 [19,6 kB]                                        
+Des:4 http://ftp.ca.debian.org/debian/ jessie/main python2.7-dev i386 2.7.9-2+deb8u1 [284 kB]                                  
+Des:5 http://ftp.ca.debian.org/debian/ jessie/main python-dev i386 2.7.9-1 [1.178 B]                                           
+Descargados 18,8 MB en 1min 5s (287 kB/s)                                                                                      
+Seleccionando el paquete libexpat1-dev:i386 previamente no seleccionado.
+(Leyendo la base de datos ... 203190 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../libexpat1-dev_2.1.0-6+deb8u4_i386.deb ...
+Desempaquetando libexpat1-dev:i386 (2.1.0-6+deb8u4) ...
+Seleccionando el paquete libpython2.7-dev:i386 previamente no seleccionado.
+Preparando para desempaquetar .../libpython2.7-dev_2.7.9-2+deb8u1_i386.deb ...
+Desempaquetando libpython2.7-dev:i386 (2.7.9-2+deb8u1) ...
+Seleccionando el paquete libpython-dev:i386 previamente no seleccionado.
+Preparando para desempaquetar .../libpython-dev_2.7.9-1_i386.deb ...
+Desempaquetando libpython-dev:i386 (2.7.9-1) ...
+Seleccionando el paquete python2.7-dev previamente no seleccionado.
+Preparando para desempaquetar .../python2.7-dev_2.7.9-2+deb8u1_i386.deb ...
+Desempaquetando python2.7-dev (2.7.9-2+deb8u1) ...
+Seleccionando el paquete python-dev previamente no seleccionado.
+Preparando para desempaquetar .../python-dev_2.7.9-1_i386.deb ...
+Desempaquetando python-dev (2.7.9-1) ...
+Procesando disparadores para man-db (2.7.0.2-5) ...
+Configurando libexpat1-dev:i386 (2.1.0-6+deb8u4) ...
+Configurando libpython2.7-dev:i386 (2.7.9-2+deb8u1) ...
+Configurando libpython-dev:i386 (2.7.9-1) ...
+Configurando python2.7-dev (2.7.9-2+deb8u1) ...
+Configurando python-dev (2.7.9-1) ...
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install MySQL-python
+Collecting MySQL-python
+  Using cached MySQL-python-1.2.5.zip
+Building wheels for collected packages: MySQL-python
+  Running setup.py bdist_wheel for MySQL-python ... done
+  Stored in directory: /home/fico/.cache/pip/wheels/38/a3/89/ec87e092cfb38450fc91a62562055231deb0049a029054dc62
+Successfully built MySQL-python
+Installing collected packages: MySQL-python
+Successfully installed MySQL-python-1.2.5
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ 
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install python-mysqldb
+Collecting python-mysqldb
+  Could not find a version that satisfies the requirement python-mysqldb (from versions: )
+No matching distribution found for python-mysqldb
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install MySQL-python
+Collecting MySQL-python
+  Using cached MySQL-python-1.2.5.zip
+Building wheels for collected packages: MySQL-python
+  Running setup.py bdist_wheel for MySQL-python ... error
+  Complete output from command /home/fico/myprojdjango/myprdjenv/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-nl2TGQ/MySQL-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/tmpSzsHjRpip-wheel- --python-tag cp27:
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-i686-2.7
+  copying _mysql_exceptions.py -> build/lib.linux-i686-2.7
+  creating build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/__init__.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/converters.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/connections.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/cursors.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/release.py -> build/lib.linux-i686-2.7/MySQLdb
+  copying MySQLdb/times.py -> build/lib.linux-i686-2.7/MySQLdb
+  creating build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/__init__.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/CR.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/FIELD_TYPE.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/ER.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/FLAG.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/REFRESH.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  copying MySQLdb/constants/CLIENT.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+  running build_ext
+  building '_mysql' extension
+  creating build/temp.linux-i686-2.7
+  i586-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Dversion_info=(1,2,5,'final',1) -D__version__=1.2.5 -I/usr/include/mysql -I/usr/include/python2.7 -c _mysql.c -o build/temp.linux-i686-2.7/_mysql.o -DBIG_JOINS=1 -fno-strict-aliasing -DTAOCRYPT_DISABLE_X86ASM -g -DNDEBUG
+  _mysql.c:29:20: fatal error: Python.h: No existe el fichero o el directorio
+   #include "Python.h"
+                      ^
+  compilation terminated.
+  error: command 'i586-linux-gnu-gcc' failed with exit status 1
+  
+  ----------------------------------------
+  Failed building wheel for MySQL-python
+  Running setup.py clean for MySQL-python
+Failed to build MySQL-python
+Installing collected packages: MySQL-python
+  Running setup.py install for MySQL-python ... error
+    Complete output from command /home/fico/myprojdjango/myprdjenv/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-nl2TGQ/MySQL-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-MVK0Rc-record/install-record.txt --single-version-externally-managed --compile --install-headers /home/fico/myprojdjango/myprdjenv/include/site/python2.7/MySQL-python:
+    running install
+    running build
+    running build_py
+    creating build
+    creating build/lib.linux-i686-2.7
+    copying _mysql_exceptions.py -> build/lib.linux-i686-2.7
+    creating build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/__init__.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/converters.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/connections.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/cursors.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/release.py -> build/lib.linux-i686-2.7/MySQLdb
+    copying MySQLdb/times.py -> build/lib.linux-i686-2.7/MySQLdb
+    creating build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/__init__.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/CR.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/FIELD_TYPE.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/ER.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/FLAG.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/REFRESH.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    copying MySQLdb/constants/CLIENT.py -> build/lib.linux-i686-2.7/MySQLdb/constants
+    running build_ext
+    building '_mysql' extension
+    creating build/temp.linux-i686-2.7
+    i586-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Dversion_info=(1,2,5,'final',1) -D__version__=1.2.5 -I/usr/include/mysql -I/usr/include/python2.7 -c _mysql.c -o build/temp.linux-i686-2.7/_mysql.o -DBIG_JOINS=1 -fno-strict-aliasing -DTAOCRYPT_DISABLE_X86ASM -g -DNDEBUG
+    _mysql.c:29:20: fatal error: Python.h: No existe el fichero o el directorio
+     #include "Python.h"
+                        ^
+    compilation terminated.
+    error: command 'i586-linux-gnu-gcc' failed with exit status 1
+    
+    ----------------------------------------
+Command "/home/fico/myprojdjango/myprdjenv/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-nl2TGQ/MySQL-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-MVK0Rc-record/install-record.txt --single-version-externally-managed --compile --install-headers /home/fico/myprojdjango/myprdjenv/include/site/python2.7/MySQL-python" failed with error code 1 in /tmp/pip-build-nl2TGQ/MySQL-python/
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install python-dev
+Collecting python-dev
+  Could not find a version that satisfies the requirement python-dev (from versions: )
+No matching distribution found for python-dev
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ sudo apt-get install python-dev
+
+[sudo] password for fico: 
+Sorry, try again.
+[sudo] password for fico: 
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+Los paquetes indicados a continuación se instalaron de forma automática y ya no son necesarios.
+  libruby2.1 libyaml-0-2 vim-gui-common
+Utilice «apt-get autoremove» para eliminarlos.
+Se instalarán los siguientes paquetes extras:
+  libexpat1-dev libpython-dev libpython2.7-dev python2.7-dev
+Se instalarán los siguientes paquetes NUEVOS:
+  libexpat1-dev libpython-dev libpython2.7-dev python-dev python2.7-dev
+0 actualizados, 5 nuevos se instalarán, 0 para eliminar y 0 no actualizados.
+Se necesita descargar 18,8 MB de archivos.
+Se utilizarán 28,1 MB de espacio de disco adicional después de esta operación.
+¿Desea continuar? [S/n] 
+Des:1 http://ftp.ca.debian.org/debian/ jessie/main libexpat1-dev i386 2.1.0-6+deb8u4 [127 kB]
+Des:2 http://ftp.ca.debian.org/debian/ jessie/main libpython2.7-dev i386 2.7.9-2+deb8u1 [18,4 MB]
+Des:3 http://ftp.ca.debian.org/debian/ jessie/main libpython-dev i386 2.7.9-1 [19,6 kB]                                        
+Des:4 http://ftp.ca.debian.org/debian/ jessie/main python2.7-dev i386 2.7.9-2+deb8u1 [284 kB]                                  
+Des:5 http://ftp.ca.debian.org/debian/ jessie/main python-dev i386 2.7.9-1 [1.178 B]                                           
+Descargados 18,8 MB en 1min 5s (287 kB/s)                                                                                      
+Seleccionando el paquete libexpat1-dev:i386 previamente no seleccionado.
+(Leyendo la base de datos ... 203190 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../libexpat1-dev_2.1.0-6+deb8u4_i386.deb ...
+Desempaquetando libexpat1-dev:i386 (2.1.0-6+deb8u4) ...
+Seleccionando el paquete libpython2.7-dev:i386 previamente no seleccionado.
+Preparando para desempaquetar .../libpython2.7-dev_2.7.9-2+deb8u1_i386.deb ...
+Desempaquetando libpython2.7-dev:i386 (2.7.9-2+deb8u1) ...
+Seleccionando el paquete libpython-dev:i386 previamente no seleccionado.
+Preparando para desempaquetar .../libpython-dev_2.7.9-1_i386.deb ...
+Desempaquetando libpython-dev:i386 (2.7.9-1) ...
+Seleccionando el paquete python2.7-dev previamente no seleccionado.
+Preparando para desempaquetar .../python2.7-dev_2.7.9-2+deb8u1_i386.deb ...
+Desempaquetando python2.7-dev (2.7.9-2+deb8u1) ...
+Seleccionando el paquete python-dev previamente no seleccionado.
+Preparando para desempaquetar .../python-dev_2.7.9-1_i386.deb ...
+Desempaquetando python-dev (2.7.9-1) ...
+Procesando disparadores para man-db (2.7.0.2-5) ...
+Configurando libexpat1-dev:i386 (2.1.0-6+deb8u4) ...
+Configurando libpython2.7-dev:i386 (2.7.9-2+deb8u1) ...
+Configurando libpython-dev:i386 (2.7.9-1) ...
+Configurando python2.7-dev (2.7.9-2+deb8u1) ...
+Configurando python-dev (2.7.9-1) ...
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ pip install MySQL-python
+Collecting MySQL-python
+  Using cached MySQL-python-1.2.5.zip
+Building wheels for collected packages: MySQL-python
+  Running setup.py bdist_wheel for MySQL-python ... done
+  Stored in directory: /home/fico/.cache/pip/wheels/38/a3/89/ec87e092cfb38450fc91a62562055231deb0049a029054dc62
+Successfully built MySQL-python
+Installing collected packages: MySQL-python
+Successfully installed MySQL-python-1.2.5
+(myprdjenv) fico@dell6320:~/myprojdjango/myprdjenv$ 
+

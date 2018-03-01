@@ -1,0 +1,860 @@
+INICIO PUNTOS BASE 
+
+ESTE archivo .bitacora bien hermanado con accbitacora01 ddonde guardo texgto resultante de los
+procesos descriptos aqui 
+
+los copia y pegue de Terminal 
+lo que ocurre 
+
+
+
+
+PB  templates django override XXXXiniXXXXX
+DE DJANGO 1.7 hacia adelante dejo de usarse TEMPLATES_ 
+como variable de seteo en settings.py
+
+
+
+Para poder overridear los templates django admin entre otros
+tenemos que definir clara mente donde busca django los templates
+en settings.py
+
+
+http://www.tangowithdjango.com/book17/chapters/templates_static.html
+
+
+Warning
+
+The road to hell is paved with hard-coded paths. Hard-coding paths is considered to be a software engineering anti-pattern, and will make your project less portable.
+
+
+
+
+
+
+#templates django override XXXXX fin XXXX
+
+
+
+
+
+FIN DE PPUNTOS BASE DEL FONDO..
+
+
+ut supra es el fondo base de ppuntos a los que se vuelve desde la bitacora...
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+INICIO BITACORA
+
+enero 27 sabado de 2018
+
+Vamos a registrar prceso entero de instalacion hy configuracion servidor rhssp para recurso humano 
+directores operativos 
+
+basados en archivos accesorios que quedaran todos en raiz de proyecto 
+
+
+y en directorio de backup 
+
+
+
+Ut supra defini cuales son esos directorios
+
+
+hoy comenzamos despues de años 7 u 8 , ver .btc  antiguas en respaldo archivo accesorio
+
+
+la intencion es tener un .conf de apache que lo habilitemos 
+primero usaremos el 000.default.conf
+
+
+del cual dejaremos copia en mismo path que este archivo
+
+	DEFINICIONES ORIGINALES
+
+seguiremos como modelo de instalacion el proceso explicado en digital ocean para servidores en web de ellos 
+debian 8 es el sist operati vo
+
+d://www.digitalocean.com/community/tutorials/initial-server-setup-with-debian-8#where-to-go-from-here
+
+
+y despues 
+
+quiza lo modificquemos uno poco 
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-debian-8
+
+
+APARTIR DE AQUI EXPLOREMOS QUE PASA SI HACDMOS ESTO TAL CUAL PERO EN  UNA MAQUINA LOCAL
+NO SERVER EN WEB DROPLET COMO ELLOS PIDEN DE DIGITAL OCEAN...
+
+HOY sabado 27 de enero 2018 probemos en maquina comonueva 6320
+manos a la obra a las 11 de la matina...
+
+
+
+mi idea dificultad original era tema virtual env 
+por ahora no usaremos el virtual env
+pero vamos a instalarlo
+
+prompt
+fico@dell6320:/var/www/rhssp.com/public_html$ sudo pip install virtualenv
+
+instalado..
+https://www.christiaan.com/thoughts/virtualenv-multiple-django-versions/
+
+ahora PAA EVITAR ALGUNOS PROBLEMAS DE PERMISOS LINUX VAMOS A TRABAJAR EN /home/fico 
+vampos a crear entorno de trabajao 
+
+crearemos home/fico/myproydj   y ahi en raiz meteremos este archivo .... y ...crearemos proyecto..
+
+manos a la obra..
+
+LABORIOSO ENTENDER Y USAR VIRTUAL ENV
+
+instalado virtualenv con pip
+
+una vez instalado.
+siguiendo instrucciones
+https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-debian-8
+
+entendemos lo siguiente
+
+
+prompt 
+virtualenv seguido de nombre 
+crea un directorio del nombre dado   
+y dentro de el cuatro subdirectorios   bin  include lib local 
+ademas un pip-selfcheck.json
+
+o sea funciona con mkdir del nombre pasado y agrega dirs locales
+
+
+
+LOQUEYO HICE ES
+
+cree un dir
+
+mkdir /home/fico/myprohdjango
+
+luego dentro de el  
+virtualemv myprojdjangoenv
+
+
+}Esto creo el directorio myprojdjangoenv  , dentro de home/fico/myprojdjango
+
+
+o sea 	temenos la sigte estructura antes de instalar django en el enviromnmet 
+
+/home/fico/   creamos con mkdir /myprojdjango/
+
+luego 
+
+cd /home/fico/myprojdjango
+
+dentro de myprojdjango hacemos 
+prompt
+
+$ virtualenv myprdjenv 
+
+Esto crea el myprdjenv dentro de myproydjango
+
+AHORA TEMEMOS QUE ACTIVARLO
+SE activa con el comando source 
+el comando source esta dentro del directorio myprdjenv /bin creado con la orden virtualenv
+
+o se a  que activa un promp distinto.....
+
+
+
+fico@dell6320:~$ source myprojdjango/myprdjenv/bin/activate
+(myprdjenv) fico@dell6320:~$ 
+
+en este prompt que inicia con (myprdjenv)
+instalamos djangO
+(myprdjenv) fico@dell6320:~$pip install django
+
+
+
+ESTO CREA UN SITEPACKAGES DJANGO dentro del directorio 
+
+que tien las librerias del django 1.11
+
+
+hasta ahora hemos creado un arbol de directorios que 
+sale de /home/fico
+
+el primero es ~/myprojdjango
+
+dentro de el al correr virtualenv myprdjenv se metio ese +
+
+/home/fico/myprojdjango/myprdjenv
+
+
+ese quedo solito ahi pero con el archivo .bitacoraproydjango 
+que es esto que estamos leyendo
+
+
+dentro de ese myprdjenv  hay cuatro subdirs
+
+fico@dell6320:~/myprojdjango/myprdjenv$ ls
+bin  include  lib  local  pip-selfcheck.json
+los cuatro dirs son 
+bin
+
+include 
+
+lib 
+
+local
+
+hay tambien un .json
+
+
+
+
+
+DEspues de instalar pip install django 
+y de correr dentro del env
+el source activate
+y correr el django-admin.py para crear el proyecto
+que yo lo llame myprhum
+
+
+temenos
+
+una estructura asi
+
+./myprojdjango/          # parent project directory
+    |
+    |    
+-   |
+    ├── manage.py         # Django management script
+    ├── myprhum/            # project code directory
+    │   ├── __init__.py
+    │   ├── settings.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    └── myprdjenv/     # project virtual environment directory
+        └── 	. . .
+.
+
+
+el arbolado ut supra se obbtuvo despues de ejecutar 
+
+
+(myprdjenv) fico@dell6320:~$ django-admin.py startproject myproject ~/myprhum
+
+ojo notese ,
+con el virtualenv activado (myprdjenv)
+django-admin.py startproject    nombre del proyecto y  ubicacion donde crearlo
+
+
+ACA VAMOS A HACER UN PARATE PARA ENTENDER O EXPLICAR O PENSAR EN 
+ARBOL DIRECTORIOS PROYETOS DJANGO 
+
+
+metodo viejo que use años , mas tiempo que cabeza dedicada, 
+haciamos un django admin startproyect y generabamos dos directorios del mismo nombre ,
+uno dentro del otro 
+
+el caso es 
+/home/fico/Drobox/programacion/django/rhssp/rhssp 
+
+dentro de 
+home/fico/Dropbox/programacion/django/rhssp
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+MODELO NUEVO 
+con virtualenv
+
+/home/fico/myprojdjango/
+Dentro de este myprojdjango generamos un virrtualenv ,
+ que se llama 
+/home/fico/myprojdjango/myprdjenv
+
+y un django admin .py   startproject 
+que se llama 
+/home/fico/myprojdjango/myprhum
+
+Al generar el startproject queda dentro de ese directorio 
+el myprhum y el manage.py ejecutable con el que puedo generar las apps....
+
+CONTENEDOR PRINCIPAL ES 
+myprojdjango      era rhssp
+
+
+
+
+
+DENTRO DE EL 
+myprhum           era rhssp anidado(mismo nombre)
+
+
+DENTRO DE ESE 
+tenemos manage.py y las aplicaciones qeu  creamos con manage.py
+
+
+
+es clave importqante donde queda el archivo settings.py 
+
+LA DIFERENCIA SURGE DE COMO SE dio la orden django-admin startproject 
+y desde donde 
+
+
+el caso viejo
+ se daba desde raiz django-admin startproject nombreproy 
+
+
+el caso nuevo 
+(myprdjenv)django-admin.py startproject myproject ~/myproject
+
+notese que lo hace desde el virtualenv activado y le pasa nombre y la ubicacion....
+
+
+
+ 
+
+
+
+Admyprdjenv) fico@dell6320:~$ 
+
+HORo@dell6320:~/myprojdjango$ vim mypr
+myprdjenv/ myprhum/   
+(myprdjenv) fico@dell6320:~/myprojdjango$ vim myprhum/settings.py 
+(myprdjenv) fico@dell6320:~/myprojdjango$ 
+
+lo que hicimos fue
+ STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+previo a inicializar base de datos....
+para collectstatic
+
+NOTESE QUE TODO EL LABURO DE EDICION DE archivos dentro del proyecto de django se hace
+dentro de (myprdjenv)
+o sea con activate prendido 
+
+source activate
+
+sigamos editando ahottta settings.py por tema babse de datos...
+
+
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'dbrhum',
+        'USER':'root',
+        'PASSWORD':'Fico@mysql',
+        'HOST':'',
+        'PORT':'',
+ 
+para vincular a mysql .
+
+
+ahora habria que empezar por crear la db en mhysql
+
+luego collectstatic
+
+luego 
+
+manage.py migrate y makemigrations..
+
+luego salir de virtual env y configuradcion apache....
+MANOS A LA OB RA DOMINGO 28 ENERO 2018
+
+ANTES VAMOS A REORDENAR TEMA 
+EN	 RHSSp  de files de templates de django...
+un ratito m,una puntita...
+
+ACA REDIRIJIMOS ESTA LLECTURA , COMO RAYUELA DE CORTAZAR , AL PUNTO #templates de el 
+sector del fondo inicio , antes de INICIO BITACORA....
+
+esto tiene que ver con que en rhssp original , 
+donde ya estaba usando manejo de recurso humano esta en django 1.8 
+al instalar el rhum tomaria a usar el django 1.11 que usa 	TEMPLATES DE OTRA FORMA
+
+
+
+
+Sigamos con el proceso
+
+vAMOS a intentar reordenar los models y los admin para django admin nuevo 
+
+ el proyecto myproydjango con virtual env que instalo el django 1.111
+
+
+tomando lo hecho en models y admin  de el proyect rhssp que esta en Dropbox 
+/programacion/django/rhssp
+
+
+Definamos las aplicaciones que queremos que esten.....
+
+
+ DIRECTORIOS DENTRO DE myprdjango
+
+rhum es el contenedor de settings.py  y wsgi.py y urls.py
+
+ademas de el vienen las creadas con startapp
+
+que agrupan los que el admin toma para organizar su presentacion...
+
+actualmente estan 
+servicios ausencias 
+
+
+
+
+SIGAMOS CON EL PROCESO APOSTANDO A VIRTUALENV
+
+problema 
+instale django bien
+
+falla conexion a mysql 
+intento dentro del virtualenv
+
+pip install modulo 
+y no puede
+
+antes debo instalar python-dev
+
+pero debo hacerlo con sudo apt-get install ..
+
+
+ver archivo accesorio en este mismo dir
+accbitacora01
+
+:w
+.hora si 
+INSTALADO MYSQLDB FUNCIONO
+
+
+ahora fijate lo que dice al correr mak y migragtions ....
+
+(myprdjenv) fico@dell6320:~/myprojdjango$ ./manage.py makemigrations
+No changes detected
+(myprdjenv) fico@dell6320:~/myprojdjango$ ./manage.py migrate
+System check identified some issues:
+
+WARNINGS:
+?: (mysql.W002) MySQL Strict Mode is not set for database connection 'default'
+	HINT: MySQL's Strict Mode fixes many data integrity problems in MySQL, such as data truncation upon insertion, by escalating warnings into errors. It is strongly recommended you activate it. See: https://docs.djangoproject.com/en/1.11/ref/databases/#mysql-sql-mode
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+(myprdjenv) fico@dell6320:~/myprojdjango$ dea
+deactivate  deallocvt   
+(myprdjenv) fico@dell6320:~/myprojdjango$ deactivate 
+fico@dell6320:~/myprojdjango$ 
+
+
+
+warning por que este version   1.11 de django se maneja con mysql de forma nueva y mejor ....
+
+
+a cambiarlo..tema sql mode......
+
+
+antes intentaresmos instalar django exceptions werkzeut y xlrd y xlwt y quizas algo mas
+
+
+lunes 29 de enero 2018
+
+
+PARECE QUE AGUANTA EL ENFOQUE 	VIRTUALENV....... !!!!
+
+para poder instalar modulos python dentro del virtual env
+huob problemas 
+cuando intente instalar MySQLdb dentro del env no podia 
+hasta que no instale python-dev
+
+
+ver .accbitacora01
+
+:w
+p install xlrd
+ 1186  pip install xlwt
+ 1187  pip install reportlab
+ 1188  deactivate 
+ 1189  cd ..
+ 1190  vim .bitacoraproydjango 
+ 1191  source bin/activate
+ 1192  cd myprdjenv/
+ 1193  source bin/activate
+ 1194  pip install werkzeug
+esto se hizo dentro de virtualenv   
+
+
+tambien 
+
+pip install django-extensions
+
+
+para tener shell_plus
+
+
+
+ #
+CONTINNUAMOS HOY MARTES ANTES DE REUNION EN VILELA TEMA CUPORIZACION CONSULTORIOS
+
+MARTES 30 ENERO 2018
+rEVIsamos tema virtual env  
+parece que vamos a aplicarlo 
+suena profesional..
+
+pude instalar modulos dentro de virtual env 
+primero huve de instalar python-dev en sistema
+eso lo hice con sudo apt-get install python-dev
+
+
+ 
+mirar .accbitacora en mismo directorio este archivo.
+
+Seguimos ahora con tutorial digitalocean instalar servidor debian 8 django apache
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-debian-8
+
+hechos esto en dell latitude 6320 
+pasaremos a intentar en maqu virtual traumasrv en cemar habilitada por ramiro....
+
+MIercoles MIERCOLES 30 enero 2018
+intentando hacer 
+via ssh desde ame	123 laburar en traumasrv todo empezo bien
+
+conexion ssh  pidio root@traumasrv   quai123
+conecto bien 
+
+me meto y creo directorios como fico
+
+
+myproyecto y dentro de el virtualenv rhum o algo asi 
+
+
+activo el virtualenv y trato de pip install django 
+
+mala onda ,
+se ve que lo que puede hacedr desde fuera del virtualenv no lo puede desde dentro
+
+enrealidad meparece que lo que no anda es el pip 
+
+
+o se a 
+
+
+pip install nombre paquete
+intenta instalar desde pypy org. 
+
+
+se ve que el servidor no tiene habilitada conexion con ese repositorio 
+
+limite puesto por informatica municipal...
+estudiemos como instalar desde paquetes locales ....
+
+
+exisgte 
+pip install --no-index --find-links=file:
+
+esto haria , creo que pip install busque en la direccion filke que uno le pasa....
+
+
+p install --no-index --find-links=file:/$HOME/.mypypi  django  
+
+PARECE QUE EL ASUNTO PIP INSTALL ES ASI...
+pip install es el mejor ?? metodo de instalar paquetes...
+
+pip install sirve para instalar desde pypy o para downlodear los paquetes desde pypy y
+luego instlar sin conexion desde el directorio donde downlodeaste
+
+
+pip install acepta requirement.txt
+
+en requirement.txt uno define los paquetes y algo mas que quiere instalar todo junto....
+
+
+https://pip.readthedocs.io/en/1.1/usage.html
+
+
+probando probando 
+
+dentro de un virtualenv  activado 
+
+
+(venv_miscocheras) fico@dell6320:~/PARAVENV/venv_miscocheras$ pip download django
+Collecting django
+  Using cached Django-1.11.9-py2.py3-none-any.whl
+  Saved ./Django-1.11.9-py2.py3-none-any.whl
+Collecting pytz (from django)
+  Using cached pytz-2017.3-py2.py3-none-any.whl
+  Saved ./pytz-2017.3-py2.py3-none-any.whl
+Successfully downloaded django pytz
+
+
+notese que es pip download
+
+
+eso guarda en el directorio local los .whl
+esos archivos bajados sirven para instalar desde ese directorio....
+
+
+fico@dell6320:~/.mypypi/PAKETES$ pip2 download 
+ERROR: unknown command "download"
+
+notese !!! mismo comando , fuera de virtualenv , desconocido....
+
+
+es por version vieja de pip 
+
+resuelto al instalar version nueva pip
+
+AHORA TEMA MODELS.PY
+Reorganizando models y apps para django admin+
+
+juntamos todos los models en uso en un solo archivo todomodels.py
+repositorio para reordenar si queeremos 
+
+jueves 1 de febrero 2018
+:w
+HORA SEGUIMOS CON INSTTUCCIONES digitalocean 
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-debian-8
+
+HICIMOS TODO modificamos settings.py
+hicimos collectstatic
+creamos superuser
+
+y saliendo del virtualenv 
+
+nos metimos con apache 
+
+aca 
+EN VEZ DE MODIFICAR EL 000-default.conf como pedia el articulo 
+
+
+
+cambiamos a tratar de meter otro host virtual 
+
+creamos un .conf   dentro de sites-available 
+
+
+ese se llama 
+
+
+  /etc/apache2/sites-available/envproyrhum.conf
+
+
+luego probaremos habilitar y deshabilitar con las 
+
+a2tools de apache 
+
+hasta mañana
+viernes
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx
+LLEGAMOS A ESTE PUNTO DEL ARTICULO ANTERIOR 
+
+When you are finished making these changes, save and close the file.
+Wrapping Up Some Permissions Issues
+
+ESTO ES QUE FALTARIA ASIGNAR PERMISOS Y MODIFICAR FILES....
+OJO...
+    chmod 664 ~/myproject/db.sqlite3
+    chmod 775 ~/myproject
+
+Afterwards, we need to give the group Apache runs under, the www-data group, group ownership of the file:
+
+    sudo chown :www-data ~/myproject/db.sqlite3
+
+In order to write to the file, we also need to give the Apache group ownership over the database's parent directory:
+
+    sudo chown :www-data ~/myproject
+
+
+ATENCION REVISAR LO UT SUPRA ANTES DE SEGUIR....
+pues 
+seguimos con instrucciones de 
+
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-debian-8
+
+adaptadas a estructura de directorios hecha antes....
+
+
+a domani
+
+BUYEN DIA 
+HOY VIERNES ARRANQUE EN PC AME123  DE SECRETARIA
+a intentar desde esa pc trabajar en traumasrv.cema.salud.rosario.gov.ar
+
+bien 
+
+primero era instalar en un directorio con un virtual env como el de eesta pc latitude 6320
+
+eso se hizo
+depues problema fue instalar via pip en maquina que aparentemente tiene restriccion acceso
+a repositorios pypi
+
+para lograr exito , el mas grande ....
+
+que probamos copie en directorio de ame  un utiles package que contenia varios archivos whl
+
+el inento era hacer un
+pip install /home/fico/Utiles/.whl   entodos 
+
+
+al intentar el primero falla 
+porque hube dde instalar el  setup.py primero......
+luego pip actualizado y luego los otros...
+
+ahi anduvo  bien...
+instalacion con pip es un tema no menor....
+
+viernes 2 de febrero 2018   ,vuelve el Fede... al as 17 hs...:e
+Sigamos
+
+Dejo un directorio paquetes  con whl que use en este mismo path
+
+
+setuptools-38.4.0-py2.py3-none-any.whl
+
+este fue la llave para instalar los otros.l
+
+este tambien 
+
+pip-9.0.1-py2.py2-none-any.whl
+
+
+
+
+
+EUREKA   EUREKA EUREKA 
+
+viernes 2 de febrero 2018 esperando a Fede que viene de peru
+
+estuve todo el dia mañana y lo que va de la tarde pero lo pude hacer.!!!
+
+
+Como instalar desde el interior de un virtual environment 
+el conector MySQLdb  para python
+
+no podia 
+
+ahora muestro    ini     procinstMySQLdb venv     fin 
+todo el proceso en un virtual env de prueba 
+
+#####################   ini procinst MySQLdb    ######################
+.
+aca viene copia de terminal de proceso de instalacion en directorio prueba de 
+modulos dificiles con pip install desde directorio local
+
+
+PRIMERO DOWNLODAMOS CON pip download  el modulo 
+BAJA EN FORMATO .zip   en este caso   en otros baja como .whl
+
+fico@dell6320:~/PARAVENV$ pip download MySQL-python
+Collecting MySQL-python
+  Using cached MySQL-python-1.2.5.zip
+  Saved ./MySQL-python-1.2.5.zip
+Successfully downloaded MySQL-python
+
+
+
+
+
+fico@dell6320:~$ mkdir testproy
+fico@dell6320:~$ cd testproy/
+fico@dell6320:~/testproy$ virtualenv envtestproy
+New python executable in /home/fico/testproy/envtestproy/bin/python
+Installing setuptools, pip, wheel...done.
+fico@dell6320:~/testproy$ source envtestproy/bin/activate
+(envtestproy) fico@dell6320:~/testproy$ pip freeze
+(envtestproy) fico@dell6320:~/testproy$ pip install /home/fico/myprojdjango/packagesbypip/Django-1.11.9-py2.py3-none-any.whl 
+Processing /home/fico/myprojdjango/packagesbypip/Django-1.11.9-py2.py3-none-any.whl
+Collecting pytz (from Django==1.11.9)
+  Using cached pytz-2017.3-py2.py3-none-any.whl
+Installing collected packages: pytz, Django
+Successfully installed Django-1.11.9 pytz-2017.3
+(envtestproy) fico@dell6320:~/testproy$ pip freeze
+Django==1.11.9
+pytz==2017.3
+(envtestproy) fico@dell6320:~/testproy$ pip install /home/fico/myprojdjango/packagesbypip/MySQL-python-1.2.5.zip 
+Processing /home/fico/myprojdjango/packagesbypip/MySQL-python-1.2.5.zip
+Building wheels for collected packages: MySQL-python
+  Running setup.py bdist_wheel for MySQL-python ... done
+  Stored in directory: /home/fico/.cache/pip/wheels/58/1c/58/593f7d1a7d40a78353399b769fce24ba1c902eb3789162a14d
+Successfully built MySQL-python
+Installing collected packages: MySQL-python
+Successfully installed MySQL-python-1.2.5
+(envtestproy) fico@dell6320:~/testproy$ python
+Python 2.7.9 (default, Aug 13 2016, 16:41:35) 
+[GCC 4.9.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import django
+>>> import MySQLdb
+>>> MySQLdb
+<module 'MySQLdb' from '/home/fico/testproy/envtestproy/local/lib/python2.7/site-packages/MySQLdb/__init__.pyc'>
+>>> 
+[5]+  Detenido                python
+(
+
+
+
+
+
+
+
+
+
+.
+    CREAMOS DIRECTORIO PROYECTO
+ 1474  mkdir testproy
+ 1475  cd testproy/
+
+DENTRO DE ESE DIRECTORIO  creamos directorio virtualenv con libs
+y lo activamos
+ 1476  virtualenv envtestproy
+ 1477  source envtestproy/bin/activate
+
+MOSTRAMOS QUE TIENE INSTALADO
+
+ 1478  pip freeze
+
+AHORA INSTALAMOS UN PAQUETE FORMATO WHL Y OTRO ZIP BAJADO CON pip download a dir repositorio local
+
+ 1479  pip install /home/fico/myprojdjango/packagesbypip/Django-1.11.9-py2.py3-none-any.whl 
+
+ 1480  pip freeze
+ 1481  pip install /home/fico/myprojdjango/packagesbypip/MySQL-python-1.2.5.zip 
+   
+ESTE ULTIMO UT SUPRA QUE VIENE DE INSTALAR UN ZIP DOWNLODEADO 
+SE INSTALA PERFECTO CON pip install /path to / .zip
+
+
+ 1482  python
+probamos importarlo desde consola y funciona 
+
+
+#####################  fin   procinst MySQLdb    ######################
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx
+
+febrero 24 2018 en brasil vacaciones en recanto das flores celso ramos armasao
+
+lluvioso 
+intentamos mezclar descanso con un poco trabajo 
+empezamos lleyendo  libro que habla sobre tema flatpages en primer capitulo
+existe item flatpages en django ...
+
+dejemos por un moemnto y volvamos a cerear un adm in  nuevo desde modelstodos
+
+separando aplicaciones muevo enfoque 
+
+
+
+
