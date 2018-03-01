@@ -1,0 +1,37 @@
+history del 1 de marzo 2018 en brasil celso ramos armasao
+pousada recanto das flores
+Fico@git2018
+:w 
+
+1742  git
+ 1744  sudo apt-get install git
+ 1747  git init
+ 1748  git config user.name
+ 1749  git config user.name 'ficochiossone'
+ 1750  git config user.email ficochiossone@yahoo.com
+ 1752  git status 
+ 1754  vim .gitignore
+ 1755  git status 
+ 1756  git add --all 
+ 1757  git status 
+ 1758  git remote add origin https://github.com/ficochiossone/myproydjangorhum.git
+ 1759  git push -u origin master
+ 1761  git init
+ 1762  git commit -m "primer commit"
+ 1763  git remote add origin https://github.com/ficochiossone/myproydjangorhum.git
+ 1764  git https://github.com/ficochiossone/myproydjangorhum.git
+ 1765  git remote add origin https://github.com/ficochiossone/myproydjangorhum.git
+ 1766  git push -u origin master
+ 1767  git status
+ 1768  git add --all
+ 1769  git status
+ 1770  git commit -m "agregeje el readme.md"
+ 1771  git status
+ 1772  git add --all
+ 1773  git status
+ 1774  git commit -m "agregado data y str de rhssp usandose ultimo año"
+ 1775  git status
+ 1776  git push
+ 1777  git status
+ 1778  history | grep git
+ 1779  history | grep git > .historygit
