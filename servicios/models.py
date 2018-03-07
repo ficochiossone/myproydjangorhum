@@ -217,7 +217,7 @@ class Registro_categorias(models.Model):
 
 class Registro_especialidad(models.Model):
     trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
-    especialidad = models.ForeignKey('Especialidad',verbose_name ='Especialidad registrada')
+    especialidad = models.ForeignKey('entornos.Especialidad',verbose_name ='Especialidad registrada')
     fecha_ini_vigencia = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Nacimiento')
     #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
     fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
@@ -248,11 +248,11 @@ class Trabajador(models.Model):
     imgtrb=models.ImageField(null=True,blank=True,upload_to='fototrb/%Y/%m',help_text="Archivo de imagen...")
     #imgtrb=models.ImageField(null=True,blank=True,upload_to='/%Y/%m')
     fecha_nacimiento = models.DateField(blank=True,null=True,verbose_name='Fecha de Nacimiento')
-    profesion = models.ForeignKey('Profesion',null=True,blank=True,verbose_name ='Profesion')
-    especialidad_1 = models.ForeignKey('Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
-    especialidad_2 = models.ForeignKey('Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
-    especialidad_3 = models.ForeignKey('Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
-    especialidad_4 = models.ForeignKey('Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
+    profesion = models.ForeignKey('entornos.Profesion',null=True,blank=True,verbose_name ='Profesion')
+    especialidad_1 = models.ForeignKey('entornos.Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
+    especialidad_2 = models.ForeignKey('entornos.Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
+    especialidad_3 = models.ForeignKey('entornos.Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
+    especialidad_4 = models.ForeignKey('entornos.Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
     domicilio = models.CharField(max_length=128, null=True, blank=True)
     telefono = models.CharField(max_length=16, null=True, blank=True)
     celular = models.CharField(max_length=64, null=True,blank=True,default='341')
@@ -664,7 +664,7 @@ class Asigna_lab(models.Model):
     institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion Referente')
     servicio = models.ForeignKey('entornos.Servicio',null=True,blank=True,verbose_name='Servicio Servicio Referente')
     funcion = models.ForeignKey('Func_lab',verbose_name='Funcion')
-    espec = models.ForeignKey('Especialidad',blank=True,null=True,verbose_name='Esp')
+    espec = models.ForeignKey('entornos.Especialidad',blank=True,null=True,verbose_name='Esp')
     fecha_inicio = models.DateField(verbose_name='Fecha Inicio Actividad')
     fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Actividad')
     #diasemana = choi
@@ -1013,11 +1013,11 @@ class Guardia(models.Model):
     tipopresencia = models.CharField(choices=TIPOS,max_length=12,default='ACT',verbose_name='Tipo Presencial')
     modo = models.CharField(choices=MODOS,max_length=12,default='ACT',verbose_name='Tipo Presencial')
     responsabilidad = models.CharField(choices=RESPONS,max_length=12,default='REG',verbose_name ='Dia de la Semana')
-    profesion = models.ForeignKey('Profesion',null=True,blank=True,verbose_name='PROFESION')
+    profesion = models.ForeignKey('entornos.Profesion',null=True,blank=True,verbose_name='PROFESION')
     institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion Referente')
     servicio = models.ForeignKey('entornos.Servicio',null=True,blank=True,verbose_name='Servicio Servicio Referente')
     #funcion = models.ForeignKey('Func_lab',verbose_name='Funcion')
-    espec = models.ForeignKey('Especialidad',blank=True,null=True,verbose_name='Esp')
+    espec = models.ForeignKey('entornos.Especialidad',blank=True,null=True,verbose_name='Esp')
     fecha_inicio = models.DateTimeField(default=default_hora_ini,verbose_name='Fecha Inicio Actividad')
     fecha_fin = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Fin Actividad')
     #hora_inicio = models.TimeField(verbose_name='Fecha Inicio Actividad')
@@ -1147,9 +1147,9 @@ class Guardia(models.Model):
 
 
     class Meta:
-        db_table = 'asignalabs'
-        verbose_name_plural='Asignaciones laborales'
-        verbose_name='Asignacion'
+        db_table = 'guardias'
+        verbose_name_plural='Guardias'
+        verbose_name='Guardia'
 
 
 
