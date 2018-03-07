@@ -1,0 +1,42 @@
+ 1743  git
+ 1745  sudo apt-get install git
+ 1748  git init
+ 1749  git config user.name
+ 1750  git config user.name 'ficochiossone'
+ 1751  git config user.email ficochiossone@yahoo.com
+ 1753  git status 
+ 1755  vim .gitignore
+ 1756  git status 
+ 1757  git add --all 
+ 1758  git status 
+ 1759  git remote add origin https://github.com/ficochiossone/myproydjangorhum.git
+ 1760  git push -u origin master
+ 1762  git init
+ 1763  git commit -m "primer commit"
+ 1764  git remote add origin https://github.com/ficochiossone/myproydjangorhum.git
+ 1765  git https://github.com/ficochiossone/myproydjangorhum.git
+ 1766  git remote add origin https://github.com/ficochiossone/myproydjangorhum.git
+ 1767  git push -u origin master
+ 1768  git status
+ 1769  git add --all
+ 1770  git status
+ 1771  git commit -m "agregeje el readme.md"
+ 1772  git status
+ 1773  git add --all
+ 1774  git status
+ 1775  git commit -m "agregado data y str de rhssp usandose ultimo año"
+ 1776  git status
+ 1777  git push
+ 1778  git status
+ 1779  history | grep git
+ 1780  history | grep git > .historygit
+ 1781  vim .historygit 
+ 1782  git status
+ 1783  git push
+ 1784  git add --all
+ 1785  git status
+ 1786  git push
+ 1787  git commit
+ 1788  git status
+ 1794  history | grep git
+ 1795  history | grep git > githistory07032018
