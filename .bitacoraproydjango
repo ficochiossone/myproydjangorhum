@@ -866,3 +866,34 @@ i  password git ficochiossone
 Fico@git2018
 :w
 
+2018 marzo 7 miercoles
+
+
+marzo miercoles 7 2018
+
+laburando en funes previo a bolver de vacs a cemar 
+rediseñando aplicaciones  en proyecto 
+myprdjango 
+
+para que desde admin salga con fritas para uso de directores.
+primero para matiaas roque saenz peña y servicios de salud
+
+pense en sacar de servicios un monton de models y ya lo hice
+
+
+ademas pusheando comitteando con git 
+ probe nueva dispo de aplicaciones y recreee base de datos 
+y vacie los archivos de los migrations 
+
+ystem check identified some issues:
+
+WARNINGS:
+?: (1_7.W001) MIDDLEWARE_CLASSES is not set.
+	HINT: Django 1.7 changed the global defaults for the MIDDLEWARE_CLASSES. django.contrib.sessions.middleware.SessionMiddleware, django.contrib.auth.middleware.AuthenticationMiddleware, and django.contrib.messages.middleware.MessageMiddleware were removed from the defaults. If your project needs these middleware then you should configure this setting.
+
+
+como ese ve no tira error de relaciones de modelos tablas
+si tira warning que debere revisar ...
+
+
+
