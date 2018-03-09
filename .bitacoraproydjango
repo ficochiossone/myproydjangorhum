@@ -895,5 +895,16 @@ WARNINGS:
 como ese ve no tira error de relaciones de modelos tablas
 si tira warning que debere revisar ...
 
+ marzo 9 2018 
+seguimos adelante encaramos insertar data pararhum.sql
+extraido y editado de rhssp con varios regs metidos 
+en base dedatos mysql dbrhum
+ simultaaneamente se plantea en 
+reunion direcxtores operativos
+
+presentacion central de solicitudeds de reposicion cargos 
+ante pedidos de traslado y vacantes y jubilaciones....
 
 
+preparemos en models.py tema pedido k, el antiguo clamxasigna
+que pasa a ser pedido recurso humano....
