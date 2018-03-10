@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
+
 # ebeste rechum.models  iran metiendosse clasees rec humano sacadas de otras aps
-## aca esgtan las clases objetos : trabajadores   concursos    solicitudesde recursos   contratos   
-###     Status_lab   Registro_
+## aca esgtan las clases objetos : 
+#  trabajadores   concursos    solicitudesde recursos   contratos   
+#     Status_lab   Registro_
+
+print """
+--------------------------------------------------------------
+ini rechum.models
+--------------------------------------------------------------
+"""
+
 from __future__ import unicode_literals
 
-#from django.db import models
 from django.db import models
 from django.db import connection
 from django.contrib.auth.models import User
@@ -60,8 +68,6 @@ class Categoria_lab(models.Model):
         verbose_name ='Categoria '
     
 
-print "    22  servicios models .py va a class    Registro_status"
-
 
 class Trabajador(models.Model):
     apellido = models.CharField(max_length=128)
@@ -73,11 +79,11 @@ class Trabajador(models.Model):
     imgtrb=models.ImageField(null=True,blank=True,upload_to='fototrb/%Y/%m',help_text="Archivo de imagen...")
     #imgtrb=models.ImageField(null=True,blank=True,upload_to='/%Y/%m')
     fecha_nacimiento = models.DateField(blank=True,null=True,verbose_name='Fecha de Nacimiento')
-    profesion = models.ForeignKey('Profesion',null=True,blank=True,verbose_name ='Profesion')
-    especialidad_1 = models.ForeignKey('Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
-    especialidad_2 = models.ForeignKey('Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
-    especialidad_3 = models.ForeignKey('Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
-    especialidad_4 = models.ForeignKey('Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
+    profesion = models.ForeignKey('entornos.Profesion',null=True,blank=True,verbose_name ='Profesion')
+    especialidad_1 = models.ForeignKey('entornos.Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
+    especialidad_2 = models.ForeignKey('entornos.Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
+    especialidad_3 = models.ForeignKey('entornos.Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
+    especialidad_4 = models.ForeignKey('entornos.Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
     domicilio = models.CharField(max_length=128, null=True, blank=True)
     telefono = models.CharField(max_length=16, null=True, blank=True)
     celular = models.CharField(max_length=64, null=True,blank=True,default='341')
@@ -319,105 +325,63 @@ class Concurso:
                        (u'SAMP', u'Seleccion Abierta Municipalidad Provincia'),
                         (u'CAB', u'Concurso Abierto'),(u'XTR', u'ExtraOrdinario')
                  )
- 
 		nombre = models.CharField(max_length='64', verbose_name='Nombre',defult_value='Nombre Oficial....')
-	  codigo = models.CharField(max_length='32', verbose_name='Codigo',defult_value='Codigo....')
-		
-    activo = models.BooleanField(verbose_name='Activo',default=True)
+		activo = models.BooleanField()
+		codigo = models.CharField(max_length='32', verbose_name='Codigo',defult_value='Codigo....')
+		trb_prop = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Gestor promotor')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
+		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
+		fecha_publicacion_apertura = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion')
+		fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas')
+		fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
+		fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
+		fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
+		fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
+		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion')
+		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
+		fecha_registro = models.DateField(auto_now = True)
+		def Tiempoactiva(self):
+				#fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
+				if not self.fecha_fin:
+						today = date.today()
+						return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+				else:
+						return "fin el "
+		def __unicode__(self):
+				cur = connection.cursor()
+				pks = self.id
+				print "el id de la asigna lab es %s"%pks
+				pks = str(pks)
+				sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+				sq+=pks
+				sq+=')'
+				print sq
+				cur.execute(sq)
+				listadsm=cur.fetchall()
+				#obtuve una tupla de tuplas
+				ldsm=''
+				for n in listadsm:
+						n=n[0]
+						ldsm+=n+' - '
+						print ldsm
+						if self.trb_sugerido:
+							ape=smart_unicode(self.trb_sugerido.apellido)
+							nom=smart_unicode(self.funcion.nombre)
+							ape=ape.upper()
+							nom=nom.upper()
+						else:
+							ape='(NO-PROP)'
+						if self.institucion:
+							inst=self.institucion.codigo
+						else:
+							inst =" - "
+		return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
+#revisado hasta aca
 
-    trb_prop = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Gestor promotor')
-    tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
-    #vinculo a registros de extras 
-    #esextensionhoraria = models.ForeignKey('Extension',null=True,blank=True,verbose_name='Extension horas')    
-    ###concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
-    #escontrato = models.ForeignKey('Contrato',null=True,blank=True,verbose_name='Contrato')
-    areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
-    #soldeasig = models.ForeignKey('Sol_deasig',null=True,verbose_name='Detalle de Solicitud')   
-    institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
-    #servicio = models.ForeignKey('entornos.Servicio',null=True,blank=True,verbose_name='Servicio Servicio Referente')
-    profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
-    espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
-    fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
-    fecha_publicacion_apertura = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion')
-    fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas ')
-    fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
-    fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
-    fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
-    fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
-
-
-
-    #diasemana = choi
-    ###modo = models.CharField(choices=MODO,max_length=18,verbose_name = 'Frecuencia mensual')
-    #diasemana = models.CharField(choices=DIASEMANA,max_length=12,verbose_name ='Dia de la Semana')
-    horasxdia = models.IntegerField(verbose_name='Horas x Dia')
-#    frecuencia = models.CharField(choices=FRECUENCIA,max_length=12,verbose_name='Frecuencia',default='R/1')
-#   Para ocasion de funciones en reemplazo...
-    comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion' )
-    #data registro
-    #### Vinculo a ver si es x ausencia especifica de alguien 
-    xausenciatrab = models.ForeignKey('ausencias.Ausencia_trb',null=True,blank=True,verbose_name='X Aus ')
-    usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
-    fecha_registro = models.DateField(auto_now = True)
-    #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
-
-    def Tiempoactiva(self):
-        
-        #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
-        if not self.fecha_fin:
-            today = date.today()
-            return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
-        else:
-            return "fin el "
-    def __unicode__(self):
-        cur = connection.cursor()
-        pks = self.id
-        print "el id de la asigna lab es %s"%pks
-        pks = str(pks)
-        sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
-        sq+=pks
-        sq+=')'
-        
-        print sq
-        cur.execute(sq)
-        listadsm=cur.fetchall()
-        #obtuve una tupla de tuplas
-        ldsm=''
-        for n in listadsm:
-            n=n[0]
-            ldsm+=n+' - '
-        print ldsm    
-        
-
-
-        if self.trb_sugerido:
-            ape=smart_unicode(self.trb_sugerido.apellido)
-            nom=smart_unicode(self.funcion.nombre)
-            ape=ape.upper()
-            nom=nom.upper()
-        else:
-            ape='(NO-PROP)'
-##        if self.fecha_fin:
-##            ff=date.strftime(date.today(),"%d-%b-%Y")
-##            
-##        else:
-##            ff="! Sin ffin"
-##
-
-        
-##        if self.servicio:
-##            sv=self.servicio.codigo
-##        else:
-##            sv=" - "
-
-        if self.institucion:
-            inst=self.institucion.codigo
-        else:
-            inst =" - "
-
-
-
-        return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
 #
      class Meta:
         db_table = 'concurso'
