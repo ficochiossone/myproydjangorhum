@@ -907,4 +907,22 @@ ante pedidos de traslado y vacantes y jubilaciones....
 
 
 preparemos en models.py tema pedido k, el antiguo clamxasigna
-que pasa a ser pedido recurso humano....
+que pasa a ser pedido recurso humano..
+
+Empece a mover 
+classes   de servicio a 
+rechum
+ya pase 
+trabajadores 
+concursos  contratos   registros de cats y estados
+
+vamos a dejar en servicios  reemplazos  asignaciones laborales   funciones laborales 
+
+
+los admin que trabajen en calculo de horas y pagos de reemplazo saltaran
+trabajadores va a quedar en rechum
+
+las funciones vinculadas a los servicios quedan en servicios....
+
+
+
