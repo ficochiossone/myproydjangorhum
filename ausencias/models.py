@@ -65,12 +65,12 @@ class Ausencia_trb (models.Model):
     generavacgen = models.BooleanField(default=False,verbose_name='Vac Genuina')
     areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Area Dep')
     solicita_cobertura = models.BooleanField(default=False,verbose_name = 'X Cubrir')
-    trabajador_ausente = models.ForeignKey('servicios.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
+    trabajador_ausente = models.ForeignKey('rechum.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
 
 
 ##  el campo que sigue lo vamao a volar ,
 ##  vamos a meter una def que revise en asignaciones si hay en relacion a esta ausemcoa asg vinculadas... 
-    cobertura_princ_por = models.ForeignKey('servicios.Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
+    cobertura_princ_por = models.ForeignKey('rechum.Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
 
     tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')
     fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')

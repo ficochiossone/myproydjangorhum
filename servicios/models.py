@@ -115,305 +115,307 @@ class Func_lab(models.Model):
 
 
  
-class Status_lab(models.Model):
-    nombre = models.CharField(max_length=32)
-    codigo = models.CharField(max_length=8)
-    descripcion = models.TextField(default='Descr....')
+##class Status_lab(models.Model):
+##    nombre = models.CharField(max_length=32)
+##    codigo = models.CharField(max_length=8)
+##    descripcion = models.TextField(default='Descr....')
+##
+##    def __unicode__(self):
+##        nom=smart_unicode(self.nombre)
+##        cod=smart_unicode(self.codigo)
+##        cod=cod.upper()
+##        nom=nom.upper()
+##        return "%s - %s" % (cod,nom)
+##
+##    class Meta:
+##        db_table = 'mr_status'
+##        verbose_name = 'Estado Laboral'
+##        verbose_name_plural = 'Estados Laborales'
+##
+##
+##
+##class Categoria_lab(models.Model):
+##    nombre = models.CharField(max_length=32)
+##    codigo = models.CharField(max_length=8)
+##    descripcion = models.TextField(default='Descr....')
+##    def __unicode__(self):
+##        nom=smart_unicode(self.nombre)
+##        cod=smart_unicode(self.codigo)
+##        cod=cod.upper()
+##        nom=nom.upper()
+##        return "%s - %s" % (cod,nom)
+##
+##    class Meta:
+##        db_table = 'mr_categorias'
+##        verbose_name_plural ='Categorias Laborales'
+##        verbose_name ='Categoria '
+##    
+##
+##print "    22  servicios models .py va a class    Registro_status"
+##
+##
+##
+##class Registro_status(models.Model):
+##    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
+##    status = models.ForeignKey('Status_lab',verbose_name ='Estado Laboral registrado')
+##    fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Vigencia')
+##    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
+##    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
+##
+##    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
+##    usuario_registro = models.ForeignKey(to = User,null=True,blank=True, verbose_name = 'Registrado por')
+##    #para usar cuando ya tenemos en otra clase el trabajador y traer solo info de cambio de estado	
+##    def brevis(self):
+##        nom=smart_unicode(self.trabajador)
+##	pasoa = smart_unicode(self.status)
+##        cod=smart_unicode(self.fecha_ini_vigencia)
+##        #cod=cod.upper()
+##        #nom=nom.upper()
+##
+##        return "%s => %s" %(cod,pasoa)
+##
+##
+##
+##
+##    def __unicode__(self):
+##        nom=smart_unicode(self.trabajador)
+##	pasoa = smart_unicode(self.status)
+##        cod=smart_unicode(self.fecha_ini_vigencia)
+##        #cod=cod.upper()
+##        #nom=nom.upper()
+##
+##        return "%s - %s => %s" %(cod,nom,pasoa)
+##
+##    class Meta:
+##        db_table = 'registros_status'
+##	verbose_name = 'Cambio Estado'
+##        verbose_name_plural=' Modificaciones de Estado '
+##
+##
+##class Registro_categorias(models.Model):
+##    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
+##    categoria = models.ForeignKey('Categoria_lab',verbose_name ='Categoria registrada')
+##    fecha_ini_vigencia = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Nacimiento')
+##    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
+##    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
+##    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
+##    comentarios = models.CharField(max_length=128,blank=True,null=True)
+##    def __unicode__(self):
+##        nom=smart_unicode(self.nombre)
+##        cod=smart_unicode(self.codigo)
+##        cod=cod.upper()
+##        nom=nom.upper()
+##        return "%s - %s" % (cod,nom)
+##
+##    class Meta:
+##        db_table = 'registros_catgs'
+##        verbose_name_plural='Registros de Categoria'
+##
+##    
+##
+##
+##
+##class Registro_especialidad(models.Model):
+##    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
+##    especialidad = models.ForeignKey('entornos.Especialidad',verbose_name ='Especialidad registrada')
+##    fecha_ini_vigencia = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Nacimiento')
+##    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
+##    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
+##    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
+##    comentarios = models.CharField(max_length=128,blank=True,null=True)
+##    def __unicode__(self):
+##        nom=smart_unicode(self.nombre)
+##        cod=smart_unicode(self.codigo)
+##        cod=cod.upper()
+##        nom=nom.upper()
+##        return "%s - %s" % (cod,nom)
+##
+##    class Meta:
+##        db_table = 'registros_esps'
+##        verbose_name_plural='Registros de Especialidad'
+##    
+##
+##
+##
+##
+##class Trabajador(models.Model):
+##    apellido = models.CharField(max_length=128)
+##    nombre = models.CharField(max_length=128)
+##    tpodoc = models.CharField(max_length=5,default='DNI')
+##    nrodoc = models.IntegerField(default=1)
+##    ncuitl = models.CharField(max_length=24,null=True,blank=True)
+##    matricula = models.CharField(max_length=16,blank=True,null=True)          
+##    imgtrb=models.ImageField(null=True,blank=True,upload_to='fototrb/%Y/%m',help_text="Archivo de imagen...")
+##    #imgtrb=models.ImageField(null=True,blank=True,upload_to='/%Y/%m')
+##    fecha_nacimiento = models.DateField(blank=True,null=True,verbose_name='Fecha de Nacimiento')
+##    profesion = models.ForeignKey('entornos.Profesion',null=True,blank=True,verbose_name ='Profesion')
+##    especialidad_1 = models.ForeignKey('entornos.Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
+##    especialidad_2 = models.ForeignKey('entornos.Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
+##    especialidad_3 = models.ForeignKey('entornos.Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
+##    especialidad_4 = models.ForeignKey('entornos.Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
+##    domicilio = models.CharField(max_length=128, null=True, blank=True)
+##    telefono = models.CharField(max_length=16, null=True, blank=True)
+##    celular = models.CharField(max_length=64, null=True,blank=True,default='341')
+##    email = models.EmailField(blank=True,null=True,verbose_name='E Mail')
+##    cuit = models.CharField(max_length=16,null=True,blank=True)
+##    
+##		#habia error aqui,,
+##		#legajo = models.CharField(max_length=32,null=True,blank=True,verbose_name='N de Legajo ')
+##    activo = models.NullBooleanField(blank=True,null=True,default=True,verbose_name='Activo')
+##    #trdexls = models.ForeignKey('MR.Tr_demapxls',verbose_name='Tr_del_xlsmap',blank=True,null=True) 
+##    #dtid=models.IntegerField(null=True,blank=True,editable=False)
+##    mr_fecha_ingreso = models.DateField(blank=True,null=True,verbose_name='Fecha Ingreso MR')
+##    mr_legajo = models.IntegerField(blank=True,null=True,verbose_name='N de Legajo')
+##    mr_categoria = models.ForeignKey('Categoria_lab',blank=True,null=True,verbose_name='Categoria Municipal',)
+##
+##    ## el status lab indica si es reemplazante transitorio o planta permanente o contratado..
+##    mr_statuslab = models.ForeignKey('Status_lab',blank=True,null=True,verbose_name='Condicion Laboral')   
+##
+##    xlreparticion=models.CharField(max_length=32,null=True,blank=True,verbose_name='Reparticion')
+##    xltipoemp=models.CharField(max_length=32,null=True,blank=True)
+##    xlcaliflab=models.CharField(max_length=32,null=True,blank=True,verbose_name='Calificacion ')
+##    xltitulo=models.CharField(max_length=32,null=True,blank=True)
+##    mrmapid=models.IntegerField(null=True,blank=True,editable=False)
+##    mrpersonaid=models.IntegerField(null=True,blank=True,editable=False)
+##    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
+##    fecha_creacion = models.DateField(auto_now_add=True,blank=True,null=True)
+##    fecha_modificacion = models.DateField(auto_now = True,blank=True,null=True)
+##    #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
+##    def hstrstatus(self):
+##	#ARMANJMOS STRING CON LISTA DE REGISSTROS STATUS DE ESE TRABAJADOR.
+##	rss=Registro_status.objects.filter(trabajador_id=self.id)
+##	if rss:
+##		#print "Si   este trb  tiene registros de status"
+##		#print 
+##		lit=""
+##		for n in rss :
+##			print "va "+ str(n)
+##			print n.status.nombre
+##			nnom= n.status.nombre
+##			nfecha = str(n.fecha_ini_vigencia)
+##			tot =nfecha+' > ' +nnom
+##			lit+=' - '+tot
+## 
+##		return lit
+##	
+##	else:
+##		return "NR"	
+##    	
+##
+##
+##    def EdadActual(self):
+##        #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
+##        if self.fecha_nacimiento:
+##            today = date.today()
+##            return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+##        else:
+##            return "N/D"
+##
+##    def __unicode__(self):
+##        if self.especialidad_1:
+##            esp1=self.especialidad_1.codigo
+##        else:
+##            esp1=" "
+##            
+##        ape=smart_unicode(self.apellido)
+##        nom=smart_unicode(self.nombre)
+##        ape=ape.upper()
+##        nom=nom.upper()
+##        return "%s  %s-- (%s)" % (ape,nom,esp1)
+#### otra func para props del trabajador
+##
+#####  ini funcion para ver evolucion mr status por registro status
+##		
+##    def evolstatus(self):
+##        print """
+##
+##                            def evolstatus en models.py m2m  en class Trabajador
+##
+##                            
+##
+##
+##	      """
+##
+##	#SI NO OBTIENE DEVOLUCION DEJA LISTO RESPUESTA EN strret
+##	strret="N R"
+##	#toma el id de trabajador
+##        rp= self.pk
+##
+##   ####  esta funcion , tiene un valor rp .pk  cuando esta modificando existetes
+##   ####   hay que pararla cuando esta creando uno nuevo , no tiene id todavia ....     
+##        print """
+##
+##                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##                    obt el unicode de este reemplazo es
+##
+##                    
+##
+##                    """
+##
+##
+##        #################################ininuevo
+##	#si esta ubicada en un trabajador definido , sighe.
+##        if rp:
+##            print"""
+##                    estamos en un rp existente
+##                    laboramos vpara generar Indasgn
+##
+##
+##                        """
+##            sq2="select id  from registro_status where trabajador_id =%s"%str(rp)
+##            ##queaslabs==""
+##            curbas=connection.cursor()
+##            curbas.execute(sq2)
+##            paqals=curbas.chall()
+##            naslabs=0
+##            queaslabs='N R'
+##            if paqals:
+##                queaslabs=''
+##                for n in paqals:
+##                    naslabs+=1
+##                    idas=n[0]
+##                    #idaslab=str(idas)
+##                    alb=Registro_status.objects.get(pk=idas)
+##                    abinst=alb.status.codigo
+##                    dd=alb.brevis()
+##                    cad=abinst+':'+dd+' -'
+##                    queaslabs+=cad
+##            
+##            strret=queaslabs
+##			   	    
+##        # no esta en ningun trabajadro id defiindo    
+##        else:
+##
+##            print"""
+##
+##                    NONE  NO HAY REGISTRO TODAVIA
+##                    
+##                        SIN HACER RUIDO SALIMOS..
+##			strret queda en NR
+##                                            """
+##
+##
+##            
+##        return strret
+##    
+##        
+##    evolstatus.short_description ='EvolSL'    
+## 
+##
+##
+##    class Meta:
+##        db_table = 'trabajadores'
+##        verbose_name_plural='Trabajadores Salud'
+##        verbose_name = 'Trabajador'
+##        ordering = ['apellido',]
+##                                 
+##
+##
 
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        db_table = 'mr_status'
-        verbose_name = 'Estado Laboral'
-        verbose_name_plural = 'Estados Laborales'
-
-
-
-class Categoria_lab(models.Model):
-    nombre = models.CharField(max_length=32)
-    codigo = models.CharField(max_length=8)
-    descripcion = models.TextField(default='Descr....')
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        db_table = 'mr_categorias'
-        verbose_name_plural ='Categorias Laborales'
-        verbose_name ='Categoria '
-    
-
-print "    22  servicios models .py va a class    Registro_status"
-
-
-
-class Registro_status(models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
-    status = models.ForeignKey('Status_lab',verbose_name ='Estado Laboral registrado')
-    fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Vigencia')
-    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
-    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
-
-    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
-    usuario_registro = models.ForeignKey(to = User,null=True,blank=True, verbose_name = 'Registrado por')
-    #para usar cuando ya tenemos en otra clase el trabajador y traer solo info de cambio de estado	
-    def brevis(self):
-        nom=smart_unicode(self.trabajador)
-	pasoa = smart_unicode(self.status)
-        cod=smart_unicode(self.fecha_ini_vigencia)
-        #cod=cod.upper()
-        #nom=nom.upper()
-
-        return "%s => %s" %(cod,pasoa)
-
-
-
-
-    def __unicode__(self):
-        nom=smart_unicode(self.trabajador)
-	pasoa = smart_unicode(self.status)
-        cod=smart_unicode(self.fecha_ini_vigencia)
-        #cod=cod.upper()
-        #nom=nom.upper()
-
-        return "%s - %s => %s" %(cod,nom,pasoa)
-
-    class Meta:
-        db_table = 'registros_status'
-	verbose_name = 'Cambio Estado'
-        verbose_name_plural=' Modificaciones de Estado '
-
-
-class Registro_categorias(models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
-    categoria = models.ForeignKey('Categoria_lab',verbose_name ='Categoria registrada')
-    fecha_ini_vigencia = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Nacimiento')
-    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
-    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
-    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
-    comentarios = models.CharField(max_length=128,blank=True,null=True)
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        db_table = 'registros_catgs'
-        verbose_name_plural='Registros de Categoria'
-
-    
-
-
-
-class Registro_especialidad(models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
-    especialidad = models.ForeignKey('entornos.Especialidad',verbose_name ='Especialidad registrada')
-    fecha_ini_vigencia = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Nacimiento')
-    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
-    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
-    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
-    comentarios = models.CharField(max_length=128,blank=True,null=True)
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        db_table = 'registros_esps'
-        verbose_name_plural='Registros de Especialidad'
-    
-
-
-
-
-class Trabajador(models.Model):
-    apellido = models.CharField(max_length=128)
-    nombre = models.CharField(max_length=128)
-    tpodoc = models.CharField(max_length=5,default='DNI')
-    nrodoc = models.IntegerField(default=1)
-    ncuitl = models.CharField(max_length=24,null=True,blank=True)
-    matricula = models.CharField(max_length=16,blank=True,null=True)          
-    imgtrb=models.ImageField(null=True,blank=True,upload_to='fototrb/%Y/%m',help_text="Archivo de imagen...")
-    #imgtrb=models.ImageField(null=True,blank=True,upload_to='/%Y/%m')
-    fecha_nacimiento = models.DateField(blank=True,null=True,verbose_name='Fecha de Nacimiento')
-    profesion = models.ForeignKey('entornos.Profesion',null=True,blank=True,verbose_name ='Profesion')
-    especialidad_1 = models.ForeignKey('entornos.Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
-    especialidad_2 = models.ForeignKey('entornos.Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
-    especialidad_3 = models.ForeignKey('entornos.Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
-    especialidad_4 = models.ForeignKey('entornos.Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
-    domicilio = models.CharField(max_length=128, null=True, blank=True)
-    telefono = models.CharField(max_length=16, null=True, blank=True)
-    celular = models.CharField(max_length=64, null=True,blank=True,default='341')
-    email = models.EmailField(blank=True,null=True,verbose_name='E Mail')
-    cuit = models.CharField(max_length=16,null=True,blank=True)
-    
-		#habia error aqui,,
-		#legajo = models.CharField(max_length=32,null=True,blank=True,verbose_name='N de Legajo ')
-    activo = models.NullBooleanField(blank=True,null=True,default=True,verbose_name='Activo')
-    #trdexls = models.ForeignKey('MR.Tr_demapxls',verbose_name='Tr_del_xlsmap',blank=True,null=True) 
-    #dtid=models.IntegerField(null=True,blank=True,editable=False)
-    mr_fecha_ingreso = models.DateField(blank=True,null=True,verbose_name='Fecha Ingreso MR')
-    mr_legajo = models.IntegerField(blank=True,null=True,verbose_name='N de Legajo')
-    mr_categoria = models.ForeignKey('Categoria_lab',blank=True,null=True,verbose_name='Categoria Municipal',)
-
-    ## el status lab indica si es reemplazante transitorio o planta permanente o contratado..
-    mr_statuslab = models.ForeignKey('Status_lab',blank=True,null=True,verbose_name='Condicion Laboral')   
-
-    xlreparticion=models.CharField(max_length=32,null=True,blank=True,verbose_name='Reparticion')
-    xltipoemp=models.CharField(max_length=32,null=True,blank=True)
-    xlcaliflab=models.CharField(max_length=32,null=True,blank=True,verbose_name='Calificacion ')
-    xltitulo=models.CharField(max_length=32,null=True,blank=True)
-    mrmapid=models.IntegerField(null=True,blank=True,editable=False)
-    mrpersonaid=models.IntegerField(null=True,blank=True,editable=False)
-    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
-    fecha_creacion = models.DateField(auto_now_add=True,blank=True,null=True)
-    fecha_modificacion = models.DateField(auto_now = True,blank=True,null=True)
-    #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
-    def hstrstatus(self):
-	#ARMANJMOS STRING CON LISTA DE REGISSTROS STATUS DE ESE TRABAJADOR.
-	rss=Registro_status.objects.filter(trabajador_id=self.id)
-	if rss:
-		#print "Si   este trb  tiene registros de status"
-		#print 
-		lit=""
-		for n in rss :
-			print "va "+ str(n)
-			print n.status.nombre
-			nnom= n.status.nombre
-			nfecha = str(n.fecha_ini_vigencia)
-			tot =nfecha+' > ' +nnom
-			lit+=' - '+tot
- 
-		return lit
-	
-	else:
-		return "NR"	
-    	
-
-
-    def EdadActual(self):
-        #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
-        if self.fecha_nacimiento:
-            today = date.today()
-            return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
-        else:
-            return "N/D"
-
-    def __unicode__(self):
-        if self.especialidad_1:
-            esp1=self.especialidad_1.codigo
-        else:
-            esp1=" "
-            
-        ape=smart_unicode(self.apellido)
-        nom=smart_unicode(self.nombre)
-        ape=ape.upper()
-        nom=nom.upper()
-        return "%s  %s-- (%s)" % (ape,nom,esp1)
-## otra func para props del trabajador
-
-###  ini funcion para ver evolucion mr status por registro status
-		
-    def evolstatus(self):
-        print """
-
-                            def evolstatus en models.py m2m  en class Trabajador
-
-                            
-
-
-	      """
-
-	#SI NO OBTIENE DEVOLUCION DEJA LISTO RESPUESTA EN strret
-	strret="N R"
-	#toma el id de trabajador
-        rp= self.pk
-
-   ####  esta funcion , tiene un valor rp .pk  cuando esta modificando existetes
-   ####   hay que pararla cuando esta creando uno nuevo , no tiene id todavia ....     
-        print """
-
-                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    obt el unicode de este reemplazo es
-
-                    
-
-                    """
-
-
-        #################################ininuevo
-	#si esta ubicada en un trabajador definido , sighe.
-        if rp:
-            print"""
-                    estamos en un rp existente
-                    laboramos vpara generar Indasgn
-
-
-                        """
-            sq2="select id  from registro_status where trabajador_id =%s"%str(rp)
-            ##queaslabs==""
-            curbas=connection.cursor()
-            curbas.execute(sq2)
-            paqals=curbas.chall()
-            naslabs=0
-            queaslabs='N R'
-            if paqals:
-                queaslabs=''
-                for n in paqals:
-                    naslabs+=1
-                    idas=n[0]
-                    #idaslab=str(idas)
-                    alb=Registro_status.objects.get(pk=idas)
-                    abinst=alb.status.codigo
-                    dd=alb.brevis()
-                    cad=abinst+':'+dd+' -'
-                    queaslabs+=cad
-            
-            strret=queaslabs
-			   	    
-        # no esta en ningun trabajadro id defiindo    
-        else:
-
-            print"""
-
-                    NONE  NO HAY REGISTRO TODAVIA
-                    
-                        SIN HACER RUIDO SALIMOS..
-			strret queda en NR
-                                            """
-
-
-            
-        return strret
-    
-        
-    evolstatus.short_description ='EvolSL'    
- 
-
-
-    class Meta:
-        db_table = 'trabajadores'
-        verbose_name_plural='Trabajadores Salud'
-        verbose_name = 'Trabajador'
-        ordering = ['apellido',]
-                                 
-
-
+##ut supra clases quitue pasaron a aplicacion rechum
 
 class Contrato (models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name='Trabajador Contratado')   
+    trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador Contratado')   
     nhoras=models.IntegerField(null=True,blank=True,verbose_name='N de horas  ')    
     fecha_inicio = models.DateTimeField(verbose_name='Fecha Inicio Actividad')
     fecha_fin = models.DateTimeField(verbose_name='Fecha Finalizacion Actividad')
@@ -458,7 +460,7 @@ class Contrato (models.Model):
 
 
 class Reemplazo (models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name='Trabajador')
+    trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador')
     #validado = models.BooleanField(verbose_name='Validado',default=False)
     nhoras=models.IntegerField(null=True,blank=True,verbose_name='N de horas ')    
 ### se integrarra con asignaciones laborales que sohn variadas.
@@ -596,7 +598,7 @@ class Reemplazo (models.Model):
 ###   reemplazo.id es uno a muchos
         
 class Extension (models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name='Trabajador')   
+    trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador')   
     asignalab = models.ForeignKey('Asigna_lab',verbose_name='Para cumplir Asignacion ')
     xausenciatrab = models.ForeignKey('ausencias.Ausencia_trb',null=True,blank=True,verbose_name='Cobertura Ausencia ')
     nhoras=models.IntegerField(null=True,blank=True,verbose_name='N de horas ')    
@@ -653,7 +655,7 @@ class Asigna_lab(models.Model):
     activo = models.BooleanField(verbose_name='Activo',default=True)
     #ut infra un m2m que agrupa varios dias
     dds = models.ManyToManyField('entornos.Dds',verbose_name='DiasSemanales')
-    trabajador = models.ForeignKey('Trabajador',verbose_name='Trabajador')
+    trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador')
     tipoasignacion = models.CharField(choices=FORMATO,max_length=12,default='REG',verbose_name='Tipo Asignacion')
     #vinculo a registros de extras 
     #esextensionhoraria = models.ForeignKey('Extension',null=True,blank=True,verbose_name='Extension horas')    
@@ -988,6 +990,7 @@ class Clm_Asigna:
 class Guardia(models.Model):
 #cada porcion de horas continuas en que un profesional cubre una funcion    
 # rol del trab es Rol
+# una guardia de un dia en un lugar para una especialidad pueden ser muchas de estas , una por cada trabajador ....
 
 
 #presencia
@@ -1009,7 +1012,7 @@ class Guardia(models.Model):
     vigencia = models.BooleanField(default=True,verbose_name='Vigencia')
     #ut infra un m2m que agrupa varios dias
     #dds = models.ManyToManyField('dataextra.Dds',verbose_name='DiasSemanales')
-    trabajador = models.ForeignKey('Trabajador',blank=True,null=True,verbose_name='Trabajador')
+    trabajador = models.ForeignKey('rechum.Trabajador',blank=True,null=True,verbose_name='Trabajador')
     tipopresencia = models.CharField(choices=TIPOS,max_length=12,default='ACT',verbose_name='Tipo Presencial')
     modo = models.CharField(choices=MODOS,max_length=12,default='ACT',verbose_name='Tipo Presencial')
     responsabilidad = models.CharField(choices=RESPONS,max_length=12,default='REG',verbose_name ='Dia de la Semana')

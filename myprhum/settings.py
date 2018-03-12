@@ -31,8 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
 #    para usar flatpages....
-    'django.contrib.sites',
-		'django.contrib.flatpages',
+    # cuando esto estaba en uso se jodia con Site matching query does not exist.
+#    'django.contrib.sites',
+#		'django.contrib.flatpages',
 #    aplicaciones para admin...
 		'ausencias','servicios','entornos','rechum',
 ]
@@ -126,7 +127,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-
+#SIDE_ID = 1
 
 print """
 --------------------------------------------------------------------------------

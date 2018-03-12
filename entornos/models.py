@@ -114,7 +114,7 @@ class Especialidad(models.Model):
 class Areadependencia(models.Model):
     nombre = models.CharField(max_length=32)
     codigo = models.CharField(max_length=8)
-    responsable = models.ForeignKey('servicios.Trabajador',verbose_name ='Responsable del area')
+    responsable = models.ForeignKey('rechum.Trabajador',verbose_name ='Responsable del area')
     
     def __unicode__(self):
         nom=smart_unicode(self.nombre)

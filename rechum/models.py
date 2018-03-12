@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 
 # ebeste rechum.models  iran metiendosse clasees rec humano sacadas de otras aps
 ## aca esgtan las clases objetos : 
@@ -10,8 +12,6 @@ print """
 ini rechum.models
 --------------------------------------------------------------
 """
-
-from __future__ import unicode_literals
 
 from django.db import models
 from django.db import connection
@@ -301,7 +301,7 @@ class Registro_categorias(models.Model):
 
 class Registro_especialidad(models.Model):
     trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
-    especialidad = models.ForeignKey('Especialidad',verbose_name ='Especialidad registrada')
+    especialidad = models.ForeignKey('entornos.Especialidad',verbose_name ='Especialidad registrada')
     fecha_ini_vigencia = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Nacimiento')
     #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
     fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
@@ -320,14 +320,14 @@ class Registro_especialidad(models.Model):
  
 
 ### concursos para incorporacion
-class Concurso:
+class Concurso(models.Model):
 		TIPOS = ((u'SIM', u'Seleccion Interna Municipal'),
                        (u'SAMP', u'Seleccion Abierta Municipalidad Provincia'),
                         (u'CAB', u'Concurso Abierto'),(u'XTR', u'ExtraOrdinario')
                  )
-		nombre = models.CharField(max_length='64', verbose_name='Nombre',defult_value='Nombre Oficial....')
+		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Nombre Oficial....')
 		activo = models.BooleanField()
-		codigo = models.CharField(max_length='32', verbose_name='Codigo',defult_value='Codigo....')
+		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
 		trb_prop = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Gestor promotor')
 		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
@@ -379,241 +379,98 @@ class Concurso:
 							inst=self.institucion.codigo
 						else:
 							inst =" - "
-		return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
+				return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
 #revisado hasta aca
-
-#
-     class Meta:
-        db_table = 'concurso'
-        verbose_name_plural='Concursos'
-        verbose_name='Concurso'
-
+		class Meta:
+				db_table = 'concurso'
+				verbose_name_plural='Concursos'
+				verbose_name='Concurso'
 
 
 # para pedidos de recurso de directores a srvs salud yluego mostrar cuadro a Leo
-
-
-
-
-
-
-class Solic_Rhum:
-
+class Solic_Rhum(models.Model):
   ### objeto virtual que representa un 
   ###  pedido de recurso humano , personal registrado existente  o no ,
   ###  vinculado o no a un concurso  
   ###  "justificado" o no por una ausencia o falta o traslado o creacion de nuevo dispo
   ###   firmado por un gestor responsable de un area de dependencia y o institucion 
   ###   de una profesion y o especialidad 
-  ###    
-
-
-  
-   FORMATO = ((u'REG', u'Regular'),
+  ###  
+		FORMATO = ((u'REG', u'Regular'),
                        (u'KBT', u'Cubre Ausencia'),
                         (u'CTO',u'Contrato'))
-
-    activo = models.BooleanField(verbose_name='Activo',default=True)
+		activo = models.BooleanField(verbose_name='Activo',default=True)
     #ut infra un m2m que agrupa varios dias
     ###dds = models.ManyToManyField('dataextra.Dds',verbose_name='DiasSemanales')
-    trb_sugerido = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Persona Sugerida')
+		trb_sugerido = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Persona Sugerida')
     ###tipoasignacion = models.CharField(choices=FORMATO,max_length=12,default='REG',verbose_name='Tipo Asignacion')
     #vinculo a registros de extras 
     #esextensionhoraria = models.ForeignKey('Extension',null=True,blank=True,verbose_name='Extension horas')    
-    concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
+		concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
     #escontrato = models.ForeignKey('Contrato',null=True,blank=True,verbose_name='Contrato')
-    areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
+		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
     #soldeasig = models.ForeignKey('Sol_deasig',null=True,verbose_name='Detalle de Solicitud')   
-    institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
     #servicio = models.ForeignKey('entornos.Servicio',null=True,blank=True,verbose_name='Servicio Servicio Referente')
-    profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
-    espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
-    fecha_inicio = models.DateField(verbose_name='Fecha I')
+		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		fecha_inicio = models.DateField(verbose_name='Fecha I')
     #fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Actividad')
     #diasemana = choi
     ###modo = models.CharField(choices=MODO,max_length=18,verbose_name = 'Frecuencia mensual')
     #diasemana = models.CharField(choices=DIASEMANA,max_length=12,verbose_name ='Dia de la Semana')
-    horasxdia = models.IntegerField(verbose_name='Horas x Dia')
+		horasxdia = models.IntegerField(verbose_name='Horas x Dia')
 #    frecuencia = models.CharField(choices=FRECUENCIA,max_length=12,verbose_name='Frecuencia',default='R/1')
 #   Para ocasion de funciones en reemplazo...
-    comentarios = models.TextField(max_length=128, null=True, blank=True)
+		comentarios = models.TextField(max_length=128, null=True, blank=True)
     #data registro
     #### Vinculo a ver si es x ausencia especifica de alguien 
-    xausenciatrab = models.ForeignKey('ausencias.Ausencia_trb',null=True,blank=True,verbose_name='X Aus ')
-    usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
-    fecha_registro = models.DateField(auto_now = True)
+		xausenciatrab = models.ForeignKey('ausencias.Ausencia_trb',null=True,blank=True,verbose_name='X Aus ')
+		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
+		fecha_registro = models.DateField(auto_now = True)
     #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
 
-    def Tiempoactiva(self):
-        
-        #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
-        if not self.fecha_fin:
-            today = date.today()
-            return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
-        else:
-            return "fin el "
+		def Tiempoactiva(self):
+    #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
+				if not self.fecha_fin:
+						today = date.today()
+						return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+				else:
+						return "fin el "
+		def __unicode__(self):
+				cur = connection.cursor()
+				pks = self.id
+				print "el id de la asigna lab es %s"%pks
+				pks = str(pks)
+				sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+				sq+=pks
+				sq+=')'
+				print sq
+				cur.execute(sq)
+				listadsm=cur.fetchall()
+				#obtuve una tupla de tuplas
+				ldsm=''
+				for n in listadsm:
+						n=n[0]
+						ldsm+=n+' - '
+						print ldsm
+						if self.trb_sugerido:
+							ape=smart_unicode(self.trb_sugerido.apellido)
+							nom=smart_unicode(self.funcion.nombre)
+							ape=ape.upper()
+							nom=nom.upper()
+						else:
+							ape='(NO-PROP)'
+						if self.institucion:
+							inst=self.institucion.codigo
+						else:
+							inst =" - "
+				return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
 
-    def Inddsem(self):
-        print """
-                            def Inddsem en models.py en class -clamxasigna
-        -------------------------------------------------------------------------
-                            """
-        cur = connection.cursor()
-        pks = self.id
-        print "el id de la clam  es %s"%pks
-        pks = str(pks)
-        print """
+		class Meta:
+				db_table = 'solicit_rhum'
+				verbose_name_plural='Solicitudes Recurso Humano'
+				verbose_name='Solicitud RHUM'
 
-            atencion aca pks
-             es   %s
-
-            """%pks
-        pk=str(pks)
-        if pk!='None':
-            print " vamos a usar ese valor"
-            print pk
-            sq="select nombre from dataextra_dds where id in (select dds_id from clamaxasigna_dds where clm_asigna_id = "
-            sq+=pks
-            sq+=')'
-            print sq
-            cur.execute(sq)
-            listadsm = cur.fetchall()
-            ldsm =''
-            for n in listadsm:
-                n=n[0]
-                ldsm+=n+'-'
-                
-        else:
-            print """
-
-            Cino arranco no habia definido el id...
-
-"""
-            ldsm ='No def'
-            
-##        cur.execute(sq)
-##        listadsm=cur.fetchall()
-##        ldsm=''
-##        for n in listadsm:
-##            n=n[0]
-##            ldsm+=n+' - '
-        print ldsm    
-        return ldsm
-        
-    Inddsem.short_description ='Dias de la Semana'    
-            
-    def esxausencia(self):
-        if self.xausenciatrab:
-            exa='Si'
-        else:
-            exa='No'
-            
-        return exa
-    esxausencia.short_description ='XAus'
-    
-    ## calcula horas semanal de esta asignacion        
-    def __unicode__(self):
-        cur = connection.cursor()
-        pks = self.id
-        print "el id de la asigna lab es %s"%pks
-        pks = str(pks)
-        sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
-        sq+=pks
-        sq+=')'
-        
-        print sq
-        cur.execute(sq)
-        listadsm=cur.fetchall()
-        #obtuve una tupla de tuplas
-        ldsm=''
-        for n in listadsm:
-            n=n[0]
-            ldsm+=n+' - '
-        print ldsm    
-        
-
-
-        if self.trb_sugerido:
-            ape=smart_unicode(self.trb_sugerido.apellido)
-            nom=smart_unicode(self.funcion.nombre)
-            ape=ape.upper()
-            nom=nom.upper()
-        else:
-            ape='(NO-PROP)'
-##        if self.fecha_fin:
-##            ff=date.strftime(date.today(),"%d-%b-%Y")
-##            
-##        else:
-##            ff="! Sin ffin"
-##
-
-        
-##        if self.servicio:
-##            sv=self.servicio.codigo
-##        else:
-##            sv=" - "
-
-        if self.institucion:
-            inst=self.institucion.codigo
-        else:
-            inst =" - "
-
-
-
-        return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
-##
-
-
-    class Meta:
-        db_table = 'solicit_rhum'
-        verbose_name_plural='Solicitudes Recurso Humano'
-        verbose_name='Solicitud RHUM'
-
-
-
-class Contrato (models.Model):
-    trabajador = models.ForeignKey('Trabajador',verbose_name='Trabajador Contratado')   
-    nhoras=models.IntegerField(null=True,blank=True,verbose_name='N de horas  ')    
-    fecha_inicio = models.DateTimeField(verbose_name='Fecha Inicio Actividad')
-    fecha_fin = models.DateTimeField(verbose_name='Fecha Finalizacion Actividad')
-    fecha_solicitud = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Solicitud')
-    #empresa=
-    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
-    xausenciatrab = models.ForeignKey('ausencias.Ausencia_trb',null=True,blank=True,verbose_name='Cobertura Ausencia ')
-    fecha_insert = models.DateField(auto_now = True)
-    fecha_cobro = models.DateTimeField(null=True,blank=True,verbose_name='FechaCobro')
-    #monto_cobro = models.
-    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
-    #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
-
-
-
-    def __unicode__(self):
-        ape=smart_unicode(self.apellido)
-        nom=smart_unicode(self.nombre)
-        ape=ape.upper()
-        nom=nom.upper()
-        return "%s  %s-- D:%s" % (ape.upper(),nom.upper(),self.numero_documento)
-#
-
-
-    class Meta:
-        db_table = 'contratos'
-        verbose_name_plural='Contratos Mensuales'
-
-
-
-# PAQUETES DE REEMPLAZO MENSUAL cubren varias asignaciones laborales.....
-# para ver que reemplaza hay que pasar por el vinculo con la asignacion laboral
-##   manytomany
-##   pensemos el reemplazo , vision djangoide , como una Publicacion , Revista
-##   en ella hay varios articulos , aca todos del mismo autor, ue integran en esa public .
-##   el autor es el trabjdor  la publ revista es el reempl mensual    el articu es una asignacion laboral... 
-## para retrabajarlo en facturaciones de reemplazos..
-##  ver en bitacora el tema many to many related
-#### un reemplazo es  justiicado por un grupo de asignaciones
-####  ejemplo de django person group membership
-###  reemplazo homologa a grupo     asignalab homologa a persona    paquetereemp es homo log de membership
-
-
+# aca vendrian class Contrato 
 

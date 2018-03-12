@@ -925,4 +925,28 @@ trabajadores va a quedar en rechum
 las funciones vinculadas a los servicios quedan en servicios....
 
 
+findesemana otoño inicial
+
+DECISION GROSA SOLICITUD DE DIRECTORES POR AHORA LA DESARROLLO EN PROYECTO 
+home fico Dropbox prog django rhssp
+
+despues vuelvo poara aca ...
+pero antes,
+
+
+al intentar construir descubro que pyExcelerator no estaba modulo en proyecto 
+
+pip install pyExcelerator funciona a la perfeccion ...,
+dentro del virtualenv
+
+ahora salicmos de aca y +
+
+usando el 
+class Solic_Rhum  que 
+esta en home fico mypro rechum.models.py 
+
+lo tomamos y lo llevamos a rhssp 
+bye
+
+
 
