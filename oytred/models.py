@@ -1,6 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 ### aca construimos aplicacion . models.py para guardar data de baswe de datos de heca sistema oytred
+from __future__ import unicode_literals
 
 
 from django.db import models
@@ -8,7 +9,6 @@ from django.db import connection
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=32)
@@ -36,7 +36,7 @@ class Profesional(models.Model):
     hospital = models.ForeignKey('Institucion',null=True,blank=True,verbose_name='Referencia Institucional')
     grupo = models.ForeignKey('Grupo',null=True,blank=True,verbose_name='Grupo Prof')
     csr = models.ForeignKey('Centrosalud',blank=True,null=True)
-    grupotpt = models.ForeignKey('Grupoterapeutico',blank=True,null=True)
+#    grupotpt = models.ForeignKey('Grupoterapeutico',blank=True,null=True)
     delared = models.BooleanField(default=True,verbose_name='Revista en la Red')
     cargahs = models.IntegerField(null=True,blank=True,verbose_name='Horas Semanales en Inst Ref')
     especialidad = models.ForeignKey('Especialidad',null=True)
@@ -151,33 +151,14 @@ class Cirugia(models.Model):
     class Meta:
 	db_table = 'oytred_cirugias'
 
-class Interconsulta(models.Model):
-    paciente = models.ForeignKey('Paciente')
-    internacion = models.ForeignKey('Internacion',blank=True,null=True)
-    csorigen = models.ForeignKey('Centrosalud',verbose_name='CS solicitante',blank=True,null=True)
-    fecha_consulta = models.DateTimeField()
-    profesionalqsol = models.ForeignKey('Profesional',related_name='ProfSolCons',verbose_name='Pedida por ',blank=True,null=True)
-    informeSols = models.TextField(verbose_name='Pregunta - Consulta')
-    alhosp = models.ForeignKey('Institucion')
-    alservicio = models.ForeignKey('Servicio',verbose_name='Servicio Consultado')
-    delhosp = models.ForeignKey('Institucion')
-    delserv = models.ForeignKey('Servicio')
-    fecha_resp = models.DateTimeField()
-    profesionalqresp = models.ForeignKey('Profesional',related_name='ProfRspCons',verbose_name='Responde Dr :',blank=True,null=True)
-    informeResp = models.TextField(verbose_name='Respuesta a la consulta',blank=True)
-    diagnostico = models.ForeignKey('Diagnostico')
-
-    class Meta:
-	db_table = 'oytred_interconsultas'
-
 class Institucion(models.Model):
     nombre = models.CharField(max_length=64,unique=True)
     sigla = models.CharField(max_length=8)
     domicilio = models.CharField(max_length=128)
     codigo_postal = models.ForeignKey('CodigoPostal', blank=True, null=True)
-    categorizacion = models.ForeignKey('Complejidad_institucional',blank=True,null=True)
+#    categorizacion = models.ForeignKey('Complejidad_institucional',blank=True,null=True)
     email = models.EmailField(blank=True)
-    web = models.URLField(blank=True, verify_exists=False)
+    ##web = models.URLField(blank=True, verify_exists=False)
     comentarios = models.TextField(null=True,blank=True,default='N')
 
     class Meta:
@@ -915,16 +896,16 @@ class LugarTrabajoUsuario(models.Model):
     class Meta:
 	db_table = 'oytred_lugarestrabajousu'
 
-class HCEPersona(models.Model):
-    fecha = models.DateTimeField()
-    paciente = models.ForeignKey('Paciente')
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
-
-    class Meta:
-        db_table = "oytred_hcepersona"
-
+#class HCEPersona(models.Model):
+#    fecha = models.DateTimeField()
+##    paciente = models.ForeignKey('Paciente')
+#    content_type = models.ForeignKey(ContentType)
+#    object_id = models.PositiveIntegerField()
+#    content_object = generic.GenericForeignKey('content_type', 'object_id')
+#
+#    class Meta:
+#        db_table = "oytred_hcepersona"
+#
 class Sala(models.Model):
     institucion = models.ForeignKey('Institucion')
     nombre = models.CharField(max_length=80)
@@ -1019,37 +1000,6 @@ class ItemsEstudios(models.Model):
     class Meta:
         db_table = 'oytred_itemsestudios'
 
-class ItemsEstudiosAgrupados(models.Model):
-    item = models.ForeignKey(ItemsEstudios)
-    grupo = models.ForeignKey(AgrupadorEstudios)
-
-	class Meta:
-		db_table = 'oytred_ItemsEstudiosAgrupados'
-
-class OrdenesEstudios(models.Model):
-    fecha = models.DateTimeField()
-    profesional= models.ForeignKey('Profesional')
-    internacion= models.ForeignKey('Internacion')
-    codserv = models.CharField(max_length=10)
-    obs= models.TextField()
-    tipo = models.IntegerField()
-    estado= models.IntegerField()
-    codturnoris = models.IntegerField()
-    fecha_envio = models.DateTimeField()
-
-    def devItems(self):
-        i = itemOrdenEstudio.objects.filter(orden=self)        
-        return i
-    
-    class Meta:
-	db_table = 'oytred_ordenesestudios'
-
-class itemOrdenEstudio(models.Model):
-    orden = models.ForeignKey('OrdenesEstudios')
-    estudio = models.ForeignKey('ItemsEstudios')
-    class Meta:
-	db_table= 'oytred_estudiosxorden'
-
 class MarcaImplante(models.Model):
     sigla = models.CharField(max_length=16)
     nombre = models.CharField(max_length=128)
@@ -1081,32 +1031,6 @@ class StockTraumato(models.Model):
 	db_table = "oytred_stocktraumato"
 
 
-class Triaje(models.Model):
-    fini = models.DateTimeField()
-    ffin = models.DateTimeField()
-    paciente = models.ForeignKey('Paciente')
-    nivel_ini = models.IntegerField()
-    nivel_act = models.IntegerField()
-    usu_ini = models.ForeignKey(User)
-    usu_fin = models.ForeignKey(User)
-    temp = models.IntegerField()
-    psist =models.IntegerField()
-    pdiast =models.IntegerField()
-    fr =models.IntegerField()
-    fc =models.IntegerField()
-    ndolor =models.IntegerField()
-    saturacion = models.IntegerField()
-    internacion = models.ForeignKey('Internacion')
-    tipo_resol = models.IntegerField()
-    obs = models.TextField()
-
-    def devEspera(self):
-        diferencia = datetime.now() - self.fini
-        horas,minutos = divmod(diferencia.seconds,3600)
-        return str(diferencia.days) + " Dias, " + str(horas) + " Horas, " + str(minutos/60) + " min"
-    
-    class Meta:
-	db_table = "oytred_triajes"
 
 class Hallazgoguardia(models.Model):
     sistema = models.CharField(max_length=2)
@@ -1119,52 +1043,6 @@ class Hallazgoguardia(models.Model):
     class Meta:
 	db_table = "oytred_hallazgosguardia"
 
-
-class  HallazgoTriage(models.Model):
-    triaje = models.ForeignKey(Triaje)
-    hallazgosguardia = models.ForeignKey(Hallazgoguardia)
     
     
-    class Meta:
-	db_table = "oytred_hallazgostriaje"
 
-class Atencionguardia(models.Model):
-    fini = models.DateTimeField()
-    ffin = models.DateTimeField()
-    triaje = models.ForeignKey('Triaje')
-    tipo_resolucion = models.IntegerField()
-    internacion =models.ForeignKey('Internacion')
-
-    def devDiagnosticos(self):
-        return DiagxAEP.objects.filter(atencion=self)
-
-    def devServicioACargo(self):
-        return ServiciosxAEP.objects.filter(atencion=self)
-    
-    class Meta:
-	db_table = "oytred_atencionxguardia"
-
-class DiagxAEP(models.Model):
-    fecha = models.DateTimeField()
-    diagnostico = models.ForeignKey('Diagnostico')
-    profesional = models.ForeignKey('Profesional')
-    atencion = models.ForeignKey('Atencionguardia')
-      
-    class Meta:
-	db_table = "oytred_diagsxaaep"
-
-class ServiciosxAEP(models.Model):
-    institucion = models.ForeignKey('Institucion')
-    servicio = models.ForeignKey('Servicio')
-    atencion = models.ForeignKey('Atencionguardia')
-    epicrisis = models.TextField()
-    estado = models.IntegerField()
-    class Meta:
-	db_table = "oytred_serviciosxaaep"
-
-class InterconsultaAEP(models.Model):
-    atencion = models.ForeignKey('Atencionguardia')
-    interconsulta = models.ForeignKey('Interconsulta')
-    
-    class Meta:
-	db_table = "oytred_interconsultasxaaep"

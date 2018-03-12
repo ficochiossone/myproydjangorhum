@@ -35,7 +35,7 @@ INSTALLED_APPS = [
 #    'django.contrib.sites',
 #		'django.contrib.flatpages',
 #    aplicaciones para admin...
-		'ausencias','servicios','entornos','rechum',
+		'ausencias','servicios','entornos','rechum','oytred',
 ]
 
 MIDDLEWARE = [
@@ -137,15 +137,20 @@ print """
 
 SETEOS DE archivo settings py
 
-alojado en %s
+alojado en
+    %s
 
-Django settings for myprhum project.
-Este esta alojado en 
+
+------------------------------------------
+
+Django APLICACIONES INSTALADAS
+    %s 
+ 
 
 
 
 FIN DE settings.py
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-"""%(BASE_DIR)
+"""%(BASE_DIR,INSTALLED_APPS)
 
 
