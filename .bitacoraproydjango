@@ -687,6 +687,10 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-ho
 adaptadas a estructura de directorios hecha antes....
 
 
+pip install  requerimientos desde path local
+pip install -r requirements.txt --no-index --find-links file:///tmp/packages
+
+
 a domani
 
 BUYEN DIA 
@@ -948,5 +952,6 @@ esta en home fico mypro rechum.models.py
 lo tomamos y lo llevamos a rhssp 
 bye
 
+p install -r requirements.txt --no-index --find-links file:///tmp/packages
 
 
