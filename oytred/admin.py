@@ -67,37 +67,37 @@ def export_as_xls(modeladmin,request,queryset):
 export_as_xls.short_description = 'Exportar en Formato XLS'
 	
 class DiagnosticoAdmin(admin.ModelAdmin):
-	list_display=['nombre','codigo',]
+	list_display=['codigo','comentarios','cie10',]
 	search_fields=['codigo',]
 #	raw_id_fields=('',)
 
 
 class PacienteAdmin(admin.ModelAdmin):
-	list_display=['nombre','codigo',]
-	search_fields=['codigo',]
+	list_display=['apellido','nombre','numero_documento',]
+	search_fields=['apellido','numero_documento']
 #	raw_id_fields=('',)
 
 class ProfesionalAdmin(admin.ModelAdmin):
-	list_display=['nombre','codigo',]
-	search_fields=['codigo',]
+	list_display=['apellido','nombre','matricula',]
+	search_fields=['apellido','matricula']
 #	raw_id_fields=('',)
 
 
 
     
 class CirugiaAdmin(admin.ModelAdmin):
-    date_hierarchy = ('fecha_cirugia')
+    date_hierarchy = 'fecha_cirugia'
     list_display = ['paciente','cirujano','fecha_cirugia','diagnostico_principal','practica_principal','internacion']
     search_fields = ['paciente__apellido','paciente__numero_documento','cirujano__apellido','clavecirugia']##,practica_principal__codigo
     list_filter = ('fecha_cirugia','tipo','hospital') 
     raw_id_fields =('paciente','cirujano','anestesista','internacion','payudante','sayudante','implante_a')
 
 class InternacionAdmin(admin.ModelAdmin):
-    date_hierarchy = ('fecha_internacion')
+    date_hierarchy = 'fecha_internacion'
     list_display = ['fecha_internacion','paciente','hospital']
     search_fields = ['paciente__apellido','paciente__dni',]##,practica_principal__codigo
-    list_filter = ('fecha_registro',) 
-    raw_id_fields =('profesional','paciente')
+    list_filter = ('fecha_internacion',) 
+    raw_id_fields =('profesional_acargo','paciente')
         
 admin.site.register(Cirugia,CirugiaAdmin)
 admin.site.register(Diagnostico,DiagnosticoAdmin)
