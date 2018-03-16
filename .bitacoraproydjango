@@ -955,3 +955,13 @@ bye
 p install -r requirements.txt --no-index --find-links file:///tmp/packages
 
 
+pip install -r requirements.txt --no-index --find-links file:///tmp/package
+ut supra lo que haremos mañana , viernes 15 de marzo 2018 en cemar....
+
+
+en traumasrv.cema.salud.rosario.gov.ar
+
+fico@traumasrv.cema.salud.rosario.gov.ar Fico@srv
+
+-----------------------------------------------------
+

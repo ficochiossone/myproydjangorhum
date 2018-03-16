@@ -1,0 +1,32 @@
+  931  sudo apt-get install dhcp3-client
+  936  sudo apt-get install dhcp3-client
+  937  sudo apt-get update
+ 1039  sudo apt-get install pip
+ 1040  sudo apt-get update
+ 1116  apt-get download python-mysqldb
+ 1191  apt-get download python-dev
+ 1206  sudo apt-get install ack-grep
+ 1269  sudo apt-get update
+ 1270  sudo apt-get install ifplugd
+ 1307  sudo apt-get update
+ 1308  sudo apt-get install brasero
+ 1336  sudo apt-get update
+ 1337  sudo apt-get install calibre
+ 1443  sudo apt-get update
+ 1444  sudo apt-get install git
+ 1489  sudo apt-get update
+ 1490  sudo apt-get install vlc
+ 1555  sudo apt-get updat
+ 1556  sudo apt-get update
+ 1557  sudo apt-get install amule
+ 1559  sudo apt-get install amule-amc
+ 1560  sudo apt-get install amule-emc
+ 1567  sudo apt-get update
+ 1568  sudo apt-get install amule
+ 1570  sudo apt-get update
+ 1572  sudo apt-get install amule
+ 1574  sudo apt-get update
+ 1575  sudo apt-get install amule
+ 1578  sudo apt-get update
+ 1764  sudo apt-get install vim-python-jedi
+ 1930  history | grep apt-get > historygrepapt

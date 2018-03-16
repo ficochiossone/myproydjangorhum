@@ -1,0 +1,121 @@
+  965  pip install --no-index --find-links=file:/home/fico/.mypypi/djangopack
+  968  pip install --download /home/fico/BACKUP/DIRpypinst/
+  969  pip install --download /home/fico/BACKUP/DIRpypinst/ -r 
+  970  pip install --download /home/fico/BACKUP/DIRpypinst/ django
+  971  pip  --download /home/fico/.mypypi/djangopack django <2
+  972  pip  install --download /home/fico/.mypypi/djangopack django <2
+  974  pip  install --download /home/fico/.mypypi/djangopack django <2
+  975  pip  install --download /home/fico/.mypypi/djangopack/ django<2
+  976  pip  install --download /home/fico/.mypypi/djangopack/ 
+  977  pip  install --download /home/fico/.mypypi/djangopack/ django
+  978  pip  install --download /home/fico/.mypypi/djangopack/ django<2
+  979  pip  install --download /home/fico/.mypypi/djangopack/  django<2
+  980  pip  install --download /home/fico/.mypypi/djangopack/  django1.10
+  981  pip  install --download /home/fico/.mypypi/djangopack/  django1.11
+  982  pip  install --download /home/fico/.mypypi/djangopack/  django1.8
+  983  pip search django
+  984  pip  install --download /home/fico/.mypypi/djangopack/ django<2~
+  985  pip search django
+ 1007  pip download django
+ 1008  pip download werkzeug
+ 1009  pip download xlrd
+ 1010  pip download xwlt
+ 1011  pip download xlwt
+ 1012  pip download django-extensions
+ 1021  pip download django==1.8
+ 1022  pip download xlwt
+ 1023  pip
+ 1024  pip2 download 
+ 1025  sudo pip download xlrd
+ 1030  pip download
+ 1031  pip download django ==1.9
+ 1032  pip download -d /home/fico/.mypypi/PAKETES/  django xlrd werkzeug xlwt django-extensions 
+ 1033  pip download -d /home/fico/.mypypi/PAKETES/  reportlab
+ 1034  pip 
+ 1035  pip check
+ 1039  sudo apt-get install pip
+ 1041  pip install --upgrade pip
+ 1042  sudo pip install --upgrade pip
+ 1043  pip 
+ 1044  pip
+ 1045  pip download
+ 1046  sudo pip download
+ 1047  sudo pip download werkzeug
+ 1048  pip freeze
+ 1049  pip freeze > /home/fico/.bitacoraaccpipfreeze
+ 1050  pip freeze > /home/fico/pipfreezesistema
+ 1054  pip f
+ 1055  pip freeze
+ 1056  pip
+ 1057  pip search
+ 1058  pip search django
+ 1059  pip freeze
+ 1060  pip freeze | grep django
+ 1061  pip search django
+ 1062  pip search | grep django
+ 1063  pip list django
+ 1064  pip search Django
+ 1065  sudo pip search Django
+ 1083  pip freeze
+ 1084  pip search Django
+ 1103  pip download django-extensions
+ 1104  sudo pip search Django
+ 1105  sudo pip list
+ 1106  pip download MySQL-python
+ 1107  pip download MySQL-python (1.2.3)
+ 1108  pip download MySQL-python(1.2.3)
+ 1109  pip download MySQL-python(1.2.3
+ 1110  pip download MySQL-python
+ 1140  pip freeze
+ 1142  pip install 
+ 1143  pip install /home/fico/myprojdjango/packagesbypip/setuptools-38.4.0-py2.py3-none-any.whl 
+ 1144  pip install /home/fico/myprojdjango/packagesbypip/pip-9.0.1-py2.py3-none-any.whl 
+ 1145  pip freeze
+ 1146  pip list
+ 1147  pip freeze
+ 1149  pip freeze
+ 1151  pip install /home/fico/myprojdjango/packagesbypip/pytz-2017.3-py2.py3-none-any.whl 
+ 1152  pip freeze
+ 1153  pip install /home/fico/myprojdjango/packagesbypip/Django-1.11.9-py2.py3-none-any.whl 
+ 1154  pip freeze
+ 1156  pip install /home/fico/myprojdjango/packagesbypip/typing-3.6.4-py2-none-any.whl 
+ 1157  pip freeze
+ 1158  pip install /home/fico/myprojdjango/packagesbypip/django_extensions-1.9.9-py2.py3-none-any.whl 
+ 1163  pip install MySQLdb
+ 1164  pip install MySQL-python
+ 1166  pip download MySQL-python
+ 1173  pip freeze
+ 1181  pip freeze
+ 1182  pip install /home/fico/myprojdjango/packagesbypip/Django-1.11.9-py2.py3-none-any.whl 
+ 1183  pip freeze
+ 1184  pip install /home/fico/myprojdjango/packagesbypip/MySQL-python-1.2.5.zip 
+ 1187  pip freeze > requirements.txt
+ 1190  pip download python-dev
+ 1194  pip install /home/fico/myprojdjango/packagesbypip/python-dev_2.7.9-1_i386.deb 
+ 1195  dpkg --install /home/fico/myprojdjango/packagesbypip/python-dev_2.7.9-1_i386.deb 
+ 1196  sudo dpkg --install /home/fico/myprojdjango/packagesbypip/python-dev_2.7.9-1_i386.deb 
+ 1199  pip freeze
+ 1201  sudo dpkg --install /home/fico/myprojdjango/packagesbypip/python-dev_2.7.9-1_i386.deb 
+ 1203  pip list
+ 1204  pip freeze
+ 1267  pip freeze
+ 1268  pip install ifplugd
+ 1322  pip freeze
+ 1323  pip install mutt
+ 1399  pip freeze
+ 1433  pip freeze
+ 1435  pip freeze
+ 1516  pip freeze
+ 1558  pip install amule
+ 1613  pip freeze
+ 1619  pip freeze
+ 1748  pip install pyExcelerator
+ 1790  pip freeze
+ 1799  pip 
+ 1800  pip download 
+ 1801  pip -v --log /home/fico/piplog download PyExcelerator
+ 1804  pip -v --log /home/fico/piplogvenv download PyExcelerator
+ 1808  mv -v pyexcelerator-0.6.4.1.tar.bz2 packagesbypip/pyexcelerator-0.6.4.1.tar.bz2
+ 1811  pip freeze
+ 1928  history | grep pip
+ 1929  history | grep pip > historygreppip

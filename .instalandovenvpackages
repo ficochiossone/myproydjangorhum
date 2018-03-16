@@ -1,0 +1,16 @@
+ probariamos instalar entorno virtual con mismos modulos pýthon
+
+talvez estas funcionan...
+
+
+usando apt-get download y pip-download conseguimos 
+los instaladores y los guardamos en un directorio
+
+con python freeze desde un virtual env construimos un
+requirements.txt
+pip freeze > requirements.txt
+
+
+pip install -r requirements.txt --no-index --find-links file:///tmp/packages
+
+If you want only your -find-links URL used as package source, you need to pair it with --no-index.
