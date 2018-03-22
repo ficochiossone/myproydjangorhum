@@ -468,7 +468,7 @@ class Reemplazo (models.Model):
     fecha_inicio = models.DateField(verbose_name='Fecha Inicio Actividad')
     # como paquete reemp es mensual se usa solo fecha ...una 
     #fecha_fin = models.DateTimeField(verbose_name='Fecha Finalizacion Actividad')
-    #areadep = models.ForeignKey('Areadependencia',null=True,verbose_name='Area Responsable')
+    areadep = models.ForeignKey('entornos.Areadependencia',null=True,verbose_name='Area Responsable')
     fecha_solicitud = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Solicitud')
     
     #data registro

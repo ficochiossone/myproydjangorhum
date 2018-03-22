@@ -1,0 +1,370 @@
+# Vim 7.4 generó este archivo "viminfo".
+# Puede editarlo, ¡sólo si tiene cuidado!
+
+# Valor de 'encoding' cuando se escribió este archivo
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Último Patrón de búsqueda:
+~Msle0~/\<descripcion\>
+
+# Último SustituciónPatrón de búsqueda:
+~MSle0&^\S
+
+# Última cadena de sustitución:
+$
+
+# Historia de Línea de órdenes (de lo más nuevo a lo más antiguo):
+:w
+:W
+:q
+:e /home/fico/Dropbox/programacion/django/rhssp/servicios/models.py
+:sp
+:SP
+:e /home/fico/myprojdjango/ausencias/models.py
+:e /home/fico/myprojdjango/entornos/models.py
+:/class Caso
+:/class 
+:/ class Intern
+:/class Cas
+:e /home/fico/myprojdjango/oytred/admin.py
+:e /home/fico/myprojdjango/oytred/models.py
+:e /home/fico/myprojdjango/servicios/admin.py
+:e /home/fico/Dropbox/programacion/django/rhssp/servicios/admin.py
+:/class As
+:e /home/fico/Dropbox/programacion/django/rhssp/dataextra/models.py
+:e /home/fico/Dropbox/programacion/django/rhssp/dataextra/admin.py
+:e /home/fico/myprojdjango/entornos/admin.py
+:w! /home/fico/myprojdjango/entornos/admin.py
+:w /home/fico/myprojdjango/entornos/admin.py
+:e /home/fico/Dropbox/programacion/django/rhssp/entornos/admin.py
+:/class Asig
+:/class Ree
+:e /home/fico/myprojdjango/servicios/models.py
+:e /home/fico/myprojdjango/rechum/models.py
+:w! /home/fico/myprojdjango/servicios/admin.py
+:w /home/fico/myprojdjango/servicios/admin.py
+:e /home/fico/myprojdjango/servicios/noandaxsimpleadmin.py
+:e rechum/admin.py
+:w /home/fico/myprojdjango/servicios/models.py
+:w /home/fico/myprojdjango/servicios/noandaxsimpleadmin.py
+:e servicios/admin.py
+:e servicios/models.py
+:e entornos/models.py
+:e /class As
+:e /home/fico/myprojdjango/myprhum/settings.py
+:e /home/fico/myprojdjango/myprdjenv/lib/python2.7/site-packages/django/contrib/admin/templates/admin/base.html
+:e /home/fico/myprojdjango/myprdjenv/lib/python2.7/site-packages/django/contrib/admin/templates/admin/base_site.html
+:e myprhum/settings.py
+:e /home/fico/myprojdjango/myprdjenv/lib/python2.7/site-packages/django/contrib/admin/templates/admin/index.html
+:wq
+:e DATAEXTRA/oytdata.sql
+:w DATAEXTRA/oytdata.sql
+:e /home/fico/Descargas/2018-02-26-06-00.sql
+:e /home/fico/Dropbox/programacion/django/servsalud/ejemplo_admin.py
+:/class Ci
+:/class Diag
+:e /home/fico/myprojdjango/rechum/admin.py
+
+# Historia de Cadena de búsqueda (de lo más nuevo a lo más antiguo):
+? \<descripcion\>
+? class Caso
+? class 
+?  class Intern
+? class Cas
+? class As
+? class Asig
+? class Ree
+? class Ci
+? class Diag
+? riaje
+? class Prof
+? Inter
+? \<cualquiercosa\>
+? class Func
+? class
+? Solic_
+? defaul
+?/ class
+? \<dds\>
+? \<from\>
+?  class Clam
+?  class As
+?  class Ree
+?   Por Vac Genuina
+? especialidades
+? class Tr
+? class Guar
+?  especialidad
+?  class Asi
+?  class AS
+?  class 
+?  class E
+? \<servicio\>
+? \<areadep\>
+?/class As
+?/class
+? class G
+? Guar
+?  class
+? TEM
+?/ALL
+? var
+?/TEMPL
+?/extensio
+?/default_hor
+?/default_hora
+?/default_user
+? \<admin\>
+? \<class\>
+
+# Historia de Expresión (de lo más nuevo a lo más antiguo):
+
+# Historia de Línea de entrada (de lo más nuevo a lo más antiguo):
+@			
+@			
+
+# Historia de Línea de entrada (de lo más nuevo a lo más antiguo):
+
+# Registros:
+"0	CHAR	0
+	u'',u''
+"1	LINE	0
+	
+"2	LINE	0
+	
+"3	LINE	0
+	
+"4	LINE	0
+	
+"5	LINE	0
+	            #qcobs=servicios.Asigna_lab.objects.filter()
+"6	LINE	0
+	            
+"7	LINE	0
+	##    Cob_designada.short_description ='Cobertura'
+"8	LINE	0
+	##        return cob
+"9	LINE	0
+	##        print cob    
+""-	CHAR	0
+	',
+
+# Marcas en el archivo:
+'0  218  0  ~/myprojdjango/ausencias/models.py
+'1  178  3  ~/myprojdjango/ausencias/models.py
+'2  136  37  ~/myprojdjango/entornos/models.py
+'3  44  0  ~/myprojdjango/ausencias/models.py
+'4  968  12  ~/myprojdjango/oytred/models.py
+'5  48  16  ~/myprojdjango/servicios/admin.py
+'6  56  42  ~/myprojdjango/myprhum/settings.py
+'7  669  7  ~/myprojdjango/servicios/models.py
+'8  21  0  ~/myprojdjango/myprdjenv/lib/python2.7/site-packages/django/contrib/admin/templates/admin/index.html
+'9  1  14  ~/myprojdjango/.git/COMMIT_EDITMSG
+
+# Lista de saltos (el más reciente va primero):
+-'  218  0  ~/myprojdjango/ausencias/models.py
+-'  171  9  ~/myprojdjango/ausencias/models.py
+-'  183  4  ~/myprojdjango/ausencias/models.py
+-'  87  59  ~/myprojdjango/ausencias/models.py
+-'  1  0  ~/myprojdjango/ausencias/models.py
+-'  178  3  ~/myprojdjango/ausencias/models.py
+-'  166  11  ~/myprojdjango/ausencias/models.py
+-'  165  18  ~/myprojdjango/ausencias/models.py
+-'  41  0  ~/myprojdjango/entornos/models.py
+-'  184  43  ~/myprojdjango/ausencias/models.py
+-'  196  0  ~/myprojdjango/ausencias/models.py
+-'  62  0  ~/myprojdjango/ausencias/models.py
+-'  136  37  ~/myprojdjango/entornos/models.py
+-'  124  14  ~/myprojdjango/entornos/models.py
+-'  19  4  ~/myprojdjango/entornos/models.py
+-'  91  57  ~/myprojdjango/ausencias/models.py
+-'  44  0  ~/myprojdjango/ausencias/models.py
+-'  202  0  ~/myprojdjango/ausencias/models.py
+-'  199  4  ~/myprojdjango/ausencias/models.py
+-'  198  3  ~/myprojdjango/ausencias/models.py
+-'  162  0  ~/myprojdjango/ausencias/models.py
+-'  164  34  ~/myprojdjango/ausencias/models.py
+-'  968  12  ~/myprojdjango/oytred/models.py
+-'  73  4  ~/myprojdjango/oytred/models.py
+-'  57  0  ~/myprojdjango/oytred/models.py
+-'  54  4  ~/myprojdjango/oytred/models.py
+-'  29  0  ~/myprojdjango/oytred/models.py
+-'  26  4  ~/myprojdjango/oytred/models.py
+-'  22  0  ~/myprojdjango/oytred/models.py
+-'  18  4  ~/myprojdjango/oytred/models.py
+-'  13  0  ~/myprojdjango/oytred/models.py
+-'  1043  4  ~/myprojdjango/oytred/models.py
+-'  1035  0  ~/myprojdjango/oytred/models.py
+-'  1030  4  ~/myprojdjango/oytred/models.py
+-'  1022  0  ~/myprojdjango/oytred/models.py
+-'  1019  4  ~/myprojdjango/oytred/models.py
+-'  1011  0  ~/myprojdjango/oytred/models.py
+-'  1008  4  ~/myprojdjango/oytred/models.py
+-'  1003  0  ~/myprojdjango/oytred/models.py
+-'  1000  4  ~/myprojdjango/oytred/models.py
+-'  992  0  ~/myprojdjango/oytred/models.py
+-'  989  4  ~/myprojdjango/oytred/models.py
+-'  986  0  ~/myprojdjango/oytred/models.py
+-'  983  4  ~/myprojdjango/oytred/models.py
+-'  949  0  ~/myprojdjango/oytred/models.py
+-'  946  4  ~/myprojdjango/oytred/models.py
+-'  939  0  ~/myprojdjango/oytred/models.py
+-'  936  4  ~/myprojdjango/oytred/models.py
+-'  924  0  ~/myprojdjango/oytred/models.py
+-'  921  4  ~/myprojdjango/oytred/models.py
+-'  917  0  ~/myprojdjango/oytred/models.py
+-'  914  4  ~/myprojdjango/oytred/models.py
+-'  909  0  ~/myprojdjango/oytred/models.py
+-'  906  5  ~/myprojdjango/oytred/models.py
+-'  899  1  ~/myprojdjango/oytred/models.py
+-'  896  4  ~/myprojdjango/oytred/models.py
+-'  892  0  ~/myprojdjango/oytred/models.py
+-'  889  4  ~/myprojdjango/oytred/models.py
+-'  884  0  ~/myprojdjango/oytred/models.py
+-'  881  4  ~/myprojdjango/oytred/models.py
+-'  874  0  ~/myprojdjango/oytred/models.py
+-'  871  4  ~/myprojdjango/oytred/models.py
+-'  868  0  ~/myprojdjango/oytred/models.py
+-'  865  4  ~/myprojdjango/oytred/models.py
+-'  862  0  ~/myprojdjango/oytred/models.py
+-'  858  4  ~/myprojdjango/oytred/models.py
+-'  850  0  ~/myprojdjango/oytred/models.py
+-'  847  4  ~/myprojdjango/oytred/models.py
+-'  836  0  ~/myprojdjango/oytred/models.py
+-'  833  6  ~/myprojdjango/oytred/models.py
+-'  825  2  ~/myprojdjango/oytred/models.py
+-'  822  4  ~/myprojdjango/oytred/models.py
+-'  817  0  ~/myprojdjango/oytred/models.py
+-'  814  4  ~/myprojdjango/oytred/models.py
+-'  809  0  ~/myprojdjango/oytred/models.py
+-'  806  4  ~/myprojdjango/oytred/models.py
+-'  803  0  ~/myprojdjango/oytred/models.py
+-'  800  4  ~/myprojdjango/oytred/models.py
+-'  795  0  ~/myprojdjango/oytred/models.py
+-'  792  4  ~/myprojdjango/oytred/models.py
+-'  789  0  ~/myprojdjango/oytred/models.py
+-'  786  4  ~/myprojdjango/oytred/models.py
+-'  775  0  ~/myprojdjango/oytred/models.py
+-'  772  4  ~/myprojdjango/oytred/models.py
+-'  768  0  ~/myprojdjango/oytred/models.py
+-'  765  4  ~/myprojdjango/oytred/models.py
+-'  747  0  ~/myprojdjango/oytred/models.py
+-'  744  1  ~/myprojdjango/oytred/models.py
+-'  739  0  ~/myprojdjango/oytred/models.py
+-'  736  1  ~/myprojdjango/oytred/models.py
+-'  731  0  ~/myprojdjango/oytred/models.py
+-'  728  4  ~/myprojdjango/oytred/models.py
+-'  719  4  ~/myprojdjango/oytred/models.py
+-'  178  3  ~/myprojdjango/ausencias/models.py
+-'  165  18  ~/myprojdjango/ausencias/models.py
+-'  41  0  ~/myprojdjango/entornos/models.py
+
+# Historia de las marcas en los archivos (de la más reciente a la más antigua):
+
+> ~/myprojdjango/ausencias/models.py
+	"	218	0
+	^	169	0
+	.	165	4
+	+	206	4
+	+	207	4
+	+	207	4
+	+	207	4
+	+	216	57
+	+	217	36
+	+	199	49
+	+	199	68
+	+	206	61
+	+	201	57
+	+	175	0
+	+	176	0
+	+	177	0
+	+	178	0
+	+	175	85
+	+	176	85
+	+	177	85
+	+	176	19
+	+	177	19
+	+	181	0
+	+	183	0
+	+	37	0
+	+	90	55
+	+	34	0
+	+	63	20
+	+	66	0
+	+	78	49
+	+	79	35
+	+	184	74
+	+	181	42
+	+	195	36
+	+	194	45
+	+	198	16
+	+	202	0
+	+	215	15
+	+	216	37
+	+	217	31
+	+	87	84
+	+	173	0
+	+	174	0
+	+	185	0
+	+	192	0
+	+	197	0
+	+	198	0
+	+	205	0
+	+	207	0
+	+	207	0
+	+	214	0
+	+	219	0
+	+	218	0
+	+	163	0
+	+	164	0
+	+	162	0
+	+	76	0
+	+	80	0
+	+	88	0
+	+	89	0
+	+	97	0
+	+	103	0
+	+	104	0
+	+	141	0
+	+	157	0
+	+	192	0
+	+	207	0
+	+	214	0
+	+	90	3
+	+	89	103
+	+	90	0
+	+	200	131
+	+	184	44
+	+	171	35
+	+	165	15
+	+	171	96
+	+	165	18
+	+	166	11
+	+	167	11
+	+	168	7
+	+	165	22
+	+	166	10
+	+	167	10
+	+	168	9
+	+	166	16
+	+	167	16
+	+	166	24
+	+	165	0
+	+	167	16
+	+	168	17
+	+	165	41
+	+	166	34
+	+	167	37
+	+	168	24
+	+	165	7
+	+	171	0
+	+	168	28
+	+	165	0
+	+	171	0
+	+	165	0
+	+	171	55
+	+	87	79
+	+	165	4

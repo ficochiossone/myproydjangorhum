@@ -12,7 +12,7 @@ from django.contrib.admin.utils import lookup_field
 from django.contrib import messages
 
 # Register your models here.
-from models import Diagnostico,Cirugia,Paciente,Profesional,Institucion,Internacion
+from models import Caso_pendiente,Diagnostico,Cirugia,Paciente,Profesional,Institucion,Internacion
 
 #from models import Categoria_lab,Registro_status,Registro_categorias
 #from models import Registro_especialidad
@@ -93,15 +93,28 @@ class CirugiaAdmin(admin.ModelAdmin):
     raw_id_fields =('paciente','cirujano','anestesista','internacion','payudante','sayudante','implante_a')
 
 class InternacionAdmin(admin.ModelAdmin):
-    date_hierarchy = 'fecha_internacion'
-    list_display = ['fecha_internacion','paciente','hospital']
+	list_display = ['fecha_internacion','fecha_egreso','tipo','hospital','servicio','diagnostico_principal','paciente','profesional_acargo',]
+	date_hierarchy = 'fecha_internacion'	
+	search_fields = ['paciente__apellido','paciente__ndoc']
+
+class ListaEsperaAdmin(admin.ModelAdmin):
+    date_hierarchy = 'fecha_creacion'
+    list_display = ['nombre','pacargo','payudante']
+    search_fields = ['pacargo__apellido','nombre',]##,practica_principal__codigo
+    #list_filter = ('fecha_internacion',) 
+    #raw_id_fields =('profesional_acargo','paciente')
+
+class CasoPendienteAdmin(admin.ModelAdmin):
+    date_hierarchy = 'fecha_registro'
+    list_display = ['fecha_registro','listado_espera','paciente','diagnos_a']
     search_fields = ['paciente__apellido','paciente__dni',]##,practica_principal__codigo
-    list_filter = ('fecha_internacion',) 
-    raw_id_fields =('profesional_acargo','paciente')
+    list_filter = ('listado_espera',) 
+    raw_id_fields =('paciente',)
         
 admin.site.register(Cirugia,CirugiaAdmin)
 admin.site.register(Diagnostico,DiagnosticoAdmin)
 admin.site.register(Internacion,InternacionAdmin)
 admin.site.register(Paciente,PacienteAdmin)
 admin.site.register(Profesional,ProfesionalAdmin)
+admin.site.register(Caso_pendiente,CasoPendienteAdmin)
 

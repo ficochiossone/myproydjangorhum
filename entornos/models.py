@@ -14,8 +14,6 @@ from django.utils.encoding import smart_unicode, smart_str
 
 
 class Dds(models.Model):
-
-
     nombre = models.CharField(max_length=14)
     codigo = models.CharField(max_length=6)
     num = models.IntegerField()
@@ -131,3 +129,52 @@ class Areadependencia(models.Model):
 
 
 
+class Diagnostico(models.Model):
+    nombre = models.CharField(max_length=64,unique=True)
+    codigo = models.CharField(max_length=12)
+    descripcion = models.CharField(max_length=64,default='Descripcion..') 
+    ciediez = models.ForeignKey('ciediez',blank=True,null=True,verbose_name='Ref CIE10')
+    telefonos = models.CharField(max_length=128,default='341 ....' )
+    email = models.EmailField(blank=True)
+    web = models.URLField(blank=True,verbose_name='Sitio Web')
+    comentarios = models.TextField(null=True,blank=True,default='Comentarios...')
+
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        db_table = ''
+        verbose_name = 'diagnosticos'
+        verbose_name_plural = 'Diagnosticos'
+        ordering = ['codigo']
+ 
+
+class ciediez(models.Model):
+    nombre = models.CharField(max_length=64,unique=True)
+    codigo = models.CharField(max_length=12)
+    descripcion = models.CharField(max_length=64,default='Descripcion..') 
+#    ciediez = models.ForeignKey('cie10',blank=True,null=True,verbose_name='')
+#    telefonos = models.CharField(max_length=128,default='341 ....' )
+#    #codigo_postal = models.ForeignKey('CodigoPostal', blank=True, null=True)
+#    #complejidad = models.ForeignKey('Complejidad',blank=True,null=True)
+#    email = models.EmailField(blank=True)
+#    web = models.URLField(blank=True,verbose_name='Sitio Web')
+    comentarios = models.TextField(null=True,blank=True,default='Comentarios...')
+
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        db_table = 'dgscie10'
+        verbose_name = 'Diagnostico CIE10'
+        verbose_name_plural = 'DGNS CIE10'
+        ordering = ['codigo']
+ 

@@ -7,7 +7,7 @@
 -- orden posible seria ...
 --
 
---  mrstatus dataextradds   instituciones  
+--  mrstatus entornos_dds   instituciones  
 -- tiposausencia
 
 --    profesiones  funcioneslabs  areasdep   
@@ -55,7 +55,7 @@ SET time_zone = "+00:00";
 
 # al intentar meterle a dbrhum datos de tabla dataextra_dds chilla que no la encuentra 
 
-INSERT INTO `dataextra_dds` (`id`, `nombre`, `codigo`) VALUES
+INSERT INTO `entornos_dds` (`id`, `nombre`, `codigo`) VALUES
 (1, 'Lunes', 'LUN'),
 (2, 'Martes', 'MAR'),
 (3, 'Miercoles', 'MIE'),
