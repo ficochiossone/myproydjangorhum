@@ -1,0 +1,35 @@
+ aCA referimos transf data y backupeo de datos entre
+
+rhssp , inicio de proyecto , y backups y transf de traumato3 del heca 
+a tablas de 
+
+
+nueva dbrhum
+
+...........................................
+23 de marzo 2k18 arteca cemar 
+ademas de reunion con andrea ministra y patricia morales y leo silvia y jorge g y juan b
+
+ Todos los dias llega hy se hace el backup ded oytred 
+de mysql . traumato3 ocn tablas varias 
+
+eso debe poder meterse en mysql . dbrhum en server ssp
+pude reconstituirse en bases de datos mysql.traumato3 en srv de ssp 
+
+o meterse en tablas oyt_,,,
+de dbrhum o ambas cosas...
+
+para ello tablas de dbrhum son 
+oytred_cirugias
+
+
+ preparando fragmentados primero varios archivos .sql tomados del backup de traumato3 
+
+
+Ajpirdhui   dbrhum no tiene nada de data 
+
+para meterle lo que ya se trabajo en rhssp tengo 
+dbrhum1de4.sql hasta dbrhum4d4.sql
+
+hoy lo tengo que terminar
+

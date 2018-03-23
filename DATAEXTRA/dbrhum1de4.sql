@@ -67,7 +67,7 @@ INSERT INTO `entornos_dds` (`id`, `nombre`, `codigo`) VALUES
 
 -- Volcado de datos para la tabla `tipos_ausencias`
 --
-
+-- detallealusar : descripcion fue sacado de models nuevo ....
 INSERT INTO `tipos_ausencias` (`id`, `nombre`, `codigo`, `descripcion`) VALUES
 (1, 'Licencia anual ordinaria', 'LAO', 'Lic anual ordinaria'),
 (2, 'Licencia por maternidad', 'LMA', 'Lic x ..MATERNIDAD'),
