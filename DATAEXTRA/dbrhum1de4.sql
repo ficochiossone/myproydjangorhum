@@ -7,16 +7,23 @@
 -- orden posible seria ...
 --
 
---  mrstatus entornos_dds   instituciones  
--- tiposausencia
+--  este archivo   dbrhum1de4
+--  mrstatus
+--  entornos_dds
+--  tiposausencia
+--  instituciones
+--  profesiones
+--  funclabs
+--  servicios 
+--  especialidades
 
---    profesiones  funcioneslabs  areasdep   
+--  los otros archivos 
+--  trabajadores
 --
--- servicios  especialidades  trabajadores
+-- ausencia
 --
---    ausencia
---
---  asignalabs   asignalabxdds
+-- asignalabs
+-- asignalabxdds
 
 
 -- Despues de esto el 03 enero se cargaron en tabla nueva 
@@ -68,19 +75,19 @@ INSERT INTO `entornos_dds` (`id`, `nombre`, `codigo`) VALUES
 -- Volcado de datos para la tabla `tipos_ausencias`
 --
 -- detallealusar : descripcion fue sacado de models nuevo ....
-INSERT INTO `tipos_ausencias` (`id`, `nombre`, `codigo`, `descripcion`) VALUES
-(1, 'Licencia anual ordinaria', 'LAO', 'Lic anual ordinaria'),
-(2, 'Licencia por maternidad', 'LMA', 'Lic x ..MATERNIDAD'),
-(3, 'Licencia por Enfermedad', 'LXE', 'Lic x ..'),
-(4, 'Licencia preservacion embarazo', 'LPRVEBZO', 'Lic x ..'),
-(5, 'Licencia enfermedad Prolongada', 'LENFPRLG', 'Lic x ..'),
-(6, 'Traslado a Provincia', 'TRLAPRV', 'Lic x ..'),
-(7, 'Licencia sin Goce Sueldo', 'LSGSLDO', 'Lic x ..'),
-(8, 'CambioFunciones', 'CBIOFUNC', 'Lic x ..'),
-(9, 'Jubilacion', 'JBLCION', 'Lic x ..'),
-(10, 'Licencia Gremial', 'LICGRM', 'Lic x ..'),
-(11, 'Renuncia', 'RNCIA', 'Lic x ..'),
-(12, 'Horas Lactancia materna', 'HLCTCIA', 'Lic x ..');
+INSERT INTO `tipos_ausencias` (`id`, `nombre`, `codigo` ) VALUES
+(1, 'Licencia anual ordinaria', 'LAO'),
+(2, 'Licencia por maternidad', 'LMA'),
+(3, 'Licencia por Enfermedad', 'LXE'),
+(4, 'Licencia preservacion embarazo','LPRSVE'),
+(5, 'Licencia enfermedad Prolongada', 'LENFPRLG'),
+(6, 'Traslado a Provincia', 'TRLAPRV'),
+(7, 'Licencia sin Goce Sueldo', 'LSGSLDO'),
+(8, 'CambioFunciones', 'CBIOFUNC'),
+(9, 'Jubilacion', 'JBLCION'),
+(10, 'Licencia Gremial', 'LICGRM'),
+(11, 'Renuncia', 'RNCIA'),
+(12, 'Horas Lactancia materna', 'HLCTCIA');
 
 -- instituciones
 

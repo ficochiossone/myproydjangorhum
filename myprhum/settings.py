@@ -3,6 +3,8 @@
 
 import os
 
+from django.contrib import admin
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -121,13 +123,16 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+# https://docs.djangoproject.com/en/1.11/howto/statdjango admin customize ic-files/
 
 STATIC_URL = '/static/'
 #agregados enero 27 2k18
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+admin.site.site_title = 'Control De Sitio'
+admin.site.site_header = 'Sitio Direccion Operativa'
+admin.site.index_title = 'Administracion Direcciones'
 #SIDE_ID = 1
 
 print """
@@ -139,19 +144,27 @@ print """
 SETEOS DE archivo settings py
 
 alojado en
+
     %s
 
+_______________________________________
+
+
+templates en 
+
+    %s
 
 ------------------------------------------
 
 Django APLICACIONES INSTALADAS
+
     %s 
- 
+_______________________________________________ 
 
 
 
 FIN DE settings.py
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-"""%(BASE_DIR,INSTALLED_APPS)
+"""%(BASE_DIR,TEMPLATES,INSTALLED_APPS)
 
 

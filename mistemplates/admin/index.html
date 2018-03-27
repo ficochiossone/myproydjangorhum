@@ -12,6 +12,8 @@
 {% block content %}
 <div id="content-main">
 
+LISTA DE APLICACIONES DEL SISTEMA
+
 {% if app_list %}
     {% for app in app_list %}
         <div class="app-{{ app.app_label }} module">
@@ -33,7 +35,7 @@
                 <td>&nbsp;</td>
             {% endif %}
 
-            {% if model.admin_url %}
+           {% if model.admin_url %}
                 <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
             {% else %}
                 <td>&nbsp;</td>
@@ -53,7 +55,7 @@
 <div id="content-related">
     <div class="module" id="recent-actions-module">
         <h2>{% trans 'Recent actions' %}</h2>
-        <h3>{% trans 'My actions' %}</h3>
+        <h3>ACCIONES</h3>
             {% load log %}
             {% get_admin_log 10 as admin_log for_user user %}
             {% if not admin_log %}
@@ -79,4 +81,7 @@
             {% endif %}
     </div>
 </div>
+
+BAJO ACCIONES RECIENTES
 {% endblock %}
+

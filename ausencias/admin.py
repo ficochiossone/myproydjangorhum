@@ -6,6 +6,11 @@ from django.core.exceptions import PermissionDenied
 from pyExcelerator import *
 from django.contrib.admin.utils import lookup_field
 from django.contrib import messages
+from django.contrib.admin import AdminSite
+
+
+#class MyAdminSite(AdminSite):
+#	site_header = 'Ausencias de Recurso Humnano Administracion'
 
 
 # Register your models here.
@@ -69,7 +74,7 @@ class AusenciaAdmin(admin.ModelAdmin):
 	fields =[('trabajador_ausente','solicita_cobertura'),
 	'tipo_ausencia','fecha_inicio','fecha_fin',
 	'comentarios','areadep','usuario_registro']
-	search_fields=['trabajador_ausente__apellido','trabajador_ausente__legajo']
+	search_fields=['trabajador_ausente__apellido','trabajador_ausente__mr_legajo']
 	raw_id_fields=('trabajador_ausente',)
 	list_filter = ('solicita_cobertura','tipo_ausencia__nombre','areadep')
 	ordering = ['trabajador_ausente__apellido','fecha_inicio']

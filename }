@@ -1,3 +1,31 @@
+--dbrhum 3de4
+
+-- volcado de 
+
+--areasdependencia
+--ausencias_trbs
+--asigna_labs
+--
+
+INSERT INTO `areasdependencia` (`id`, `nombre`, `codigo`, `responsable_id`) VALUES
+(1, 'Ortopedia y Traumatologia', 'ADPOYT', 1515),
+(2, 'Imagenes', 'ADPDGIMG', 578),
+(3, 'Cirugia', 'ADPCGIA', 692),
+(4, 'Salud S y Reproductiva', 'ADPSSYRP', 694),
+(6, 'DIRECCION ENFERMERIA ', 'ADPENFRM', 1249),
+(7, 'Direccion Salud Mental', 'ADPSMTAL', 1525),
+(8, 'Neurociencias', 'ADPNLGIA', 741),
+(12, 'ADPHNVJVILELA', 'ADPHNV', 1164),
+(14, 'ADPHRSPEÑA', 'ADPRSP', 798),
+(15, 'ADPHIC', 'ADPHIC', 636),
+(16, 'A D APS', 'ADPAPS', 534),
+(17, 'Area Dep Heca', 'ADPHECA', 327),
+(18, 'ADP H ALBERDI', 'ADPHALBD', 811),
+(19, 'AREA ILAR', 'ADPILAR', 1341),
+(20, 'Imusa', 'ADPIMUSA', 845);
+
+
+
 -- Volcado de datos para la tabla `ausencias_trbs`
 --
 
@@ -22,7 +50,7 @@ INSERT INTO `ausencias_trbs` (`id`, `generavacgen`, `fecha_inicio`, `fecha_fin`,
 (18, 0, '2017-07-01', NULL, '2017-11-13', '', 8, 713, 1, 0, 1122, 4),
 (19, 0, '2017-09-01', NULL, '2017-11-13', '', 10, 843, 1, 0, 1126, 4),
 (20, 1, '2017-09-04', NULL, '2017-11-17', '', 11, 1289, 1, 0, NULL, 1),
-(21, 0, '2017-06-01', NULL, '2017-11-17', '', 9, 1291, 1, 0, NULL, 12),
+(21, 0, '2017-06-01', NULL, '2017-11-17', '', 9, 1291, 2, 0, NULL, 12),
 (23, 0, '2017-01-01', NULL, '2017-11-17', '', 9, 1294, 1, 0, NULL, 12),
 (24, 0, '2017-12-01', NULL, '2017-11-21', '', 8, 996, 1, 0, NULL, 1),
 (25, 0, '2017-11-01', NULL, '2017-11-23', 'cubre a patricia ponce de leon\r\nlao y luego jubilacion 3 de enero', 8, 814, 1, 1, NULL, 14),
@@ -66,7 +94,7 @@ INSERT INTO `ausencias_trbs` (`id`, `generavacgen`, `fecha_inicio`, `fecha_fin`,
 (64, 0, '2017-11-20', NULL, '2017-11-28', '', 2, 1930, 1, 0, NULL, 16),
 (65, 0, '2017-10-23', NULL, '2017-11-28', '', 2, 1962, 1, 0, NULL, 16),
 (66, 0, '2017-11-27', NULL, '2017-11-28', '', 5, 1892, 1, 0, NULL, 16),
-(67, 0, '2017-11-01', NULL, '2017-11-28', '', 5, 1221, 1, 0, NULL, 16),
+(67, 0, '2017-11-01', NULL, '2017-11-28', '', 5, 1221, 3, 0, NULL, 16),
 (68, 0, '2017-12-04', NULL, '2017-11-28', '', 8, 454, 1, 0, NULL, 16),
 (69, 0, '2017-12-04', NULL, '2017-11-28', '', 8, 462, 1, 0, NULL, 16),
 (70, 0, '2017-12-04', NULL, '2017-11-28', '', 8, 850, 1, 0, NULL, 16),
@@ -125,8 +153,8 @@ INSERT INTO `asignalabs` (`id`, `activo`, `tipoasignacion`, `fecha_inicio`, `fec
 (43, 1, 'REG', '2017-02-07', NULL, 'TLD', 6, '', '2017-11-16', 1, 5, 9, NULL, 408, 1, NULL, NULL, NULL),
 (44, 1, 'REG', '2015-07-01', NULL, 'TLD', 24, '', '2017-11-17', 12, 1, 4, NULL, 1235, 1, 21, NULL, NULL),
 (45, 1, 'REG', '2017-12-01', NULL, 'TLD', 6, '', '2017-11-17', 14, 5, 1, NULL, 1229, 2, 8, NULL, NULL),
-(46, 1, 'REG', '2017-07-01', NULL, 'LAV', 24, 'wrwrwrerwer', '2017-11-17', 12, 1, 4, NULL, 1229, 1, NULL, NULL, NULL),
-(47, 1, 'REG', '2017-11-01', NULL, 'TLD', 6, '', '2017-11-17', 15, 5, 2, NULL, 1150, 1, 12, NULL, NULL),
+(46, 1, 'REG', '2017-07-01', NULL, 'LAV', 24, 'wrwrwrerwer', '2017-11-17', 12, 1, 4, NULL, 1229, 2, NULL, NULL, NULL),
+(47, 1, 'REG', '2017-11-01', NULL, 'TLD', 6, '', '2017-11-17', 15, 5, 2, NULL, 1150, 2, 12, NULL, NULL),
 (48, 1, 'REG', '2016-11-01', NULL, 'TLD', 6, '', '2017-11-17', 1, 5, 5, NULL, 1004, 1, NULL, NULL, NULL),
 (49, 1, 'REG', '2017-10-01', NULL, 'TLD', 24, '', '2017-11-17', 4, 1, 9, NULL, 1295, 1, 18, NULL, NULL),
 (50, 1, 'REG', '2018-02-01', NULL, 'TLD', 4, '', '2017-12-14', 1, 5, 1, NULL, 1266, 1, NULL, 1, NULL),
@@ -306,3 +334,5 @@ INSERT INTO `asignalabs_dds` (`id`, `asigna_lab_id`, `dds_id`) VALUES
 (165, 90, 3),
 (166, 91, 6);
 
+--
+-

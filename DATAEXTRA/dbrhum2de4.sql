@@ -1,3 +1,4 @@
+--  este archivo dbrhum2de4    solo trabajadores regs en rhssp
 
 
 -- Volcado de datos para la tabla `trabajadores`

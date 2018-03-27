@@ -160,7 +160,7 @@ class Asigna_labAdmin(admin.ModelAdmin):
 class AsgInline(admin.StackedInline):
     model = Reemplazo.asglabs.through
 class ReemplazoAdmin(admin.ModelAdmin):
-    #inlines = [AsgInline]
+    inlines = [AsgInline]
     readonly_fields = ('InddAsgn','MesDelAnio')
     list_display = ('trabajador','MesDelAnio','nhoras','InddAsgn',)
     fields = (('trabajador','MesDelAnio','nhoras',),('fecha_inicio','areadep')

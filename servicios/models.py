@@ -712,7 +712,7 @@ class Asigna_lab(models.Model):
         if pk!='None':
             print " vamos a usar ese valor"
             print pk
-            sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+            sq="select nombre from entornos_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
             sq+=pks
             sq+=')'
             print sq
@@ -767,7 +767,7 @@ class Asigna_lab(models.Model):
         pks = self.id
         print "el id de la asigna lab es %s"%pks
         pks = str(pks)
-        sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+        sq="select nombre from entornos_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
         sq+=pks
         sq+=')'
         
@@ -888,7 +888,7 @@ class Clm_Asigna:
         if pk!='None':
             print " vamos a usar ese valor"
             print pk
-            sq="select nombre from dataextra_dds where id in (select dds_id from clamaxasigna_dds where clm_asigna_id = "
+            sq="select nombre from entorno_dds where id in (select dds_id from clamaxasigna_dds where clm_asigna_id = "
             sq+=pks
             sq+=')'
             print sq
