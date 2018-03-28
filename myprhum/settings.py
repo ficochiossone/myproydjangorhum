@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django_extensions',
 #    para usar flatpages....
     # cuando esto estaba en uso se jodia con Site matching query does not exist.
-#    'django.contrib.sites',
+    'django.contrib.sites',
 #		'django.contrib.flatpages',
 #    aplicaciones para admin...
 		'ausencias','servicios','entornos','rechum','oytred',
