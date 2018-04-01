@@ -14,8 +14,9 @@ from django.contrib.admin import AdminSite
 
 
 # Register your models here.
-from models import Ausencia_trb,Tipo_Ausencia_trb,Resultado_junta,Junta_realizada
-from models import Dispo_Gestion,Dispo_Junta
+from models import Ausencia_trb,Tipo_Ausencia_trb
+#,Resultado_junta,Junta_realizada
+#from models import Dispo_Gestion,Dispo_Junta
 
 
 

@@ -2,9 +2,6 @@
 
 # hasta ahora van Tipo_ausencia_trb   Ausencia_trb
 
-#estarian faltando clases vincs a salud de los trabahadores , juntas sentencias , cambios de funciones.....
-
-
 
 from django.db import models
 
@@ -60,24 +57,6 @@ class Tipo_Ausencia_trb(models.Model):
 ###
 ###        ausencia_trb.id es uno a muchos   Asignacion_lab.id
         
-class Resultado_junta(models.Model):
-    nombre = models.CharField(max_length=32)
-    codigo = models.CharField(max_length=8)
-    descripcion = models.TextField(default='Lic x ..')
-
-
-
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        verbose_name_plural = 'Dictamenes de Junta '
-        db_table = 'dictamenes_junta'
-
        
 class Ausencia_trb (models.Model):
 #   un trb no esta en sus funciones habituales por un periodo , puede o no , estar en otra actividad.    
@@ -86,8 +65,8 @@ class Ausencia_trb (models.Model):
     solicita_cobertura = models.BooleanField(default=False,verbose_name = 'X Cubrir')
     trabajador_ausente = models.ForeignKey('rechum.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
     institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion ')
-    xdispo_junta = models.ForeignKey('Dispo_Junta',null=True,verbose_name ='X Dictamen Junta')
-    xdispo_gestion = models.ForeignKey('Dispo_Gestion',null=True,verbose_name ='X Disposicion Gestion')
+    xdispo_junta = models.ForeignKey('rechum.Dispo_Junta',null=True,verbose_name ='X Dictamen Junta')
+    xdispo_gestion = models.ForeignKey('rechum.DispoDesiDec',null=True,verbose_name ='X Disposicion Gestion')
     cobertura_princ_por = models.ForeignKey('rechum.Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
     tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')
     diagnostico = models.ForeignKey ('entornos.Diagnostico',null = True,verbose_name='Diagnostico')
@@ -164,93 +143,4 @@ class Ausencia_trb (models.Model):
         verbose_name='Ausencia TRB'
 
 
-class Junta_realizada(models.Model):
-    LUGARDEJUNTA=((u'CESSO',u'Consultorio SSO'),
-        (u'CEART',u'Consultorio ART'),
-        (u'HPBLICO',u'Hospital Publico'),
-        (u'MOVIL',u'Movil'))
-
-    confirmada = models.BooleanField(default=False,verbose_name = 'CONS')
-    lugardejunta = models.CharField(choices=LUGARDEJUNTA,max_length=16,verbose_name = 'LUGAR DE JUNTA')
-    trabajador = models.ForeignKey('rechum.Trabajador',related_name = 'TraJuntap',verbose_name='Trabajador evaluado')   
-    institucion = models.ForeignKey('entornos.Institucion',verbose_name='Institucion ')
-    trb_evaluador_a = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_a',null=True,verbose_name='Evaluado Por')
-    trb_evaluador_b = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_b',null=True,verbose_name='Evaluado Por')
-    trb_evaluador_c = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_c',null=True,verbose_name='Evaluado Por')
-    trb_evaluador_d = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_d',null=True,verbose_name='Evaluado Por')
-    ausencia_referida = models.ForeignKey('Ausencia_trb',null=True,verbose_name='Ausencia Vinculada')
-    fecha_evaluacion = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
-    diagnostico_a = models.ForeignKey ('entornos.ciediez',related_name='dgj_a',null = True,verbose_name='Diagnostico Principal')
-    diagnostico_b = models.ForeignKey ('entornos.ciediez',related_name='dgj_b',null = True,verbose_name='Diagnostico B')
-    diagnostico_c = models.ForeignKey ('entornos.ciediez',related_name='dgj_c',null = True,verbose_name='Diagnostico C')
-    diagnostico_d = models.ForeignKey ('entornos.ciediez',related_name='dgj_d',null = True,verbose_name='Diagnostico D')
-    fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
-    codigo = models.CharField(max_length=16)
-    informe = models.TextField(default='Evaluacion Trabajador.....')
-    descripcion = models.TextField(default='Lic x ..')
-#    resultado = models.ForeignKey('Resultado_junta',verbose_name='Dictamen')
-
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        verbose_name_plural = 'Juntas Medicas'
-        db_table = 'juntas_evaluacion'
-
-
-class Dispo_Junta(models.Model):
-    DISPOS=((u'LETP',u'Licencia Tiempo Prolongado'),
-    (u'PTDIF',u'Pase a Tarea Diferente'),
-    (u'LPEMB',u'Lic Proteccion Embarazo'),
-    (u'RTEGRO',u'Reintegro Tarea Habitual'))
-    disposicion = models.CharField(choices=DISPOS,max_length=16,verbose_name = 'Disposicion')
-    activa = models.BooleanField(default=False,verbose_name = 'ACTIVA')
-    trabajador = models.ForeignKey('rechum.Trabajador',null=True,verbose_name='Trabajador evaluado') 
-    junta_determinante = models.ForeignKey('Junta_realizada',verbose_name='Junta evaluadora')
-    ausencia_referida = models.ForeignKey('Ausencia_trb',null=True,verbose_name='Ausencia Vinculada')
-    fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini ')
-    fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
-    codigo = models.CharField(max_length=8)
-    informe = models.TextField(default='Detalle designacion TD.....')
-
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        verbose_name_plural = 'Disposiciones Tareas Diferentes'
-        db_table = 'dispos_tdif'
-
-class Dispo_Gestion(models.Model):
-    DISPOS=((u'COMISION',u''),
-    (u'CBIOFUNC',u''),
-    (u'LSGSDO',u'Lic Sin Goce de Sueldo'),
-    (u'RO',u'Re'))
-    disposicion = models.CharField(choices=DISPOS,max_length=16,verbose_name = 'Disposicion')
-    activa = models.BooleanField(default=False,verbose_name = 'ACTIVA')
-    trabajador = models.ForeignKey('rechum.Trabajador',null=True,verbose_name='Trabajador evaluado') 
-#    junta_determinante = models.ForeignKey('Junta_realizada',verbose_name='Junta evaluadora')
-#    ausencia_referida = models.ForeignKey('Ausencia_trb',null=True,verbose_name='Ausencia Vinculada')
-    fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini ')
-    fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
-    codigo = models.CharField(max_length=32)
-    informe = models.TextField(default='Detalle designacion TD.....')
-
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s - %s" % (cod,nom)
-
-    class Meta:
-        verbose_name_plural = 'Disposiciones Gestion RH'
-        db_table = 'dispos_gestionrh'
 

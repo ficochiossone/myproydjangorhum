@@ -425,7 +425,7 @@ class Solic_Rhum(models.Model):
 		comentarios = models.TextField(max_length=128, null=True, blank=True)
     #data registro
     #### Vinculo a ver si es x ausencia especifica de alguien 
-		xausenciatrab = models.ForeignKey('ausencias.Ausencia_trb',null=True,blank=True,verbose_name='X Aus ')
+		xausenciatrab = models.ForeignKey('Ausencia_trb',null=True,blank=True,verbose_name='X Aus ')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
     #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
@@ -472,5 +472,283 @@ class Solic_Rhum(models.Model):
 				verbose_name_plural='Solicitudes Recurso Humano'
 				verbose_name='Solicitud RHUM'
 
-# aca vendrian class Contrato 
+### Designacion x Dispo o Decreto
+class DispoDesiDec(models.Model):
+		TIPOS = ((u'DSPCION', u'Disposicion'),
+                       (u'RSLCION', u'Resolucion'),
+                        (u'DCRTO', u'Decreto'),(u'XTR', u'ExtraOrdinario')
+                 )
+		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Nombre Oficial....')
+		activo = models.BooleanField()
+		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
+		trb = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Gestor promotor')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
+		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		#fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
+		fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion')
+		#fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas')
+		#fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
+		#fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
+		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
+		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
+		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion')
+		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
+		fecha_registro = models.DateField(auto_now = True)
+		def __unicode__(self):
+			a=self.tipo
+			b=self.codigo
+			c=self.fecha_ini_vigencia
+			uni=a+b+str(c)
+			return uni
 
+#revisado hasta aca
+		class Meta:
+				db_table = 'decresodispos'
+				verbose_name_plural='DispoResoDecres'
+				verbose_name='DCRSOLDISPO'
+
+
+
+### asignacion de tareas diferentes.
+class Tarea_direrente(models.Model):
+		TIPOS = ((u'SIM', u'Seleccion Interna Municipal'),
+                       (u'SAMP', u'Seleccion Abierta Municipalidad Provincia'),
+                        (u'CAB', u'Concurso Abierto'),(u'XTR', u'ExtraOrdinario')
+                 )
+		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Nombre Oficial....')
+		activo = models.BooleanField()
+		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
+		trb_asignado = models.ForeignKey('Trabajador',related_name='TrabajadorRedir',null=True,blank=True,verbose_name='Trabajador Redefinido')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
+		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
+		fecha_publicacion_apertura = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion')
+		fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas')
+		fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
+		fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
+		fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
+		fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
+		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion')
+		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
+		fecha_registro = models.DateField(auto_now = True)
+		def Tiempoactiva(self):
+				#fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
+				if not self.fecha_fin:
+						today = date.today()
+						return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+				else:
+						return "fin el "
+		def __unicode__(self):
+				cur = connection.cursor()
+				pks = self.id
+				print "el id de la asigna lab es %s"%pks
+				pks = str(pks)
+				sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+				sq+=pks
+				sq+=')'
+				print sq
+				cur.execute(sq)
+				listadsm=cur.fetchall()
+				#obtuve una tupla de tuplas
+				ldsm=''
+				for n in listadsm:
+						n=n[0]
+						ldsm+=n+' - '
+						print ldsm
+						if self.trb_sugerido:
+							ape=smart_unicode(self.trb_sugerido.apellido)
+							nom=smart_unicode(self.funcion.nombre)
+							ape=ape.upper()
+							nom=nom.upper()
+						else:
+							ape='(NO-PROP)'
+						if self.institucion:
+							inst=self.institucion.codigo
+						else:
+							inst =" - "
+				return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
+#revisado hasta aca
+		class Meta:
+				db_table = 'asgtdifs'
+				verbose_name_plural='Tareas Diferentes'
+				verbose_name='Asg Tarea Diferente'
+
+class Resultado_junta(models.Model):
+    nombre = models.CharField(max_length=32)
+    codigo = models.CharField(max_length=8)
+    descripcion = models.TextField(default='Lic x ..')
+
+
+
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s - %s" % (cod,nom)
+
+    class Meta:
+        verbose_name_plural = 'Dictamenes Junta Medica'
+        db_table = 'dictamenes_jmedica'
+
+
+class Junta_realizada(models.Model):
+    LUGARDEJUNTA=((u'CESSO',u'Consultorio SSO'),
+        (u'CEART',u'Consultorio ART'),
+        (u'HPBLICO',u'Hospital Publico'),
+        (u'MOVIL',u'Movil'))
+
+    confirmada = models.BooleanField(default=False,verbose_name = 'CONS')
+    lugardejunta = models.CharField(choices=LUGARDEJUNTA,max_length=16,verbose_name = 'LUGAR DE JUNTA')
+    trabajador = models.ForeignKey('rechum.Trabajador',related_name = 'TraJuntap',verbose_name='Trabajador evaluado')   
+    institucion = models.ForeignKey('entornos.Institucion',verbose_name='Institucion ')
+    trb_evaluador_a = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_a',null=True,verbose_name='Evaluado Por')
+    trb_evaluador_b = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_b',null=True,verbose_name='Evaluado Por')
+    trb_evaluador_c = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_c',null=True,verbose_name='Evaluado Por')
+    trb_evaluador_d = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_d',null=True,verbose_name='Evaluado Por')
+    ausencia_orig_referida = models.ForeignKey('Ausencia_trb',null=True,verbose_name='Ausencia Vinculada')
+    fecha_evaluacion = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
+    diagnostico_a = models.ForeignKey ('entornos.ciediez',related_name='dgj_a',null = True,verbose_name='Diagnostico Principal')
+    diagnostico_b = models.ForeignKey ('entornos.ciediez',related_name='dgj_b',null = True,verbose_name='Diagnostico B')
+    diagnostico_c = models.ForeignKey ('entornos.ciediez',related_name='dgj_c',null = True,verbose_name='Diagnostico C')
+    diagnostico_d = models.ForeignKey ('entornos.ciediez',related_name='dgj_d',null = True,verbose_name='Diagnostico D')
+    fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
+    codigo = models.CharField(max_length=16)
+    informe = models.TextField(default='Evaluacion Trabajador.....')
+    descripcion = models.TextField(default='Lic x ..')
+#    resultado = models.ForeignKey('Resultado_junta',verbose_name='Dictamen')
+
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s - %s" % (cod,nom)
+
+    class Meta:
+        verbose_name_plural = 'Juntas Medicas'
+        db_table = 'juntas_evaluacion'
+
+class Tipo_Ausencia_trb(models.Model):
+    nombre = models.CharField(max_length=32)
+    codigo = models.CharField(max_length=8)
+#    descripcion = models.TextField(default='Lic x ..')
+
+
+
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s - %s" % (cod,nom)
+
+    
+
+
+    class Meta:
+        verbose_name_plural = 'Tipos de Ausencia '
+        db_table = 'tipos_ausencias'
+
+
+###     ausencia de un trabajador puede generar  , o NO , cobertura necesaria 
+###      esta cobertura puede distribuirse entre muchas asignaciones laborales
+###       del mismo o distinto trabajador ,
+####       en formato reemplazo , horasextension  o contrato....
+###
+###        ausencia_trb.id es uno a muchos   Asignacion_lab.id
+        
+       
+class Ausencia_trb (models.Model):
+#   un trb no esta en sus funciones habituales por un periodo , puede o no , estar en otra actividad.    
+    generavacgen = models.BooleanField(default=False,verbose_name='Vac Genuina')
+    areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Area Dep')
+    solicita_cobertura = models.BooleanField(default=False,verbose_name = 'X Cubrir')
+    trabajador_ausente = models.ForeignKey('rechum.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
+    institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion ')
+    #xdispo_junta = models.ForeignKey('Dispo_Junta',null=True,verbose_name ='X Dictamen Junta')
+    #xdispo_gestion = models.ForeignKey('DispoDesiDec',null=True,verbose_name ='X Disposicion Gestion')
+    cobertura_princ_por = models.ForeignKey('Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
+    tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')
+    diagnostico = models.ForeignKey ('entornos.Diagnostico',null = True,verbose_name='Diagnostico')
+    fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
+    fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
+    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
+    fecha_insert = models.DateField(auto_now = True)
+    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
+    #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro x')
+
+    def tipoausup(self):
+        tipoaus=self.tipo_ausencia.nombre
+        tp=tipoaus.upper()
+        return tp
+    tipoausup.short_description = 'Motivo Ausencia'
+
+
+    def coberturas(self):
+        #determina si hay asignaciones labs vinculadas a esta ausencia....
+        # cuantas y cuales son....
+        dic="No Cobs"
+        
+        print """
+                ------------------------------------------------
+
+               EN def coberturas de Ausencia_trab
+
+               ---------------------------------------------------
+                    """
+        
+        pkn = self.id
+        pks = str(pkn)
+        if pks!='None':
+            #al=servicios.Asigna_lab.objects.get(pk=pkn)
+            #alx = al.xausenciatrab
+            print "Hay ausencia de"
+            print self.trabajador_ausente
+            print self.id
+            ###ahora veamso si ese id de ausencia tiene coberturas--
+                
+            cobs=Asigna_lab.objects.filter(xausenciatrab=pkn)
+            
+            print "Esta ausencia tiene las siguientes coberturas"
+            print cobs
+            if cobs:
+                rcobs="CBS X:\n"
+                for n in cobs:
+                    rcobs+=str(n)+"\n"
+
+            else:
+                rcobs="NO"
+            print
+            dic=rcobs
+        else:
+            print """
+                     Cobertura de ausencia no definida.....      
+
+                     """
+        
+
+        return dic
+    coberturas.short_description = 'Asgns Vinculadas'    
+
+    def __unicode__(self):
+        ape=smart_unicode(self.trabajador_ausente)
+        nom=smart_unicode(self.tipo_ausencia.codigo)
+        ape=ape.upper()
+        nom=nom.upper()
+        return "%s  %s-- D:%s" % (ape.upper(),nom.upper(),self.fecha_inicio)
+
+    class Meta:
+        db_table = 'ausencias_trbs'
+        verbose_name_plural='Ausencias de Personal'
+        verbose_name='Ausencia TRB'
+
+
+
+# aca vendrian class Contrato 
