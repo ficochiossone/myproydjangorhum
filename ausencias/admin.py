@@ -116,7 +116,7 @@ class CasoPendienteAdmin(admin.ModelAdmin):
     raw_id_fields =('paciente',)
         
 admin.site.register(Ausencia_trb,AusenciaAdmin)
-#admin.site.register(Diagnostico,DiagnosticoAdmin)
+admin.site.register(Junta_realizada,JuntaAdmin)
 #admin.site.register(Internacion,InternacionAdmin)
 #admin.site.register(Paciente,PacienteAdmin)
 #admin.site.register(Profesional,ProfesionalAdmin)

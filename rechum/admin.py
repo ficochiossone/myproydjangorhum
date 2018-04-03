@@ -13,7 +13,8 @@ from django.contrib import messages
 from models import Trabajador,Status_lab,Solic_Rhum
 from models import Categoria_lab,Registro_status,Registro_categorias
 from models import Registro_especialidad
-#from models import Asigna_lab,Trabajador,Contrato,Reemplazo,Extension,Clm_Asigna
+from models import Junta_realizada
+
 
 def export_as_xls(modeladmin,request,queryset):
 	fields = []
@@ -75,6 +76,11 @@ class TrabajadorAdmin(admin.ModelAdmin):
 #    actions = [export_as_xls]
     ordering =['apellido',]
 
+class JuntaAdmin(admin.ModelAdmin):
+	fields =((),('fecha_evaluacion'),('trabajador'),())
+	list_display=('fecha_evaluacion','trabajador','diagnostico_a')
+	search_fields = ('trabajador__apellido','trabajador__legajo')
+	ordering = ['fecha_evaluacion','trabajador__apellido']
 
 class Solic_RhumAdmin(admin.ModelAdmin):
 	list_display = ('institucion','espec','xausenciatrab')
@@ -98,6 +104,6 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(Junta_realizada,JuntaAdmin)
 admin.site.register(Solic_Rhum,Solic_RhumAdmin)    
 admin.site.register(Trabajador,TrabajadorAdmin)

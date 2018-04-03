@@ -652,7 +652,13 @@ class Asigna_lab(models.Model):
                        (u'KBT', u'Cubre Ausencia'),
                         (u'CTO',u'Contrato'))
 
+    DEPENDENCIA = ((u'NUNI', u'Municipalidad'),
+                       (u'PROVI', u'Provincial'),
+                        (u'NACION',u'Nacion'))
+
+
     activo = models.BooleanField(verbose_name='Activo',default=True)
+    dependencia = models.CharField(choices=DEPENDENCIA,max_length=18,default='MUNI') 
     #ut infra un m2m que agrupa varios dias
     dds = models.ManyToManyField('entornos.Dds',verbose_name='DiasSemanales')
     trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador')

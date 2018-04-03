@@ -613,7 +613,7 @@ class Junta_realizada(models.Model):
     trb_evaluador_c = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_c',null=True,verbose_name='Evaluado Por')
     trb_evaluador_d = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_d',null=True,verbose_name='Evaluado Por')
     ausencia_orig_referida = models.ForeignKey('Ausencia_trb',null=True,verbose_name='Ausencia Vinculada')
-    fecha_evaluacion = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
+    fecha_evaluacion = models.DateField(blank=True,null=True,verbose_name='Fecha Evaluacion')
     diagnostico_a = models.ForeignKey ('entornos.ciediez',related_name='dgj_a',null = True,verbose_name='Diagnostico Principal')
     diagnostico_b = models.ForeignKey ('entornos.ciediez',related_name='dgj_b',null = True,verbose_name='Diagnostico B')
     diagnostico_c = models.ForeignKey ('entornos.ciediez',related_name='dgj_c',null = True,verbose_name='Diagnostico C')
@@ -632,6 +632,7 @@ class Junta_realizada(models.Model):
         return "%s - %s" % (cod,nom)
 
     class Meta:
+        verbose_name = 'Junta Medica Evaluadora'
         verbose_name_plural = 'Juntas Medicas'
         db_table = 'juntas_evaluacion'
 

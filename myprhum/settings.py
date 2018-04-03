@@ -133,7 +133,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 admin.site.site_title = 'Control De Sitio'
 admin.site.site_header = 'Sitio Direccion Operativa'
 admin.site.index_title = 'Administracion Direcciones'
-#SIDE_ID = 1
+## ut supra para que aparezdca customizando admin templates...
+## el SITE ID DE ABAJO ES POR AUSENCIA DE UN SITE DEFINIDO.
+SITE_ID = 1
 
 print """
 --------------------------------------------------------------------------------

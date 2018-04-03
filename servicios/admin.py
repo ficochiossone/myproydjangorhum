@@ -139,7 +139,7 @@ class Asigna_labAdmin(admin.ModelAdmin):
     list_display = ('trabajador','institucion','funcion','Inddsem','esxausencia','horasxdia','xausenciatrab')
     readonly_fields=('Inddsem',)
     list_display_editable = ('trabajador','institucion','funcion',)
-    fields = [('activo',),('trabajador','institucion','funcion'),('areadep'),
+    fields = [('activo','dependencia'),('trabajador','institucion','funcion'),('areadep'),
               ('dds','modosemanal'),('horasxdia'),
               ('fecha_inicio','fecha_fin'),
               ('comentarios') ,
