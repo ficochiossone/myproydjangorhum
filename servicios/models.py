@@ -104,7 +104,7 @@ class Func_lab(models.Model):
         cod=smart_unicode(self.codigo)
         cod=cod.upper()
         nom=nom.upper()
-        return "%s" % (nom)
+        return "%s" % (cod)
 
     class Meta:
         verbose_name_plural = 'Funciones Laborales'

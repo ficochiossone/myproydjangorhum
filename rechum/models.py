@@ -70,8 +70,11 @@ class Categoria_lab(models.Model):
 
 
 class Trabajador(models.Model):
+    DEP=((u'MUNI',u'Municipalidad'),(u'PROV',u'Provincia'))
+
     apellido = models.CharField(max_length=128)
     nombre = models.CharField(max_length=128)
+    depend = models.CharField(choices=DEP,default='MUNI',max_length=16,verbose_name='Dependencia')	
     tpodoc = models.CharField(max_length=5,default='DNI')
     nrodoc = models.IntegerField(default=1)
     ncuitl = models.CharField(max_length=24,null=True,blank=True)
@@ -356,9 +359,15 @@ class Concurso(models.Model):
 				pks = self.id
 				print "el id de la asigna lab es %s"%pks
 				pks = str(pks)
-				sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+				sq="select nombre from entornos_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
 				sq+=pks
 				sq+=')'
+				print """
+				
+							XX  UNICODE DE concurso 		
+				
+					"""
+
 				print sq
 				cur.execute(sq)
 				listadsm=cur.fetchall()
@@ -442,7 +451,7 @@ class Solic_Rhum(models.Model):
 				pks = self.id
 				print "el id de la asigna lab es %s"%pks
 				pks = str(pks)
-				sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+				sq="select nombre from_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
 				sq+=pks
 				sq+=')'
 				print sq
@@ -468,7 +477,7 @@ class Solic_Rhum(models.Model):
 				return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
 
 		class Meta:
-				db_table = 'solicit_rhum'
+				db_table = 'solicits_rhum'
 				verbose_name_plural='Solicitudes Recurso Humano'
 				verbose_name='Solicitud RHUM'
 
@@ -494,7 +503,8 @@ class DispoDesiDec(models.Model):
 		#fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
 		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
 		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
-		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion')
+		textod = models.TextField(blank=True,null=True,verbose_name = 'Texto Disposicion')
+		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion ')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
 		def __unicode__(self):
@@ -510,38 +520,72 @@ class DispoDesiDec(models.Model):
 				verbose_name_plural='DispoResoDecres'
 				verbose_name='DCRSOLDISPO'
 
-
-
-### asignacion de tareas diferentes.
-class Tarea_direrente(models.Model):
-		TIPOS = ((u'SIM', u'Seleccion Interna Municipal'),
-                       (u'SAMP', u'Seleccion Abierta Municipalidad Provincia'),
-                        (u'CAB', u'Concurso Abierto'),(u'XTR', u'ExtraOrdinario')
+# Solicts de transl o tdif trabs
+class Solic_modif_trb(models.Model):
+		TIPOS = ((u'TRLDS', u'Traslados'),
+                       (u'TDIFS', u'Tareas Diferentes'),
+                        (u'REDHOR', u'Reducciones Horarias'),(u'LSGS', u'Licencia sin Goce Haberes')
                  )
 		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Nombre Oficial....')
 		activo = models.BooleanField()
 		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
-		trb_asignado = models.ForeignKey('Trabajador',related_name='TrabajadorRedir',null=True,blank=True,verbose_name='Trabajador Redefinido')
-		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
+		trb = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Trabajador Solicitante')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='TRLDS',verbose_name='Tipo CONCURSO')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
-		fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
-		fecha_publicacion_apertura = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion')
-		fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas')
-		fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
-		fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
-		fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
-		fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
+		fecha_solicitud = models.DateField(verbose_name='Fecha Solicitud')
+		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
 		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion')
+		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
+		fecha_registro = models.DateField(auto_now = True)
+		def __unicode__(self):
+			a=self.tipo
+			b=self.codigo
+			c=self.fecha_solicitud
+			uni=a+b+str(c)
+			return uni
+
+#revisado hasta aca
+		class Meta:
+				db_table = 'solics_modif_trb'
+				verbose_name_plural='Solicitudes de Cambio'
+				verbose_name='SOLICITUD CAMBIO'
+
+
+
+### asignacion de tareas diferentes.
+class Tarea_diferente(models.Model):
+		TIPOS = ((u'TEMPL', u'Temportal'),
+                       (u'DFTVA', u'Definitiva'),
+                        (u'EOBSN', u'En Observacion'),(u'XTR', u'ExtraOrdinario')
+                 )
+		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Designacion Tarea Diferente....')
+		activo = models.BooleanField(default=True,verbose_name='Estado Asignacion TD')
+		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
+		trb_asignado = models.ForeignKey('Trabajador',related_name='TrabajadorRedir',null=True,blank=True,verbose_name='Trabajador Redefinido')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
+		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
+		institucion=models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		fecha_asignacion = models.DateField(verbose_name='Fecha Asignacion')
+		fecha_terminacion = models.DateField(blank=True,null=True,verbose_name='Fecha Terminacion')
+		fecha_revision = models.DateField(blank=True,null=True,verbose_name='Fecha Revision')
+		xjunta_medica = models.ForeignKey('Junta_medica',null=True,verbose_name='X Junta medica')
+		xdispodecidec = models.ForeignKey('DispoDesiDec',blank=True,null=True,verbose_name='X Disposicion')
+		xsolictrab = models.ForeignKey('Solic_modif_trb',blank=True,null=True,verbose_name='Solicitud de Trabajador')
+		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
+		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
+		detalle = models.TextField(max_length=256,null=True, blank=True,verbose_name='Comentarios')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
 		def Tiempoactiva(self):
 				#fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
 				if not self.fecha_fin:
 						today = date.today()
-						return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+						return today.year - self.fecha_asignacion.year - ((today.month, today.day) < (self.fecha_asignacion.month, self.fecha_asignacion.day))
 				else:
 						return "fin el "
 		def __unicode__(self):
@@ -549,7 +593,7 @@ class Tarea_direrente(models.Model):
 				pks = self.id
 				print "el id de la asigna lab es %s"%pks
 				pks = str(pks)
-				sq="select nombre from dataextra_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
+				sq="select nombre from entornos_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
 				sq+=pks
 				sq+=')'
 				print sq
@@ -579,6 +623,8 @@ class Tarea_direrente(models.Model):
 				verbose_name_plural='Tareas Diferentes'
 				verbose_name='Asg Tarea Diferente'
 
+# ojo , no se usaria ..
+# o posible dejar para  pendiente  cambio tarea jubilacion ,etcc  .la clase Junta en si misma tiene o no un resultado...
 class Resultado_junta(models.Model):
     nombre = models.CharField(max_length=32)
     codigo = models.CharField(max_length=8)
@@ -594,27 +640,27 @@ class Resultado_junta(models.Model):
         return "%s - %s" % (cod,nom)
 
     class Meta:
-        verbose_name_plural = 'Dictamenes Junta Medica'
-        db_table = 'dictamenes_jmedica'
+        verbose_name_plural = 'Resultados Junta Medica'
+        db_table = 'resultados_jmedica'
 
 
-class Junta_realizada(models.Model):
+class Junta_medica(models.Model):
     LUGARDEJUNTA=((u'CESSO',u'Consultorio SSO'),
         (u'CEART',u'Consultorio ART'),
         (u'HPBLICO',u'Hospital Publico'),
         (u'MOVIL',u'Movil'))
 
-    confirmada = models.BooleanField(default=False,verbose_name = 'CONS')
+    confirmada = models.BooleanField(default=True,verbose_name = 'ACTIVA')
     lugardejunta = models.CharField(choices=LUGARDEJUNTA,max_length=16,verbose_name = 'LUGAR DE JUNTA')
     trabajador = models.ForeignKey('rechum.Trabajador',related_name = 'TraJuntap',verbose_name='Trabajador evaluado')   
     institucion = models.ForeignKey('entornos.Institucion',verbose_name='Institucion ')
     trb_evaluador_a = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_a',null=True,verbose_name='Evaluado Por')
-    trb_evaluador_b = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_b',null=True,verbose_name='Evaluado Por')
+    trb_evaluador_b = models.ForeignKey('rechum.Trabajador',null=True,related_name ='Evaluador_b',verbose_name='Evaluado Por')
     trb_evaluador_c = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_c',null=True,verbose_name='Evaluado Por')
     trb_evaluador_d = models.ForeignKey('rechum.Trabajador',related_name ='Evaluador_d',null=True,verbose_name='Evaluado Por')
     ausencia_orig_referida = models.ForeignKey('Ausencia_trb',null=True,verbose_name='Ausencia Vinculada')
     fecha_evaluacion = models.DateField(blank=True,null=True,verbose_name='Fecha Evaluacion')
-    diagnostico_a = models.ForeignKey ('entornos.ciediez',related_name='dgj_a',null = True,verbose_name='Diagnostico Principal')
+    diagnostico_a = models.ForeignKey ('entornos.ciediez',related_name='dgj_a',verbose_name='Diagnostico Principal')
     diagnostico_b = models.ForeignKey ('entornos.ciediez',related_name='dgj_b',null = True,verbose_name='Diagnostico B')
     diagnostico_c = models.ForeignKey ('entornos.ciediez',related_name='dgj_c',null = True,verbose_name='Diagnostico C')
     diagnostico_d = models.ForeignKey ('entornos.ciediez',related_name='dgj_d',null = True,verbose_name='Diagnostico D')
@@ -622,7 +668,7 @@ class Junta_realizada(models.Model):
     codigo = models.CharField(max_length=16)
     informe = models.TextField(default='Evaluacion Trabajador.....')
     descripcion = models.TextField(default='Lic x ..')
-#    resultado = models.ForeignKey('Resultado_junta',verbose_name='Dictamen')
+    resultado = models.ForeignKey('Resultado_junta',blank=True,null=True,verbose_name='Resultado')
 
     def __unicode__(self):
         nom=smart_unicode(self.nombre)
@@ -631,10 +677,10 @@ class Junta_realizada(models.Model):
         nom=nom.upper()
         return "%s - %s" % (cod,nom)
 
-    class Meta:
+class Meta:
         verbose_name = 'Junta Medica Evaluadora'
         verbose_name_plural = 'Juntas Medicas'
-        db_table = 'juntas_evaluacion'
+        db_table = 'juntas_medicas'
 
 class Tipo_Ausencia_trb(models.Model):
     nombre = models.CharField(max_length=32)
@@ -673,7 +719,7 @@ class Ausencia_trb (models.Model):
     solicita_cobertura = models.BooleanField(default=False,verbose_name = 'X Cubrir')
     trabajador_ausente = models.ForeignKey('rechum.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
     institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion ')
-    #xdispo_junta = models.ForeignKey('Dispo_Junta',null=True,verbose_name ='X Dictamen Junta')
+    # = models.ForeignKey('Dispo_Junta',null=True,verbose_name ='X Dictamen Junta')
     #xdispo_gestion = models.ForeignKey('DispoDesiDec',null=True,verbose_name ='X Disposicion Gestion')
     cobertura_princ_por = models.ForeignKey('Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
     tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')

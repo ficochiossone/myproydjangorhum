@@ -136,7 +136,7 @@ class DdsInline(admin.TabularInline):
     
 class Asigna_labAdmin(admin.ModelAdmin):
 
-    list_display = ('trabajador','institucion','funcion','Inddsem','esxausencia','horasxdia','xausenciatrab')
+    list_display = ('trabajador','institucion','funcion','Inddsem','horasxdia','esxausencia','xausenciatrab')
     readonly_fields=('Inddsem',)
     list_display_editable = ('trabajador','institucion','funcion',)
     fields = [('activo','dependencia'),('trabajador','institucion','funcion'),('areadep'),
