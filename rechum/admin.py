@@ -12,7 +12,7 @@ from django.contrib import messages
 # Register your models here.
 from models import Trabajador,Status_lab,Solic_Rhum
 from models import Categoria_lab,Registro_status,Registro_categorias
-from models import Registro_especialidad
+from models import Registro_especialidad,DispoDesiDec
 from models import Junta_medica,Tarea_diferente
 from models import Solic_modif_trb,Resultado_junta
 
@@ -91,12 +91,12 @@ class Solic_RhumAdmin(admin.ModelAdmin):
 	fields = (('fecha_solicitud','codigo','institucion'),('trb','profesion','espec'),(),(),('iparrot'),('comentarios'))
  
 class TDAdmin(admin.ModelAdmin):
-	fields =(('tipo','fecha_asignacion','institucion'),('profesion','espec','trb_asignado'),('xsolictrab'),('xjunta_medica','xdispodecidec'))
+	#fieldset =(('trb_asignado'),('tipo','fecha_asignacion','institucion'),('profesion','espec','trb_asignado'),('xsolictrab'),('xjunta_medica'),('xdispodecidec'))
 	raw_id_fields =('trb_asignado','xjunta_medica','xdispodecidec','xsolictrab')
 	list_display=('fecha_asignacion','profesion','espec',)
-	search_fields = ('trb_asignado__apellido','trb_asignado__legajo')
+	search_fields = ('trb_asignado__apellido','codigo')
 	ordering = ['fecha_asignacion','trb_asignado__apellido']
-	fields = (('fecha_asignacion','codigo',),('institucion'),('profesion','espec'),(),(),('xjunta_medica','xdispodecidec','xsolictrab'),('detalle'))
+	#fields = (('fecha_asignacion','codigo',),('institucion'),('profesion','espec'),(),(),('xjunta_medica','xdispodecidec','xsolictrab'),('detalle'))
  	
 class Resultado_juntaAdmin(admin.ModelAdmin):
 	list_display = ('codigo','nombre')
@@ -108,9 +108,17 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 class SolictrbAdmin(admin.ModelAdmin):
 	list_display = ('fecha_solicitud','tipo','codigo','trb')
-	search_fields = ('trb','tipo')
-	fields = (('fecha_solicitud','codigo','tipo'),('institucion','areadep'),('profesion','espec'),(),('comentarios'))
+	search_fields = ('codigo','comentarios')
+	fields = (('activo'),('trb'),('fecha_solicitud','codigo','tipo'),('institucion','areadep'),('profesion','espec'),(),('comentarios'))
 	raw_id_fields = ('trb',)
+
+class DispoAdmin(admin.ModelAdmin):
+	list_display = ('fecha_ini_vigencia','tipo','trb','codigo','institucion')
+	search_fields = ('codigo','comentarios')
+	fields = (('activo'),('trb'),('fecha_ini_vigencia','codigo','tipo'),('institucion','areadep'),('profesion','espec'),(),('comentarios'))
+	raw_id_fields = ('trb',)
+	date_hierarchy = ('fecha_ini_vigencia')
+
 
 class ConcursoAdmin(admin.ModelAdmin):
 	list_display = ('nombre','codigo')
@@ -118,6 +126,8 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 
 
+
+admin.site.register(DispoDesiDec,DispoAdmin)
 admin.site.register(Resultado_junta,Resultado_juntaAdmin)
 admin.site.register(Junta_medica,JuntaAdmin)
 admin.site.register(Solic_Rhum,Solic_RhumAdmin)    

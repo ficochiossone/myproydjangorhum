@@ -527,17 +527,17 @@ class Solic_modif_trb(models.Model):
                         (u'REDHOR', u'Reducciones Horarias'),(u'LSGS', u'Licencia sin Goce Haberes')
                  )
 		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Nombre Oficial....')
-		activo = models.BooleanField()
+		activo = models.BooleanField(default = True,verbose_name = 'Formalizada')
 		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
 		trb = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Trabajador Solicitante')
-		tipo = models.CharField(choices=TIPOS,max_length=12,default='TRLDS',verbose_name='Tipo CONCURSO')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='TRLDS',verbose_name='Tipo CAMBIO')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_solicitud = models.DateField(verbose_name='Fecha Solicitud')
 		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
-		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion promocion')
+		comentarios = models.TextField(max_length=256,default = 'Solicito ..',null=True, blank=True,verbose_name='Explicitacion ')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
 		def __unicode__(self):
@@ -551,7 +551,7 @@ class Solic_modif_trb(models.Model):
 		class Meta:
 				db_table = 'solics_modif_trb'
 				verbose_name_plural='Solicitudes de Cambio'
-				verbose_name='SOLICITUD CAMBIO'
+				verbose_name='SOLICITUD CAMBIO PERSONAL'
 
 
 
@@ -605,9 +605,9 @@ class Tarea_diferente(models.Model):
 						n=n[0]
 						ldsm+=n+' - '
 						print ldsm
-						if self.trb_sugerido:
-							ape=smart_unicode(self.trb_sugerido.apellido)
-							nom=smart_unicode(self.funcion.nombre)
+						if self.trb_asignado:
+							ape=smart_unicode(self.trb_asignado.apellido)
+							nom=smart_unicode(self.tipo)
 							ape=ape.upper()
 							nom=nom.upper()
 						else:
