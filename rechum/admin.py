@@ -14,7 +14,7 @@ from models import Trabajador,Status_lab,Solic_Rhum
 from models import Categoria_lab,Registro_status,Registro_categorias
 from models import Registro_especialidad
 from models import Junta_medica,Tarea_diferente
-from models import Solic_modif_trb
+from models import Solic_modif_trb,Resultado_junta
 
 
 
@@ -79,7 +79,7 @@ class TrabajadorAdmin(admin.ModelAdmin):
     ordering =['apellido',]
 
 class JuntaAdmin(admin.ModelAdmin):
-	fields =(('confirmada','lugardejunta','fecha_evaluacion'),('trabajador'),('trb_evaluador_a','trb_evaluador_b','trb_evaluador_c'))
+	fields =(('confirmada','codigo'),('fecha_evaluacion','lugardejunta','institucion','trabajador',),('trb_evaluador_a','trb_evaluador_b','trb_evaluador_c'),(),('diagnostico_a','diagnostico_b'),('resultado'),('informe'))
 	list_display=('fecha_evaluacion','trabajador','diagnostico_a')
 	search_fields = ('trabajador__apellido','trabajador__legajo')
 	ordering = ['fecha_evaluacion','trabajador__apellido']
@@ -96,8 +96,11 @@ class TDAdmin(admin.ModelAdmin):
 	list_display=('fecha_asignacion','profesion','espec',)
 	search_fields = ('trb_asignado__apellido','trb_asignado__legajo')
 	ordering = ['fecha_asignacion','trb_asignado__apellido']
-	#fields = (('fecha_solicitud','codigo','institucion'),('trb','profesion','espec'),(),(),('iparrot'),('comentarios'))
- 
+	fields = (('fecha_asignacion','codigo',),('institucion'),('profesion','espec'),(),(),('xjunta_medica','xdispodecidec','xsolictrab'),('detalle'))
+ 	
+class Resultado_juntaAdmin(admin.ModelAdmin):
+	list_display = ('codigo','nombre')
+	ordering = ['codigo']
 
 class ConcursoAdmin(admin.ModelAdmin):
 	list_display = ('nombre','codigo')
@@ -115,7 +118,7 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(Resultado_junta,Resultado_juntaAdmin)
 admin.site.register(Junta_medica,JuntaAdmin)
 admin.site.register(Solic_Rhum,Solic_RhumAdmin)    
 admin.site.register(Trabajador,TrabajadorAdmin)

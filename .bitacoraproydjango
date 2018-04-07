@@ -966,6 +966,52 @@ fico@traumasrv.cema.salud.rosario.gov.ar Fico@srv
 -----------------------------------------------------
 AOARECE archivo .manejodatosybackup 
 para referir temas datos mysql backup transf de traumato3 y etc...
+---------------------------------------------------------------------------------------------------
 
 
- 
+Bueno 
+hoy abril 6 de 2018
+viernes lluvioso
+estamos tragtando de terminar para lunes mostrar en r directores operativos uso sistema 
+para tareas diferentews y recurso humano 
+
+
+AVAJO SE VE PROCESO CADA VEZ QUE MODIFICO MODELS  pero 
+ahora estoy giteado 
+
+ficochiossone
+Fico@git2018
+
+en directorio DATAEXTRA ESTA 	un .sql que contien lo traido de 
+rhssp 
+donde esta el grosso de datos , en orden que no jode la integr referencial 
+al llenar las tablas .
+es DATAEXTRA/dbrhumabril2k18
+solo chilla al final al querer meter la data de auth.user
+
+el proceso es asi......
+
+ini proceso 
+
+2018  python manage.py runserver_plus
+ 2019  python manage.py check
+ 2020  mc
+
+-- aca con el mc  lo que hacemso es vaciar los subdirectorios migration de cada aplicacion
+-- luego de eso 
+--recreamos la base de datos dbrhum 
+-- con makemigrations y migrate hacemos que esa dbrhum cree las tablas segun los models.py de cada app 
+
+ 2021  python manage.py makemigrations
+ 2022  python manage.py migrate
+
+--  ahnora genera,ps elñ superuser fico id 1
+ 2023  python manage.py createsuperuser
+
+--  AHORA llenamos con la data todas las tablas recien creadas
+
+ 2024  mysql -uroot dbrhum -p < DATAEXTRA/dbrhumabril2k18.sql 
+
+-- la ultima orden llena todas en el orden adecuado y chilla al quereer meter el user id=1 que ya es el superuser
+
+fin proceso 

@@ -10,7 +10,7 @@ from pyExcelerator import *
 from django.contrib.admin.utils import lookup_field
 from django.contrib import messages
 
-from models import Areadependencia,Dds
+from models import Areadependencia,Dds,ciediez
 from models import Profesion,Especialidad,Servicio
 #por ahora para engañar al validation de dajngo y
 #luego para mas cosas...
@@ -98,7 +98,14 @@ export_as_xls.short_description = 'Exportar a formato XLS'
 class DdsAdmin(admin.ModelAdmin):
 	list_display = ('nombre','codigo')
 		
-
+class ciediezAdmin(admin.ModelAdmin):
+	#list_display = ()
+	#fields = ()
+	#raw_id_fields = ()
+	ordering = ('codigo',)
+	#search_fields ('codigo',)
+	actions = [export_as_xls]
+	
 class ProfesionAdmin(admin.ModelAdmin):
     list_display = ('nombre','codigo')
     search_fields = ('nombre',)
@@ -120,3 +127,4 @@ admin.site.register(Dds,DdsAdmin)
 admin.site.register(Profesion,ProfesionAdmin)
 admin.site.register(Especialidad,EspecialidadAdmin)
 admin.site.register(Areadependencia,AreadepAdmin)
+admin.site.register(ciediez,ciediezAdmin)
