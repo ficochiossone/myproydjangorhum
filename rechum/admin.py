@@ -108,7 +108,7 @@ class ConcursoAdmin(admin.ModelAdmin):
 	search_fields = ('codigo',)
 
 class SolictrbAdmin(admin.ModelAdmin):
-	list_display = ('fecha_solicitud','tipo','codigo','trb')
+	list_display = ('fecha_solicitud','tipo','motivo','codigo','trb')
 	search_fields = ('trb__apellido','trb__mr_legajo','codigo','comentarios')
 	fields = (('activo'),('trb'),('fecha_solicitud','codigo','tipo'),('institucion','areadep'),('profesion','espec'),(),('comentarios'))
 	raw_id_fields = ('trb',)

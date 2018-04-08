@@ -144,16 +144,25 @@ class Trabajador(models.Model):
             return "N/D"
 
     def __unicode__(self):
+        if self.profesion:
+            prof=self.profesion.codigo
+        else:
+            prof="PR-NR "
+            
+ 
         if self.especialidad_1:
             esp1=self.especialidad_1.codigo
         else:
-            esp1=" "
+            esp1="Esp-NR "
             
         ape=smart_unicode(self.apellido)
         nom=smart_unicode(self.nombre)
         ape=ape.upper()
         nom=nom.upper()
-        return "%s  %s-- (%s)" % (ape,nom,esp1)
+        lennom=len(nom)
+        nf=lennom-3
+        nom=nom[:5]	
+        return "%s  %s-- (%s_%s)" % (ape,nom,prof,esp1)
 ## otra func para props del trabajador
 
 ###  ini funcion para ver evolucion mr status por registro status
@@ -491,18 +500,18 @@ class DispoDesiDec(models.Model):
 		activo = models.BooleanField()
 		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
 		trb = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Gestor promotor')
-		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='Tipo CONCURSO')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='DSPCION',verbose_name='Tipo')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
 		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		#fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
-		fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion')
+		fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha ')
 		#fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas')
 		#fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
 		#fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
-		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
-		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
+		fecha_publicacion = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
+		fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez')
 		textod = models.TextField(blank=True,null=True,verbose_name = 'Texto Disposicion')
 		comentarios = models.TextField(max_length=256,null=True, blank=True,verbose_name='Explicitacion ')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
@@ -526,18 +535,23 @@ class Solic_modif_trb(models.Model):
                        (u'TDIFS', u'Tareas Diferentes'),
                         (u'REDHOR', u'Reducciones Horarias'),(u'LSGS', u'Licencia sin Goce Haberes')
                  )
-		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Nombre Oficial....')
+		MOTIVOS = ((u'PRSNL', u'Traslados'),
+                       (u'SALUD', u'Salud'),
+                        (u'OTROS', u'Otros')
+                 )
 		activo = models.BooleanField(default = True,verbose_name = 'Formalizada')
+		detsol= models.CharField(max_length=256, verbose_name='Nombre',default='Detalle Solicitud')
 		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
 		trb = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Trabajador Solicitante')
+		motivo = models.CharField(choices=MOTIVOS,max_length=16,default='PRSNL',verbose_name='Motivo Cambio')
 		tipo = models.CharField(choices=TIPOS,max_length=12,default='TRLDS',verbose_name='Tipo CAMBIO')
-		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
+		areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Area Responsable')
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst origen')
-		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
-		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_solicitud = models.DateField(verbose_name='Fecha Solicitud')
 		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
-		comentarios = models.TextField(max_length=256,default = 'Solicito ..',null=True, blank=True,verbose_name='Explicitacion ')
+		comentarios = models.TextField(default = 'Solicito ..',null=True, blank=True,verbose_name='Explicitacion ')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
 		def __unicode__(self):
