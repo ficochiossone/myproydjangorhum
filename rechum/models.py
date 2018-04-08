@@ -532,7 +532,7 @@ class Solic_modif_trb(models.Model):
 		trb = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Trabajador Solicitante')
 		tipo = models.CharField(choices=TIPOS,max_length=12,default='TRLDS',verbose_name='Tipo CAMBIO')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
-		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst origen')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_solicitud = models.DateField(verbose_name='Fecha Solicitud')
@@ -561,24 +561,34 @@ class Tarea_diferente(models.Model):
                        (u'DFTVA', u'Definitiva'),
                         (u'EOBSN', u'En Observacion'),(u'XTR', u'ExtraOrdinario')
                  )
+		MOTIVOS = ((u'GESTION', u'Gestion'),
+                       (u'SALUD', u'Salud'),
+                        (u'PRSNL', u'Personales'),(u'XTR', u'ExtraOrdinario')
+                 )
+	
 		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Designacion Tarea Diferente....')
 		activo = models.BooleanField(default=True,verbose_name='Estado Asignacion TD')
 		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
 		trb_asignado = models.ForeignKey('Trabajador',related_name='TrabajadorRedir',verbose_name='Trabajador Asignado')
-		tipo = models.CharField(choices=TIPOS,max_length=12,default='SELECCION INTERNA MUNICIPAL',verbose_name='T dif Asignada')
+		tipo = models.CharField(choices=TIPOS,max_length=12,default='TMPRL',verbose_name='Asignacion')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
-		institucion=models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+
+		institucion=models.ForeignKey('entornos.Institucion',related_name ='insog',null=True,blank=True,verbose_name='Inst origen')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_asignacion = models.DateField(verbose_name='Fecha Asignacion')
 		fecha_terminacion = models.DateField(blank=True,null=True,verbose_name='Fecha Terminacion')
 		fecha_revision = models.DateField(blank=True,null=True,verbose_name='Fecha Revision')
+		#ahora definicion destino causa funciones
+		causaif = models.CharField(choices=MOTIVOS,max_length=32,default='GESTION',verbose_name='MOTIVO PRINCIPAL')
+		detallecambiox = models.CharField(max_length=288,verbose_name='MOTIVO comentarios')
 		xjunta_medica = models.ForeignKey('Junta_medica',blank=True,null=True,verbose_name='X Junta medica')
 		xdispodecidec = models.ForeignKey('DispoDesiDec',blank=True,null=True,verbose_name='X Disposicion')
 		xsolictrab = models.ForeignKey('Solic_modif_trb',blank=True,null=True,verbose_name='X Solicitud')
+		instdst=models.ForeignKey('entornos.Institucion',related_name ='insdst',null=True,blank=True,verbose_name='Inst destino')
 		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
 		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
-		detalle = models.TextField(max_length=256,null=True, blank=True,verbose_name='Comentarios')
+		detalle = models.TextField(max_length=256,null=True, blank=True,verbose_name='Tareas Actuales')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
 		def Tiempoactiva(self):

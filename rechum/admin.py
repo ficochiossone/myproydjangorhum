@@ -93,9 +93,10 @@ class Solic_RhumAdmin(admin.ModelAdmin):
 class TDAdmin(admin.ModelAdmin):
 	#fieldset =(('trb_asignado'),('tipo','fecha_asignacion','institucion'),('profesion','espec','trb_asignado'),('xsolictrab'),('xjunta_medica'),('xdispodecidec'))
 	raw_id_fields =('trb_asignado','xjunta_medica','xdispodecidec','xsolictrab')
-	list_display=('fecha_asignacion','profesion','espec',)
-	search_fields = ('trb_asignado__apellido','codigo')
+	list_display=('fecha_asignacion','trb_asignado','institucion','instdst','tipo','causaif','profesion','espec',)
+	search_fields = ('trb_asignado__apellido','trb_asignado__mr_legajo','codigo')
 	ordering = ['fecha_asignacion','trb_asignado__apellido']
+	date_hierarchy = 'fecha_asignacion'
 	#fields = (('fecha_asignacion','codigo',),('institucion'),('profesion','espec'),(),(),('xjunta_medica','xdispodecidec','xsolictrab'),('detalle'))
  	
 class Resultado_juntaAdmin(admin.ModelAdmin):
@@ -108,7 +109,7 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 class SolictrbAdmin(admin.ModelAdmin):
 	list_display = ('fecha_solicitud','tipo','codigo','trb')
-	search_fields = ('codigo','comentarios')
+	search_fields = ('trb__apellido','trb__mr_legajo','codigo','comentarios')
 	fields = (('activo'),('trb'),('fecha_solicitud','codigo','tipo'),('institucion','areadep'),('profesion','espec'),(),('comentarios'))
 	raw_id_fields = ('trb',)
 
