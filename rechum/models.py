@@ -506,7 +506,7 @@ class DispoDesiDec(models.Model):
 		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		#fecha_promocion = models.DateField(verbose_name='Fecha Promocion')
-		fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha ')
+		fecha_ini_vigencia = models.DateField(verbose_name='Fecha ')
 		#fecha_ini_entrevistas = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Entrevistas')
 		#fecha_ini_examenes = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Examen')
 		#fecha_recepcion_documentacion = models.DateField(blank=True,null=True,verbose_name='Fecha Recepcion Documentacion')
@@ -535,7 +535,7 @@ class Solic_modif_trb(models.Model):
                        (u'TDIFS', u'Tareas Diferentes'),
                         (u'REDHOR', u'Reducciones Horarias'),(u'LSGS', u'Licencia sin Goce Haberes')
                  )
-		MOTIVOS = ((u'PRSNL', u'Traslados'),
+		MOTIVOS = ((u'PRSNL', u'Personal'),
                        (u'SALUD', u'Salud'),
                         (u'OTROS', u'Otros')
                  )
@@ -573,36 +573,36 @@ class Solic_modif_trb(models.Model):
 class Tarea_diferente(models.Model):
 		TIPOS = ((u'TEMPL', u'Temporal'),
                        (u'DFTVA', u'Definitiva'),
-                        (u'EOBSN', u'En Observacion'),(u'XTR', u'ExtraOrdinario')
+                        (u'EOBSN', u'En Observacion'),(u'OTROS', u'No Clasificado')
                  )
 		MOTIVOS = ((u'GESTION', u'Gestion'),
                        (u'SALUD', u'Salud'),
-                        (u'PRSNL', u'Personales'),(u'XTR', u'ExtraOrdinario')
+                        (u'PRSNL', u'Personales'),(u'OTROS', u'No Clasificado')
                  )
 	
-		nombre = models.CharField(max_length=64, verbose_name='Nombre',default='Designacion Tarea Diferente....')
+		tareasprev = models.TextField(verbose_name='Tareas previas',default='Tareas previas')
 		activo = models.BooleanField(default=True,verbose_name='Estado Asignacion TD')
 		codigo = models.CharField(max_length=32, verbose_name='Codigo',default='Codigo....')
 		trb_asignado = models.ForeignKey('Trabajador',related_name='TrabajadorRedir',verbose_name='Trabajador Asignado')
 		tipo = models.CharField(choices=TIPOS,max_length=12,default='TMPRL',verbose_name='Asignacion')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
 
-		institucion=models.ForeignKey('entornos.Institucion',related_name ='insog',null=True,blank=True,verbose_name='Inst origen')
-		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
-		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
+		institucion=models.ForeignKey('entornos.Institucion',related_name ='insog',null=True,blank=True,verbose_name='Inst Principal origen')
+		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
+		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_asignacion = models.DateField(verbose_name='Fecha Asignacion')
 		fecha_terminacion = models.DateField(blank=True,null=True,verbose_name='Fecha Terminacion')
 		fecha_revision = models.DateField(blank=True,null=True,verbose_name='Fecha Revision')
 		#ahora definicion destino causa funciones
-		causaif = models.CharField(choices=MOTIVOS,max_length=32,default='GESTION',verbose_name='MOTIVO PRINCIPAL')
-		detallecambiox = models.CharField(max_length=288,verbose_name='MOTIVO comentarios')
+		causaif = models.CharField(choices=MOTIVOS,max_length=32,default='GESTION',verbose_name='Motivo')
+		detallecambiox = models.TextField(default='Modificacion de Tareas',verbose_name='Resumen Modificacion')
 		xjunta_medica = models.ForeignKey('Junta_medica',blank=True,null=True,verbose_name='X Junta medica')
 		xdispodecidec = models.ForeignKey('DispoDesiDec',blank=True,null=True,verbose_name='X Disposicion')
 		xsolictrab = models.ForeignKey('Solic_modif_trb',blank=True,null=True,verbose_name='X Solicitud')
-		instdst=models.ForeignKey('entornos.Institucion',related_name ='insdst',null=True,blank=True,verbose_name='Inst destino')
+		instdst=models.ForeignKey('entornos.Institucion',related_name ='insdst',null=True,blank=True,verbose_name='Inst Principal destino')
 		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
 		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
-		detalle = models.TextField(max_length=256,null=True, blank=True,verbose_name='Tareas Actuales')
+		detalle = models.TextField(max_length=256,null=True, blank=True,verbose_name='Resumen cambio Tareas')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
 		def Tiempoactiva(self):
