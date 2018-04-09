@@ -615,32 +615,10 @@ class Tarea_diferente(models.Model):
 		def __unicode__(self):
 				cur = connection.cursor()
 				pks = self.id
-				print "el id de la asigna lab es %s"%pks
+				print "el id de la tareadif es %s"%pks
 				pks = str(pks)
-				sq="select nombre from entornos_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
-				sq+=pks
-				sq+=')'
-				print sq
-				cur.execute(sq)
-				listadsm=cur.fetchall()
-				#obtuve una tupla de tuplas
-				ldsm=''
-				for n in listadsm:
-						n=n[0]
-						ldsm+=n+' - '
-						print ldsm
-						if self.trb_asignado:
-							ape=smart_unicode(self.trb_asignado.apellido)
-							nom=smart_unicode(self.tipo)
-							ape=ape.upper()
-							nom=nom.upper()
-						else:
-							ape='(NO-PROP)'
-						if self.institucion:
-							inst=self.institucion.codigo
-						else:
-							inst =" - "
-				return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
+				ins = self.instdst
+				return "%s  %s-   %s" % (pks,ins,"TD")
 #revisado hasta aca
 		class Meta:
 				db_table = 'asgtdifs'

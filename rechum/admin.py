@@ -109,12 +109,12 @@ class ConcursoAdmin(admin.ModelAdmin):
 	search_fields = ('codigo',)
 
 class SolictrbAdmin(admin.ModelAdmin):
-	list_display = ('fecha_solicitud','tipo','motivo','codigo','trb')
-	search_fields = ('trb__apellido','trb__mr_legajo','codigo','comentarios')
+	list_display = ('fecha_solicitud','tipo','motivo','institucion','codigo','trb')
+	search_fields = ('trb__apellido','trb__mr_legajo','codigo','institucion__codigo')
 	fields = (('fecha_solicitud','trb'),(),('areadep','institucion'),('motivo','tipo'),(),(),('comentarios'))
 	raw_id_fields = ('trb',)
 	date_hierarchy = 'fecha_solicitud'
-	list_filter = ('tipo','areadep')
+	list_filter = ('tipo','areadep','institucion')
 
 class DispoAdmin(admin.ModelAdmin):
 	list_display = ('fecha_ini_vigencia','tipo','trb','areadep','codigo')
