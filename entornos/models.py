@@ -112,6 +112,8 @@ class Profesion(models.Model):
 class Grupogestion(models.Model):
 	nombre = models.CharField(max_length=32,verbose_name='Nombre')
 	codigo = models.CharField(max_length=12,verbose_name='Codigo')
+	#comentarios = models.CharField(max_length=256)
+
 	def __unicode__(self):
 
 		print "   ----------------    unicode de grupogestion    -------------------    ------------            "
@@ -133,6 +135,7 @@ class ActaGG(models.Model):
 	participantes = models.ManyToManyField('rechum.Trabajador',verbose_name='Participantes')
 	inst=models.ForeignKey('Institucion',verbose_name='Sitio de Reunion')
 	acta = models.TextField(default='Acta reunidos -----',verbose_name='Resumen de la reunion')
+	#fechaprox = models.DateTimeField(verbose_name='Fecha proxima Reunion')
 	def __unicode__(self):
 		nom=smart_unicode(self.fecha)
 		return nom
