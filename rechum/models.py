@@ -142,18 +142,45 @@ class Trabajador(models.Model):
             return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
         else:
             return "N/D"
-
+    def haytdifs(self):
+	#ARMANJMOS STRING CON LISTA DE REGISSTROS STATUS DE ESE TRABAJADOR.
+	rss=Tarea_dif.objects.filter(trabajador_id=self.id)
+	if rss:
+		#print "Si   este trb  tiene registros de status"
+		#print 
+		lit=""
+		for n in rss :
+			print "va "+ str(n)
+			print n
+			nnom= n
+			nfecha = str(n.fecha_asignacion)
+			tot =nfecha+' > ' +nnom
+			lit+=' - '+tot
+ 
+		return lit
+	
+	else:
+		return "NR"	
+ 
     def __unicode__(self):
         if self.profesion:
             prof=self.profesion.codigo
         else:
-            prof="PR-NR "
-            
+            prof="n/r "
+        print "la profesion es %s"%prof
+        print """
+         xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          
+        """           
  
         if self.especialidad_1:
             esp1=self.especialidad_1.codigo
         else:
-            esp1="Esp-NR "
+            esp1="n/r "
+        if prof!="MEDICO":
+            sp1=""
+        else:
+            sp1=esp1
             
         ape=smart_unicode(self.apellido)
         nom=smart_unicode(self.nombre)
@@ -162,7 +189,7 @@ class Trabajador(models.Model):
         lennom=len(nom)
         nf=lennom-3
         nom=nom[:5]	
-        return "%s  %s-- (%s_%s)" % (ape,nom,prof,esp1)
+        return "%s  %s-- (%s_%s)" % (ape,nom,prof,sp1)
 ## otra func para props del trabajador
 
 ###  ini funcion para ver evolucion mr status por registro status
@@ -265,7 +292,7 @@ class Registro_status(models.Model):
     #para usar cuando ya tenemos en otra clase el trabajador y traer solo info de cambio de estado	
     def brevis(self):
         nom=smart_unicode(self.trabajador)
-	pasoa = smart_unicode(self.status)
+        pasoa = smart_unicode(self.status)
         cod=smart_unicode(self.fecha_ini_vigencia)
         #cod=cod.upper()
         #nom=nom.upper()
@@ -277,7 +304,7 @@ class Registro_status(models.Model):
 
     def __unicode__(self):
         nom=smart_unicode(self.trabajador)
-	pasoa = smart_unicode(self.status)
+        pasoa = smart_unicode(self.status)
         cod=smart_unicode(self.fecha_ini_vigencia)
         #cod=cod.upper()
         #nom=nom.upper()
@@ -418,18 +445,11 @@ class Solic_Rhum(models.Model):
                        (u'KBT', u'Cubre Ausencia'),
                         (u'CTO',u'Contrato'))
 		activo = models.BooleanField(verbose_name='Activo',default=True)
-    #ut infra un m2m que agrupa varios dias
-    ###dds = models.ManyToManyField('dataextra.Dds',verbose_name='DiasSemanales')
 		trb_sugerido = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Persona Sugerida')
-    ###tipoasignacion = models.CharField(choices=FORMATO,max_length=12,default='REG',verbose_name='Tipo Asignacion')
     #vinculo a registros de extras 
-    #esextensionhoraria = models.ForeignKey('Extension',null=True,blank=True,verbose_name='Extension horas')    
 		concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
-    #escontrato = models.ForeignKey('Contrato',null=True,blank=True,verbose_name='Contrato')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
-    #soldeasig = models.ForeignKey('Sol_deasig',null=True,verbose_name='Detalle de Solicitud')   
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
-    #servicio = models.ForeignKey('entornos.Servicio',null=True,blank=True,verbose_name='Servicio Servicio Referente')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_inicio = models.DateField(verbose_name='Fecha I')
@@ -547,6 +567,7 @@ class Solic_modif_trb(models.Model):
 		tipo = models.CharField(choices=TIPOS,max_length=12,default='TRLDS',verbose_name='Tipo CAMBIO')
 		areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Area Responsable')
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst origen')
+		#fgrls_previas = models.ManyToManyField('entornos.Funcgrl',verbose_name='Funciones Generales')
 		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_solicitud = models.DateField(verbose_name='Fecha Solicitud')
@@ -588,6 +609,7 @@ class Tarea_diferente(models.Model):
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
 
 		institucion=models.ForeignKey('entornos.Institucion',related_name ='insog',null=True,blank=True,verbose_name='Inst Principal origen')
+		funcsg_previas = models.ManyToManyField('entornos.Func_grl',related_name='fgprev',verbose_name='Funciones previas')
 		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_asignacion = models.DateField(verbose_name='Fecha Asignacion')
@@ -600,6 +622,7 @@ class Tarea_diferente(models.Model):
 		xdispodecidec = models.ForeignKey('DispoDesiDec',blank=True,null=True,verbose_name='X Disposicion')
 		xsolictrab = models.ForeignKey('Solic_modif_trb',blank=True,null=True,verbose_name='X Solicitud')
 		instdst=models.ForeignKey('entornos.Institucion',related_name ='insdst',null=True,blank=True,verbose_name='Inst Principal destino')
+		funcsg_tdif = models.ManyToManyField('entornos.Func_grl',related_name='fgpost',verbose_name='Funciones Nuevas')
 		#fecha_publicacion_resultados = models.DateField(blank=True,null=True,verbose_name='Fecha Publicacion Resultado')
 		#fecha_fin_validez = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Validez Orden de Merito')
 		detalle = models.TextField(max_length=256,null=True, blank=True,verbose_name='Resumen cambio Tareas')

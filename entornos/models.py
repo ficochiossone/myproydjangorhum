@@ -11,6 +11,23 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import smart_unicode, smart_str
 
 # Create your models here.
+class Func_grl(models.Model):
+    nombre = models.CharField(max_length=14)
+    codigo = models.CharField(max_length=6)
+    descripcion = models.CharField(max_length=128,default='Descripcion de tarea...',verbose_name='Descripcion')
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s - %s" % (cod,nom)
+
+
+    class Meta:
+        #db_table = 'sqlscripts'
+        verbose_name_plural ='Funciones Generales'        
+        verbose_name ='Tipo Funcion'        
+        #db_table = ''
 
 
 class Dds(models.Model):
@@ -84,6 +101,7 @@ class Profesion(models.Model):
         cod=smart_unicode(self.codigo)
         cod=cod.upper()
         nom=nom.upper()
+        nom =nom [:3]
         return "%s - %s" % (cod,nom)
 
     class Meta:
@@ -91,6 +109,34 @@ class Profesion(models.Model):
         verbose_name_plural ='Profesiones'        
         verbose_name ='Profesion'        
         ordering = ['nombre']
+class Grupogestion(models.Model):
+	nombre = models.CharField(max_length=32,verbose_name='Nombre')
+	codigo = models.CharField(max_length=12,verbose_name='Codigo')
+	def __unicode__(self):
+
+		print "   ----------------    unicode de grupogestion    -------------------    ------------            "
+		print self.nombre
+		print self.codigo
+		nom=smart_unicode(self.nombre)
+		cod=smart_unicode(self.codigo)
+		print " nom  y cod"
+		print nom 
+		print cod
+		return " %s - %s "%(cod,nom)
+	
+	class Meta:
+		verbose_name_plural='GruposGestion'
+
+class ActaGG(models.Model):
+	fecha=models.DateTimeField(verbose_name='Fecha_Hora')
+	grupo = models.ForeignKey('Grupogestion',verbose_name='Grupo')
+	participantes = models.ManyToManyField('rechum.Trabajador',verbose_name='Participantes')
+	inst=models.ForeignKey('Institucion',verbose_name='Sitio de Reunion')
+	acta = models.TextField(default='Acta reunidos -----',verbose_name='Resumen de la reunion')
+	def __unicode__(self):
+		nom=smart_unicode(self.fecha)
+		return nom
+
 
 class Especialidad(models.Model):
     nombre = models.CharField(max_length=32)

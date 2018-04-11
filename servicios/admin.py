@@ -12,7 +12,6 @@ from django.contrib import messages
 
 from models import Func_lab,Asigna_lab,Contrato,Reemplazo,Extension
 from entornos.models import Dds
-
 #por ahora para engañar al validation de dajngo y
 #luego para mas cosas...
 

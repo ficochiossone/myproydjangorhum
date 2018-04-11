@@ -15,6 +15,10 @@ from models import Categoria_lab,Registro_status,Registro_categorias
 from models import Registro_especialidad,DispoDesiDec
 from models import Junta_medica,Tarea_diferente
 from models import Solic_modif_trb,Resultado_junta
+from models import Registro_status
+
+from entornos.models import Func_grl
+
 
 
 
@@ -72,7 +76,7 @@ export_as_xls.short_description = 'Exportar en Formato XLS'
 
 class TrabajadorAdmin(admin.ModelAdmin):
     fields = (('imgtrb'),('apellido','nombre','mr_statuslab','mr_legajo'),('tpodoc','nrodoc'),('especialidad_1','especialidad_2'),('xltitulo','profesion','xlreparticion'),('telefono'))
-    list_display = ('apellido', 'nombre','mr_legajo','mr_statuslab','especialidad_1','hstrstatus')
+    list_display = ('apellido', 'nombre','mr_legajo','profesion','especialidad_1','mr_statuslab','hstrstatus')
     search_fields = ('apellido','mr_legajo')
     list_filter = ('mr_statuslab','profesion','especialidad_1')
 #    actions = [export_as_xls]
@@ -89,17 +93,21 @@ class Solic_RhumAdmin(admin.ModelAdmin):
 	raw_id_fields = ('trb_sugerido','xausenciatrab')
 	ordering = ['institucion']
 	fields = (('fecha_solicitud','codigo','institucion'),('trb','profesion','espec'),(),(),('iparrot'),('comentarios'))
- 
+
+def trbplus(trb_asignado):
+	return ("%s"%trb_asignado.nombre )
+
+
 class TDAdmin(admin.ModelAdmin):
-	fields =(('fecha_asignacion'),('areadep','trb_asignado'),('tipo','causaif'),('tareasprev','institucion'),('xsolictrab'),('xjunta_medica'),('xdispodecidec'),('instdst'),('detallecambiox'))
+	fields =(('fecha_asignacion'),('areadep','trb_asignado'),('tipo','causaif'),('institucion','instdst'),('xsolictrab'),('xjunta_medica'),('xdispodecidec'),('funcsg_previas','funcsg_tdif'),('detallecambiox'))
 	raw_id_fields =('trb_asignado','xjunta_medica','xdispodecidec','xsolictrab')
 	list_display=('fecha_asignacion','trb_asignado','institucion','instdst','tipo','causaif',)
-	search_fields = ('trb_asignado__apellido','trb_asignado__mr_legajo','codigo')
+	search_fields = ('trb_asignado__apellido','trb_asignado__mr_legajo','instdst__codigo')
 	ordering = ['fecha_asignacion','trb_asignado__apellido']
 	date_hierarchy = 'fecha_asignacion'
-	list_filter = ('causaif','areadep')
+	list_filter = ('causaif','trb_asignado__profesion','areadep','instdst')
 	#fields = (('fecha_asignacion','codigo',),('institucion'),('profesion','espec'),(),(),('xjunta_medica','xdispodecidec','xsolictrab'),('detalle'))
- 	
+
 class Resultado_juntaAdmin(admin.ModelAdmin):
 	list_display = ('codigo','nombre')
 	ordering = ['codigo']
@@ -115,6 +123,7 @@ class SolictrbAdmin(admin.ModelAdmin):
 	raw_id_fields = ('trb',)
 	date_hierarchy = 'fecha_solicitud'
 	list_filter = ('tipo','areadep','institucion')
+	actions = [export_as_xls]
 
 class DispoAdmin(admin.ModelAdmin):
 	list_display = ('fecha_ini_vigencia','tipo','trb','areadep','codigo')
@@ -127,10 +136,19 @@ class DispoAdmin(admin.ModelAdmin):
 class ConcursoAdmin(admin.ModelAdmin):
 	list_display = ('nombre','codigo')
 	search_fields = ('codigo',)
+class RegstatusAdmin(admin.ModelAdmin):
+	list_display = ('fecha_ini_vigencia','status','trabajador')
+	search_fields = ('trabajador__apellido','trb__mr_legajo',)
+	fields = (('fecha_ini_vigencia','trabajador'),(),('comentarios'))
+	raw_id_fields = ('trabajador',)
+	date_hierarchy = 'fecha_ini_vigencia'
+	list_filter = ('status',)
+	actions = [export_as_xls]
 
 
 
 
+admin.site.register(Registro_status,RegstatusAdmin)
 admin.site.register(DispoDesiDec,DispoAdmin)
 admin.site.register(Resultado_junta,Resultado_juntaAdmin)
 admin.site.register(Junta_medica,JuntaAdmin)

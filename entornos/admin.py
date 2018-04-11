@@ -12,8 +12,7 @@ from django.contrib import messages
 
 from models import Areadependencia,Dds,ciediez
 from models import Profesion,Especialidad,Servicio
-#por ahora para engañar al validation de dajngo y
-#luego para mas cosas...
+from models import Func_grl,Grupogestion,ActaGG
 
 #from forms.py import ClamForm
 
@@ -110,10 +109,16 @@ class ProfesionAdmin(admin.ModelAdmin):
     list_display = ('nombre','codigo')
     search_fields = ('nombre',)
     actions = [export_as_xls]
-    ordering = ('nombre',)
+    ordering = ('codigo',)
 class EspecialidadAdmin(admin.ModelAdmin):
     list_display = ('nombre','codigo')
     search_fields = ('nombre',)
+
+class FuncgAdmin(admin.ModelAdmin):
+    list_display = ('nombre','codigo')
+    search_fields = ('nombre',)
+    ordering=('codigo',)
+
 
 class AreadepAdmin(admin.ModelAdmin):
     list_display = ('nombre','codigo')
@@ -122,7 +127,18 @@ class AreadepAdmin(admin.ModelAdmin):
 class ServicioAdmin(admin.ModelAdmin):
     list_display = ('nombre','codigo')
     search_fields = ('nombre',)
+class GrupogAdmin(admin.ModelAdmin):
+	list_display = ('codigo','nombre')
 
+class ActaggAdmin(admin.ModelAdmin):
+	list_display = ('fecha','grupo','inst')
+	search_fields = ('grupo__codigo',)
+	date_hierarchy = 'fecha'
+	raw_id_fields =('participantes',)	
+
+admin.site.register(ActaGG,ActaggAdmin)
+admin.site.register(Grupogestion,GrupogAdmin)
+admin.site.register(Func_grl,FuncgAdmin)
 admin.site.register(Dds,DdsAdmin)
 admin.site.register(Profesion,ProfesionAdmin)
 admin.site.register(Especialidad,EspecialidadAdmin)
