@@ -449,7 +449,7 @@ class Solic_Rhum(models.Model):
     #vinculo a registros de extras 
 		concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
-		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion Destino')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_inicio = models.DateField(verbose_name='Fecha I')
@@ -476,34 +476,12 @@ class Solic_Rhum(models.Model):
 				else:
 						return "fin el "
 		def __unicode__(self):
-				cur = connection.cursor()
-				pks = self.id
-				print "el id de la asigna lab es %s"%pks
-				pks = str(pks)
-				sq="select nombre from_dds where id in (select dds_id from asignalabs_dds where asigna_lab_id = "
-				sq+=pks
-				sq+=')'
-				print sq
-				cur.execute(sq)
-				listadsm=cur.fetchall()
-				#obtuve una tupla de tuplas
-				ldsm=''
-				for n in listadsm:
-						n=n[0]
-						ldsm+=n+' - '
-						print ldsm
-						if self.trb_sugerido:
-							ape=smart_unicode(self.trb_sugerido.apellido)
-							nom=smart_unicode(self.funcion.nombre)
-							ape=ape.upper()
-							nom=nom.upper()
-						else:
-							ape='(NO-PROP)'
-						if self.institucion:
-							inst=self.institucion.codigo
-						else:
-							inst =" - "
-				return "%s  %s-   %s" % (ape.upper(),inst,ldsm)
+			if self.trb_sugerido:
+				trbp=self.trb_sugerido.apellido
+			if self.areadep:
+				adpn=self.areadep
+				
+			return "%s  %s- " % (adpn,trbp)
 
 		class Meta:
 				db_table = 'solicits_rhum'
@@ -748,7 +726,7 @@ class Ausencia_trb (models.Model):
     #xdispo_gestion = models.ForeignKey('DispoDesiDec',null=True,verbose_name ='X Disposicion Gestion')
     cobertura_princ_por = models.ForeignKey('Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
     tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')
-    diagnostico = models.ForeignKey ('entornos.Diagnostico',null = True,verbose_name='Diagnostico')
+    diagnostico = models.ForeignKey ('entornos.Diagnostico',blank=True,null = True,verbose_name='Diagnostico')
     fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
     fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
     usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')

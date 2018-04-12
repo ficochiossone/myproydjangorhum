@@ -16,6 +16,8 @@ from models import Registro_especialidad,DispoDesiDec
 from models import Junta_medica,Tarea_diferente
 from models import Solic_modif_trb,Resultado_junta
 from models import Registro_status
+from models import Ausencia_trb
+
 
 from entornos.models import Func_grl
 
@@ -89,10 +91,10 @@ class JuntaAdmin(admin.ModelAdmin):
 	ordering = ['fecha_evaluacion','trabajador__apellido']
 	raw_id_fields = ('trabajador','trb_evaluador_a','trb_evaluador_b','trb_evaluador_c','diagnostico_a','diagnostico_b','diagnostico_c',)
 class Solic_RhumAdmin(admin.ModelAdmin):
-	list_display = ('institucion','espec','xausenciatrab')
+	list_display = ('fecha_inicio','areadep','institucion','espec','xausenciatrab')
 	raw_id_fields = ('trb_sugerido','xausenciatrab')
 	ordering = ['institucion']
-	fields = (('fecha_solicitud','codigo','institucion'),('trb','profesion','espec'),(),(),('iparrot'),('comentarios'))
+	fields = (('fecha_inicio','areadep'),('institucion','profesion','espec'),('horasxdia'),('xausenciatrab','trb_sugerido'),('comentarios'))
 
 def trbplus(trb_asignado):
 	return ("%s"%trb_asignado.nombre )
@@ -144,10 +146,16 @@ class RegstatusAdmin(admin.ModelAdmin):
 	date_hierarchy = 'fecha_ini_vigencia'
 	list_filter = ('status',)
 	actions = [export_as_xls]
-
-
-
-
+class AustAdmin(admin.ModelAdmin):
+	list_display = ('fecha_inicio','fecha_fin','areadep','institucion','tipo_ausencia','trabajador_ausente',)
+	search_fields =('trabajador_ausente__apellido','trabajador_ausente__mr_legajo')	
+	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia'),('fecha_fin'),('cobertura_princ_por'),())
+# falta meter en fields una def que allado de tipoause encuentre si hay tareas diferentes o juntas medicas 
+	raw_id_fields = ('trabajador_ausente','cobertura_princ_por')
+	date_hierarchy = 'fecha_inicio'
+	list_filter = ('tipo_ausencia','areadep','institucion')
+	ordering = ('trabajador_ausente__apellido',)
+admin.site.register(Ausencia_trb,AustAdmin)
 admin.site.register(Registro_status,RegstatusAdmin)
 admin.site.register(DispoDesiDec,DispoAdmin)
 admin.site.register(Resultado_junta,Resultado_juntaAdmin)
