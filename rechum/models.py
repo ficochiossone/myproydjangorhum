@@ -697,7 +697,7 @@ class Tipo_Ausencia_trb(models.Model):
         cod=smart_unicode(self.codigo)
         cod=cod.upper()
         nom=nom.upper()
-        return "%s - %s" % (cod,nom)
+        return " %s" % (cod)
 
     
 
@@ -713,17 +713,18 @@ class Tipo_Ausencia_trb(models.Model):
 ####       en formato reemplazo , horasextension  o contrato....
 ###
 ###        ausencia_trb.id es uno a muchos   Asignacion_lab.id
-        
-       
+
 class Ausencia_trb (models.Model):
-#   un trb no esta en sus funciones habituales por un periodo , puede o no , estar en otra actividad.    
+#   un trb no esta en sus funciones habituales por un periodo , puede o no , estar en otra actividad.
+###
+### no hay un campo de la clase que vincule directamente con una tarea diferente de ese prof 
+### vamos a tener que crear una def para ello
+###
     generavacgen = models.BooleanField(default=False,verbose_name='Vac Genuina')
     areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Area Dep')
     solicita_cobertura = models.BooleanField(default=False,verbose_name = 'X Cubrir')
     trabajador_ausente = models.ForeignKey('rechum.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
     institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion ')
-    # = models.ForeignKey('Dispo_Junta',null=True,verbose_name ='X Dictamen Junta')
-    #xdispo_gestion = models.ForeignKey('DispoDesiDec',null=True,verbose_name ='X Disposicion Gestion')
     cobertura_princ_por = models.ForeignKey('Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
     tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')
     diagnostico = models.ForeignKey ('entornos.Diagnostico',blank=True,null = True,verbose_name='Diagnostico')
@@ -738,55 +739,25 @@ class Ausencia_trb (models.Model):
         tipoaus=self.tipo_ausencia.nombre
         tp=tipoaus.upper()
         return tp
-    tipoausup.short_description = 'Motivo Ausencia'
+    tipoausup.short_description = 'Vinculo a TD'
 
 
-    def coberturas(self):
-        #determina si hay asignaciones labs vinculadas a esta ausencia....
-        # cuantas y cuales son....
-        dic="No Cobs"
-        
-        print """
-                ------------------------------------------------
+    def detcausaauc(self):
+		if self.pk:
+			#MIRA SI HAY TDFIFS P ESE TRB
+			tba=self.trabajador_ausente
+			tbid=tba.pk
+			tdif=Tarea_diferente.objects.get(trb_asignado_id=tbid)
+			ids=tdif.instdst.codigo
+			cnst = ids 
 
-               EN def coberturas de Ausencia_trab
+		else:
+			print "no hay ausencia"
+			cnst =""
 
-               ---------------------------------------------------
-                    """
-        
-        pkn = self.id
-        pks = str(pkn)
-        if pks!='None':
-            #al=servicios.Asigna_lab.objects.get(pk=pkn)
-            #alx = al.xausenciatrab
-            print "Hay ausencia de"
-            print self.trabajador_ausente
-            print self.id
-            ###ahora veamso si ese id de ausencia tiene coberturas--
-                
-            cobs=Asigna_lab.objects.filter(xausenciatrab=pkn)
-            
-            print "Esta ausencia tiene las siguientes coberturas"
-            print cobs
-            if cobs:
-                rcobs="CBS X:\n"
-                for n in cobs:
-                    rcobs+=str(n)+"\n"
-
-            else:
-                rcobs="NO"
-            print
-            dic=rcobs
-        else:
-            print """
-                     Cobertura de ausencia no definida.....      
-
-                     """
-        
-
-        return dic
-    coberturas.short_description = 'Asgns Vinculadas'    
-
+		return cnst
+    detcausaauc.short_description="TDif->Aus"
+		    
     def __unicode__(self):
         ape=smart_unicode(self.trabajador_ausente)
         nom=smart_unicode(self.tipo_ausencia.codigo)

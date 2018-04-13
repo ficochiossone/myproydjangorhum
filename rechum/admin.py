@@ -147,10 +147,10 @@ class RegstatusAdmin(admin.ModelAdmin):
 	list_filter = ('status',)
 	actions = [export_as_xls]
 class AustAdmin(admin.ModelAdmin):
-	list_display = ('fecha_inicio','fecha_fin','areadep','institucion','tipo_ausencia','trabajador_ausente',)
-	search_fields =('trabajador_ausente__apellido','trabajador_ausente__mr_legajo')	
-	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia'),('fecha_fin'),('cobertura_princ_por'),())
-# falta meter en fields una def que allado de tipoause encuentre si hay tareas diferentes o juntas medicas 
+	list_display = ('fecha_inicio','areadep','institucion','tipo_ausencia','trabajador_ausente','detcausaauc','fecha_fin')
+	search_fields =('trabajador_ausente__apellido','trabajador_ausente__mr_legajo','institucion__codigo')	
+	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia','detcausaauc'),('fecha_fin'),('cobertura_princ_por'),())
+	readonly_fields = ('detcausaauc',) 
 	raw_id_fields = ('trabajador_ausente','cobertura_princ_por')
 	date_hierarchy = 'fecha_inicio'
 	list_filter = ('tipo_ausencia','areadep','institucion')
