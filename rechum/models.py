@@ -42,7 +42,7 @@ class Status_lab(models.Model):
         cod=smart_unicode(self.codigo)
         cod=cod.upper()
         nom=nom.upper()
-        return "%s - %s" % (cod,nom)
+        return "%s" % (cod)
 
     class Meta:
         db_table = 'mr_status'
@@ -83,7 +83,7 @@ class Trabajador(models.Model):
     #imgtrb=models.ImageField(null=True,blank=True,upload_to='/%Y/%m')
     fecha_nacimiento = models.DateField(blank=True,null=True,verbose_name='Fecha de Nacimiento')
     profesion = models.ForeignKey('entornos.Profesion',null=True,blank=True,verbose_name ='Profesion')
-    especialidad_1 = models.ForeignKey('entornos.Especialidad',related_name='Esp1',verbose_name='Especialidad principal',blank=True,null=True)
+    especialidad_1 = models.ForeignKey('entornos.Especialidad',related_name='Esp1',verbose_name='Especialidad',blank=True,null=True)
     especialidad_2 = models.ForeignKey('entornos.Especialidad',related_name='Esp2',verbose_name='Especialidad Dos',blank=True,null=True)
     especialidad_3 = models.ForeignKey('entornos.Especialidad',related_name='Esp3',verbose_name='Especialidad Tres',blank=True,null=True)
     especialidad_4 = models.ForeignKey('entornos.Especialidad',related_name='Esp4',verbose_name='Especialidad Cuatro',blank=True,null=True)
@@ -445,7 +445,7 @@ class Solic_Rhum(models.Model):
                        (u'KBT', u'Cubre Ausencia'),
                         (u'CTO',u'Contrato'))
 		activo = models.BooleanField(verbose_name='Activo',default=True)
-		trb_sugerido = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='Persona Sugerida')
+		trb_sugerido = models.ForeignKey('Trabajador',null=True,blank=True,verbose_name='COBERTURA Sugerida')
     #vinculo a registros de extras 
 		concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
@@ -453,17 +453,17 @@ class Solic_Rhum(models.Model):
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_inicio = models.DateField(verbose_name='Fecha I')
-    #fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Actividad')
-    #diasemana = choi
+
+
     ###modo = models.CharField(choices=MODO,max_length=18,verbose_name = 'Frecuencia mensual')
     #diasemana = models.CharField(choices=DIASEMANA,max_length=12,verbose_name ='Dia de la Semana')
 		horasxdia = models.IntegerField(verbose_name='Horas x Dia')
 #    frecuencia = models.CharField(choices=FRECUENCIA,max_length=12,verbose_name='Frecuencia',default='R/1')
 #   Para ocasion de funciones en reemplazo...
 		comentarios = models.TextField(max_length=128, null=True, blank=True)
-    #data registro
+
     #### Vinculo a ver si es x ausencia especifica de alguien 
-		xausenciatrab = models.ForeignKey('Ausencia_trb',null=True,blank=True,verbose_name='X Aus ')
+		xausenciatrab = models.ForeignKey('Ausencia_trb',null=True,blank=True,verbose_name='Solicit X Aus. ')
 		usuario_registro = models.ForeignKey(User,blank=True,null=True,verbose_name = 'Registrado por')
 		fecha_registro = models.DateField(auto_now = True)
     #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
@@ -476,6 +476,8 @@ class Solic_Rhum(models.Model):
 				else:
 						return "fin el "
 		def __unicode__(self):
+			trbp="N/R"
+			areadep= " "
 			if self.trb_sugerido:
 				trbp=self.trb_sugerido.apellido
 			if self.areadep:
@@ -588,16 +590,17 @@ class Tarea_diferente(models.Model):
 
 		institucion=models.ForeignKey('entornos.Institucion',related_name ='insog',null=True,blank=True,verbose_name='Inst Principal origen')
 		funcsg_previas = models.ManyToManyField('entornos.Func_grl',related_name='fgprev',verbose_name='Funciones previas')
-		#profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
-		#espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_asignacion = models.DateField(verbose_name='Fecha Asignacion')
 		fecha_terminacion = models.DateField(blank=True,null=True,verbose_name='Fecha Terminacion')
 		fecha_revision = models.DateField(blank=True,null=True,verbose_name='Fecha Revision')
 		#ahora definicion destino causa funciones
 		causaif = models.CharField(choices=MOTIVOS,max_length=32,default='GESTION',verbose_name='Motivo')
 		detallecambiox = models.TextField(default='Modificacion de Tareas',verbose_name='Resumen Modificacion')
+		# si fue respaldada x una resolucion juntamedica
 		xjunta_medica = models.ForeignKey('Junta_medica',blank=True,null=True,verbose_name='X Junta medica')
+		#si fue respaldada y reglamentada por un dec o dispo o resolucion
 		xdispodecidec = models.ForeignKey('DispoDesiDec',blank=True,null=True,verbose_name='X Disposicion')
+		# si tuvo en sus raices un pedido personal del trabajador
 		xsolictrab = models.ForeignKey('Solic_modif_trb',blank=True,null=True,verbose_name='X Solicitud')
 		instdst=models.ForeignKey('entornos.Institucion',related_name ='insdst',null=True,blank=True,verbose_name='Inst Principal destino')
 		funcsg_tdif = models.ManyToManyField('entornos.Func_grl',related_name='fgpost',verbose_name='Funciones Nuevas')
@@ -726,11 +729,11 @@ class Ausencia_trb (models.Model):
     trabajador_ausente = models.ForeignKey('rechum.Trabajador',related_name = 'TrAreemp',null=True,verbose_name='Trabajador ausente')   
     institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion ')
     cobertura_princ_por = models.ForeignKey('Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
-    tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo de Solicitud')
+    tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo Ausencia')
     diagnostico = models.ForeignKey ('entornos.Diagnostico',blank=True,null = True,verbose_name='Diagnostico')
     fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
     fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
-    usuario_registro = models.ForeignKey(to = User, verbose_name = 'Registrado por')
+    usuario_registro = models.ForeignKey(to = User, blank=True,null=True,verbose_name = 'Registrado por')
     fecha_insert = models.DateField(auto_now = True)
     comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
     #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro x')
@@ -748,7 +751,25 @@ class Ausencia_trb (models.Model):
 			tba=self.trabajador_ausente
 			tbid=tba.pk
 			tdif=Tarea_diferente.objects.get(trb_asignado_id=tbid)
-			ids=tdif.instdst.codigo
+			if tdif:
+				#evalua cambio inst
+				tdinstprev=tdif.institucion.codigo
+				tdinstpost=tdif.instdst.codigo
+				if tdinstpost==tdinstprev:
+					tdi=" <INST> "
+				else:
+					tdi="%s-->%s"%(tdinstprev,tdinstpost)
+				#evalua cambio funcs
+				funcpre=tdif.funcsg_previas.values_list()
+				funcpost=tdif.funcsg_tdif.values_list()
+				if funcpre==funcpost:
+					tdf="No CF"
+				else:
+					tdf="CambioFunc"
+				td="%s - %s"%(tdi,tdf)
+			else:
+				td="no TD" 
+			ids=td
 			cnst = ids 
 
 		else:
@@ -756,7 +777,31 @@ class Ausencia_trb (models.Model):
 			cnst =""
 
 		return cnst
-    detcausaauc.short_description="TDif->Aus"
+    detcausaauc.short_description="TareasDifs."
+
+	# si hay Solic_rhum vinculada a esta ausencia ..y en que fecha..
+    def haysolicrhum(self):
+		cnst="N/R"
+		ausid=self.pk
+		#MIRA SI HAY Solic Rhum para esa  Ausencia
+		print "ausid es "
+		print ausid
+		solxaus = Solic_Rhum.objects.filter(xausenciatrab_id=ausid)
+		if solxaus:
+			print "hay una solicitud vinculada"
+			solr=solxaus[0]
+			fechasol = solr.fecha_inicio
+			#tdif=Tarea_diferente.objects.get(trb_asignado_id=tbid)			cnst=fechasol
+			cnst= fechasol
+		else:
+			cnst =""
+			print """
+                    NO HAY SOLICITUD VINCULADA A LA AUSENCIA ID 
+                         
+						%s
+			"""%ausid
+		return cnst
+    haysolicrhum.short_description="Solic x Aus."
 		    
     def __unicode__(self):
         ape=smart_unicode(self.trabajador_ausente)

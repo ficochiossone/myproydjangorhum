@@ -102,7 +102,7 @@ class Profesion(models.Model):
         cod=cod.upper()
         nom=nom.upper()
         nom =nom [:3]
-        return "%s - %s" % (cod,nom)
+        return " %s" % (nom)
 
     class Meta:
         db_table = 'profesiones'

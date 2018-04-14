@@ -1014,4 +1014,61 @@ ini proceso
 
 -- la ultima orden llena todas en el orden adecuado y chilla al quereer meter el user id=1 que ya es el superuser
 
-fin proceso 
+fin proceso
+
+13 viernes abril 2018 esperando en heca a jorge gualtieri para consensuar func entre coordinaciones y con jefaturas de servicio.
+
+trabajando en rechum dires opers 
+
+AUSENCIA TRABAJADOR 
+class Ausencia_trb   class AustAdmin
+ 
+
+Este objeto de datos es la falta de un trabajador en un lugar que previamente estaba ocupado
+Puede ser originado por distintas causa qaue figuran en la variable 
+tipo_ausencia  ForeignKey  class Tipo_ausencia_trb
+
+En la Realidad elr  ocurre por:
+	 jubilacione
+	 cambiodefunciones
+	 enfermedades prolongadas 
+	licencias sin goce de sueldo 
+
+no asimilemos que ausencia es falta al trabajo
+
+
+
+
+DEJAR LA  FNCION YEL  LUGAR 
+es una cosa
+DEJAR DE CUMPLIR UNA FUNCION PERO SEGUIR EN  LUGAR 
+
+CUMPLIR MENOS FUNCIN IGUAL EN MISMO LUGAR  
+
+CAMBIAR DE LUGAR PERO SEGUIR CON LA MISMA FUNCION
+en otro
+t
+odo eso genera ausencia del cumplimiento previo de una funcion en un lugar 
+que puede ser malo o bueno para el luugar o para la red
+que puede ser necesario reponer o no ..
+
+
+EN UNA INSTITUCION , DEP DE UNA AREADEP , HAY UN TRABAJADOR 
+QUE DEJA DE CUMPLIR UNA FUNCION PREVISTA ACOSTUMBRADA
+
+ESO ES UNA AUSENCIA
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+ 

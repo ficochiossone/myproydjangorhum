@@ -77,11 +77,12 @@ export_as_xls.short_description = 'Exportar en Formato XLS'
 					
 
 class TrabajadorAdmin(admin.ModelAdmin):
-    fields = (('imgtrb'),('apellido','nombre','mr_statuslab','mr_legajo'),('tpodoc','nrodoc'),('especialidad_1','especialidad_2'),('xltitulo','profesion','xlreparticion'),('telefono'))
+    fields = (('imgtrb'),('apellido','nombre','mr_statuslab','mr_legajo'),(),('tpodoc','nrodoc'),('profesion','especialidad_1'),('especialidad_2'),('xltitulo','xlreparticion'),('telefono'))
     list_display = ('apellido', 'nombre','mr_legajo','profesion','especialidad_1','mr_statuslab','hstrstatus')
     search_fields = ('apellido','mr_legajo')
     list_filter = ('mr_statuslab','profesion','especialidad_1')
-#    actions = [export_as_xls]
+    read_only_fields =('hstrstatus',)
+    actions = [export_as_xls]
     ordering =['apellido',]
 
 class JuntaAdmin(admin.ModelAdmin):
@@ -147,10 +148,10 @@ class RegstatusAdmin(admin.ModelAdmin):
 	list_filter = ('status',)
 	actions = [export_as_xls]
 class AustAdmin(admin.ModelAdmin):
-	list_display = ('fecha_inicio','areadep','institucion','tipo_ausencia','trabajador_ausente','detcausaauc','fecha_fin')
+	list_display = ('fecha_inicio','areadep','institucion','tipo_ausencia','trabajador_ausente','detcausaauc','haysolicrhum','fecha_fin')
 	search_fields =('trabajador_ausente__apellido','trabajador_ausente__mr_legajo','institucion__codigo')	
-	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia','detcausaauc'),('fecha_fin'),('cobertura_princ_por'),())
-	readonly_fields = ('detcausaauc',) 
+	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia','detcausaauc'),('fecha_fin'),('cobertura_princ_por'),('haysolicrhum'))
+	readonly_fields = ('detcausaauc','haysolicrhum') 
 	raw_id_fields = ('trabajador_ausente','cobertura_princ_por')
 	date_hierarchy = 'fecha_inicio'
 	list_filter = ('tipo_ausencia','areadep','institucion')
