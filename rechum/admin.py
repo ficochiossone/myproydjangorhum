@@ -139,18 +139,19 @@ class DispoAdmin(admin.ModelAdmin):
 class ConcursoAdmin(admin.ModelAdmin):
 	list_display = ('nombre','codigo')
 	search_fields = ('codigo',)
+
 class RegstatusAdmin(admin.ModelAdmin):
 	list_display = ('fecha_ini_vigencia','status','trabajador')
 	search_fields = ('trabajador__apellido','trb__mr_legajo',)
-	fields = (('fecha_ini_vigencia','trabajador'),(),('comentarios'))
+	fields = (('fecha_ini_vigencia','trabajador'),('status'),('comentarios'))
 	raw_id_fields = ('trabajador',)
 	date_hierarchy = 'fecha_ini_vigencia'
 	list_filter = ('status',)
 	actions = [export_as_xls]
 class AustAdmin(admin.ModelAdmin):
-	list_display = ('fecha_inicio','areadep','institucion','tipo_ausencia','trabajador_ausente','detcausaauc','haysolicrhum','fecha_fin')
+	list_display = ('fecha_inicio','ausvigahoy','areadep','institucion','tipoausup','trabajador_ausente','detcausaauc','haysolicrhum','fecha_fin')
 	search_fields =('trabajador_ausente__apellido','trabajador_ausente__mr_legajo','institucion__codigo')	
-	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia','detcausaauc'),('fecha_fin'),('cobertura_princ_por'),('haysolicrhum'))
+	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia','detcausaauc'),('fecha_fin'),('xtareasdif'),('cobertura_princ_por'),('haysolicrhum'))
 	readonly_fields = ('detcausaauc','haysolicrhum') 
 	raw_id_fields = ('trabajador_ausente','cobertura_princ_por')
 	date_hierarchy = 'fecha_inicio'

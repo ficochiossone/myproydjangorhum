@@ -101,8 +101,8 @@ class Profesion(models.Model):
         cod=smart_unicode(self.codigo)
         cod=cod.upper()
         nom=nom.upper()
-        nom =nom [:3]
-        return " %s" % (nom)
+        nom =nom [:6]
+        return " %s" % (cod)
 
     class Meta:
         db_table = 'profesiones'

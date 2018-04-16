@@ -17,6 +17,8 @@ from django.db import models
 from django.db import connection
 from django.contrib.auth.models import User
 from datetime import datetime, date
+# atenti arriba  usar date.today()
+
 from django.contrib.contenttypes.models import ContentType
 ### removed deprecated --> from django.contrib.contenttypes import generic
 from django.utils.encoding import smart_unicode, smart_str
@@ -449,7 +451,7 @@ class Solic_Rhum(models.Model):
     #vinculo a registros de extras 
 		concursofuente = models.ForeignKey('Concurso',null=True,blank=True,verbose_name='Prop x Concurso')
 		areadep = models.ForeignKey('entornos.Areadependencia',null=True,blank=True,verbose_name='Area Responsable')
-		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Institucion Destino')
+		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst Slct')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
 		fecha_inicio = models.DateField(verbose_name='Fecha I')
@@ -457,7 +459,7 @@ class Solic_Rhum(models.Model):
 
     ###modo = models.CharField(choices=MODO,max_length=18,verbose_name = 'Frecuencia mensual')
     #diasemana = models.CharField(choices=DIASEMANA,max_length=12,verbose_name ='Dia de la Semana')
-		horasxdia = models.IntegerField(verbose_name='Horas x Dia')
+		horasxdia = models.IntegerField(verbose_name='Hrs Smns')
 #    frecuencia = models.CharField(choices=FRECUENCIA,max_length=12,verbose_name='Frecuencia',default='R/1')
 #   Para ocasion de funciones en reemplazo...
 		comentarios = models.TextField(max_length=128, null=True, blank=True)
@@ -720,8 +722,8 @@ class Tipo_Ausencia_trb(models.Model):
 class Ausencia_trb (models.Model):
 #   un trb no esta en sus funciones habituales por un periodo , puede o no , estar en otra actividad.
 ###
-### no hay un campo de la clase que vincule directamente con una tarea diferente de ese prof 
-### vamos a tener que crear una def para ello
+###  hay un campo de la clase que vincula directamente con una tarea diferente  
+### 
 ###
     generavacgen = models.BooleanField(default=False,verbose_name='Vac Genuina')
     areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Area Dep')
@@ -731,7 +733,8 @@ class Ausencia_trb (models.Model):
     cobertura_princ_por = models.ForeignKey('Trabajador',related_name ='TrCobertor',null=True , blank=True ,verbose_name='Cobertura Por')
     tipo_ausencia = models.ForeignKey('Tipo_ausencia_trb',null=True,verbose_name='Motivo Ausencia')
     diagnostico = models.ForeignKey ('entornos.Diagnostico',blank=True,null = True,verbose_name='Diagnostico')
-    fecha_inicio = models.DateField(blank=True,null=True,verbose_name='Ini Ausencia')
+    xtareasdif = models.ForeignKey ('Tarea_diferente',blank=True,null=True,verbose_name='TDifs')
+    fecha_inicio = models.DateField(verbose_name='Inicio Ausencia')
     fecha_fin = models.DateField(blank=True,null=True,verbose_name='Fecha Fin Ausencia')
     usuario_registro = models.ForeignKey(to = User, blank=True,null=True,verbose_name = 'Registrado por')
     fecha_insert = models.DateField(auto_now = True)
@@ -742,7 +745,24 @@ class Ausencia_trb (models.Model):
         tipoaus=self.tipo_ausencia.nombre
         tp=tipoaus.upper()
         return tp
-    tipoausup.short_description = 'Vinculo a TD'
+    tipoausup.short_description = 'TIPO AUSENCIA'
+
+    def ausvigahoy(self):
+        print "-----  ini def ausvigahoy  den class ausencia  ---------------------------------"
+        hoy=date.today()
+        ausini=self.fecha_inicio
+        ausfin=self.fecha_fin
+        if ausfin:
+           print "hay fecha fin de ausencia Es  %s"%ausfin
+           ausdur=abs(ausfin-ausini)
+           print "Son %s"%ausdur
+           fausdur="%s Dias"%ausdur
+        else:
+           print "No reg Fecha fin"
+           ausdur=abs(hoy-ausini).days
+           fausdur="sinFF "+ str(ausdur) + "dias a hoy"
+        return fausdur
+    ausvigahoy.short_description = "Dias Aus"	
 
 
     def detcausaauc(self):
@@ -784,24 +804,32 @@ class Ausencia_trb (models.Model):
 		cnst="N/R"
 		ausid=self.pk
 		#MIRA SI HAY Solic Rhum para esa  Ausencia
-		print "ausid es "
-		print ausid
+		print " En class Ausenciatrb %s  trab %s en def haysolcrhum"%(ausid,self.trabajador_ausente)
+		print "---------------------------------------------------"
 		solxaus = Solic_Rhum.objects.filter(xausenciatrab_id=ausid)
 		if solxaus:
-			print "hay una solicitud vinculada"
+			print """hay una solicitud vinculada
+						a la asusencia id %s 
+
+													"""%ausid
 			solr=solxaus[0]
 			fechasol = solr.fecha_inicio
 			#tdif=Tarea_diferente.objects.get(trb_asignado_id=tbid)			cnst=fechasol
-			cnst= fechasol
+			cnst= "REC %s"%str(fechasol)
 		else:
-			cnst =""
+			cnst ="NR"
 			print """
                     NO HAY SOLICITUD VINCULADA A LA AUSENCIA ID 
                          
 						%s
 			"""%ausid
+		print """
+			    fin de haysolicrhum
+				devuelvve %s
+
+				"""%cnst
 		return cnst
-    haysolicrhum.short_description="Solic x Aus."
+    haysolicrhum.short_description="Reclamo"
 		    
     def __unicode__(self):
         ape=smart_unicode(self.trabajador_ausente)
