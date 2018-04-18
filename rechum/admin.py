@@ -93,10 +93,12 @@ class JuntaAdmin(admin.ModelAdmin):
 	raw_id_fields = ('trabajador','trb_evaluador_a','trb_evaluador_b','trb_evaluador_c','diagnostico_a','diagnostico_b','diagnostico_c',)
 class Solic_RhumAdmin(admin.ModelAdmin):
 	list_display = ('fecha_inicio','areadep','institucion','espec','xausenciatrab')
+	search_fields = ('xausenciatrab__trabajador_ausente__apellido','institucion__codigo','espec__codigo')
 	raw_id_fields = ('trb_sugerido','xausenciatrab')
 	ordering = ['institucion']
 	fields = (('fecha_inicio','areadep'),('institucion','profesion','espec'),('horasxdia'),('xausenciatrab','trb_sugerido'),('comentarios'))
-
+	list_filter = ('areadep','institucion')
+	date_hierarchy = 'fecha_inicio'
 def trbplus(trb_asignado):
 	return ("%s"%trb_asignado.nombre )
 
@@ -153,7 +155,7 @@ class AustAdmin(admin.ModelAdmin):
 	search_fields =('trabajador_ausente__apellido','trabajador_ausente__mr_legajo','institucion__codigo')	
 	fields =(('areadep','institucion'),('fecha_inicio','trabajador_ausente'),('tipo_ausencia','detcausaauc'),('fecha_fin'),('xtareasdif'),('cobertura_princ_por'),('haysolicrhum'))
 	readonly_fields = ('detcausaauc','haysolicrhum') 
-	raw_id_fields = ('trabajador_ausente','cobertura_princ_por')
+	raw_id_fields = ('trabajador_ausente','cobertura_princ_por','xtareasdif')
 	date_hierarchy = 'fecha_inicio'
 	list_filter = ('tipo_ausencia','areadep','institucion')
 	ordering = ('trabajador_ausente__apellido',)

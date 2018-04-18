@@ -454,7 +454,7 @@ class Solic_Rhum(models.Model):
 		institucion = models.ForeignKey('entornos.Institucion',null=True,blank=True,verbose_name='Inst Slct')
 		profesion = models.ForeignKey('entornos.Profesion',verbose_name='Profesion')
 		espec = models.ForeignKey('entornos.Especialidad',null=True,blank=True,verbose_name='Especialidad')
-		fecha_inicio = models.DateField(verbose_name='Fecha I')
+		fecha_inicio = models.DateField(verbose_name='Fecha Slcitud')
 
 
     ###modo = models.CharField(choices=MODO,max_length=18,verbose_name = 'Frecuencia mensual')
@@ -624,7 +624,7 @@ class Tarea_diferente(models.Model):
 				print "el id de la tareadif es %s"%pks
 				pks = str(pks)
 				ins = self.instdst
-				return "%s  %s-   %s" % (pks,ins,"TD")
+				return "%s  %s-   %s" % (pks,ins,self.fecha_asignacion)
 #revisado hasta aca
 		class Meta:
 				db_table = 'asgtdifs'
