@@ -1,0 +1,1354 @@
+[    3.093066] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    3.093069] usb usb2: Product: EHCI Host Controller
+[    3.093072] usb usb2: Manufacturer: Linux 3.16.0-5-686-pae ehci_hcd
+[    3.093075] usb usb2: SerialNumber: 0000:00:1d.0
+[    3.093365] hub 2-0:1.0: USB hub found
+[    3.093386] hub 2-0:1.0: 3 ports detected
+[    3.093698] ahci 0000:00:1f.2: version 3.0
+[    3.093953] ahci 0000:00:1f.2: irq 41 for MSI/MSI-X
+[    3.094015] ahci 0000:00:1f.2: SSS flag set, parallel bus scan disabled
+[    3.108980] ahci 0000:00:1f.2: AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x3b impl SATA mode
+[    3.108986] ahci 0000:00:1f.2: flags: 64bit ncq sntf stag pm led clo pio slum part ems sxs apst 
+[    3.142419] scsi0 : ahci
+[    3.142744] scsi1 : ahci
+[    3.142989] scsi2 : ahci
+[    3.143207] scsi3 : ahci
+[    3.143413] scsi4 : ahci
+[    3.143642] scsi5 : ahci
+[    3.143753] ata1: SATA max UDMA/133 abar m2048@0xe2e40000 port 0xe2e40100 irq 41
+[    3.143758] ata2: SATA max UDMA/133 abar m2048@0xe2e40000 port 0xe2e40180 irq 41
+[    3.143760] ata3: DUMMY
+[    3.143764] ata4: SATA max UDMA/133 abar m2048@0xe2e40000 port 0xe2e40280 irq 41
+[    3.143768] ata5: SATA max UDMA/133 abar m2048@0xe2e40000 port 0xe2e40300 irq 41
+[    3.143773] ata6: SATA max UDMA/133 abar m2048@0xe2e40000 port 0xe2e40380 irq 41
+[    3.144741] [drm] Memory usable by graphics device = 2048M
+[    3.144747] [drm] Replacing VGA console driver
+[    3.145379] Console: switching to colour dummy device 80x25
+[    3.200948] i915 0000:00:02.0: irq 42 for MSI/MSI-X
+[    3.200971] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    3.200974] [drm] Driver supports precise vblank timestamp query.
+[    3.201100] vgaarb: device changed decodes: PCI:0000:00:02.0,olddecodes=io+mem,decodes=io+mem:owns=io+mem
+[    3.221902] [drm] Wrong MCH_SSKPD value: 0x16040307
+[    3.221908] [drm] This can cause pipe underruns and display issues.
+[    3.221911] [drm] Please upgrade your BIOS to fix this.
+[    3.240308] fbcon: inteldrmfb (fb0) is primary device
+[    3.388621] usb 1-1: new high-speed USB device number 2 using ehci-pci
+[    3.408601] tsc: Refined TSC clocksource calibration: 2494.333 MHz
+[    3.460538] ata1: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+[    3.520960] usb 1-1: New USB device found, idVendor=8087, idProduct=0024
+[    3.520964] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    3.521609] hub 1-1:1.0: USB hub found
+[    3.521739] hub 1-1:1.0: 6 ports detected
+[    3.609221] ata1.00: ACPI cmd 00/00:00:00:00:00:a0 (NOP) rejected by device (Stat=0x51 Err=0x04)
+[    3.609642] ata1.00: ATA-8: WDC WD3200BEKT-08PVMT1, 02.01A02, max UDMA/133
+[    3.609646] ata1.00: 625142448 sectors, multi 16: LBA48 NCQ (depth 31/32), AA
+[    3.716662] ata1.00: ACPI cmd 00/00:00:00:00:00:a0 (NOP) rejected by device (Stat=0x51 Err=0x04)
+[    3.717097] ata1.00: configured for UDMA/133
+[    3.717432] scsi 0:0:0:0: Direct-Access     ATA      WDC WD3200BEKT-0 1A02 PQ: 0 ANSI: 5
+[    3.720155] usb 2-1: new high-speed USB device number 2 using ehci-pci
+[    3.852776] usb 2-1: New USB device found, idVendor=8087, idProduct=0024
+[    3.852780] usb 2-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    3.853452] hub 2-1:1.0: USB hub found
+[    3.853507] hub 2-1:1.0: 8 ports detected
+[    3.927911] usb 1-1.5: new high-speed USB device number 3 using ehci-pci
+[    4.035849] ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[    4.037742] ata2.00: ATAPI: Optiarc DVD+/-RW AD-7930H, 100A, max UDMA/100
+[    4.044605] ata2.00: configured for UDMA/100
+[    4.061018] scsi 1:0:0:0: CD-ROM            Optiarc  DVD+-RW AD-7930H 100A PQ: 0 ANSI: 5
+[    4.104278] Console: switching to colour frame buffer device 170x48
+[    4.114901] i915 0000:00:02.0: fb0: inteldrmfb frame buffer device
+[    4.114905] i915 0000:00:02.0: registered panic notifier
+[    4.141302] usb 1-1.5: New USB device found, idVendor=1bcf, idProduct=2980
+[    4.141311] usb 1-1.5: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[    4.141316] usb 1-1.5: Product: Laptop_Integrated_Webcam_HD
+[    4.141319] usb 1-1.5: Manufacturer: 001BFC1BCA6C-C211-001E0C
+[    4.181537] ACPI: Video Device [VID] (multi-head: yes  rom: no  post: no)
+[    4.250868] input: DualPoint Stick as /devices/platform/i8042/serio1/input/input7
+[    4.264286] input: AlpsPS/2 ALPS DualPoint TouchPad as /devices/platform/i8042/serio1/input/input6
+[    4.383348] usb 2-1.8: new full-speed USB device number 3 using ehci-pci
+[    4.395290] ata4: SATA link down (SStatus 0 SControl 300)
+[    4.407494] Switched to clocksource tsc
+[    4.498060] usb 2-1.8: New USB device found, idVendor=0a5c, idProduct=5800
+[    4.498069] usb 2-1.8: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    4.498075] usb 2-1.8: Product: 5880
+[    4.498079] usb 2-1.8: Manufacturer: Broadcom Corp
+[    4.498083] usb 2-1.8: SerialNumber: 0123456789ABCD
+[    4.498363] usb 2-1.8: config 0 descriptor??
+[    4.714904] ata5: SATA link down (SStatus 0 SControl 300)
+[    4.815066] [drm] Enabling RC6 states: RC6 on, RC6p off, RC6pp off
+[    5.034542] ata6: SATA link down (SStatus 0 SControl 300)
+[    5.041879] sd 0:0:0:0: [sda] 625142448 512-byte logical blocks: (320 GB/298 GiB)
+[    5.042082] sd 0:0:0:0: [sda] Write Protect is off
+[    5.042089] sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+[    5.042143] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    5.061795] sr0: scsi3-mmc drive: 24x/24x writer dvd-ram cd/rw xa/form2 cdda tray
+[    5.061802] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    5.062184] sr 1:0:0:0: Attached scsi CD-ROM sr0
+[    5.063385] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[    5.063583] sr 1:0:0:0: Attached scsi generic sg1 type 5
+[    5.114475]  sda: sda1 sda2 sda3 < sda5 sda6 >
+[    5.115596] sd 0:0:0:0: [sda] Attached SCSI disk
+[    5.290370] acpi device:39: registered as cooling_device0
+[    5.414373] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input8
+[    5.434244] [drm] Initialized i915 1.6.0 20080730 for 0000:00:02.0 on minor 0
+[    6.052804] PM: Starting manual resume from disk
+[    6.052815] PM: Hibernation image partition 8:6 present
+[    6.052818] PM: Looking for hibernation image.
+[    6.081531] PM: Image not found (code -22)
+[    6.081538] PM: Hibernation image not present or could not be loaded.
+[    6.321503] EXT4-fs (sda5): mounted filesystem with ordered data mode. Opts: (null)
+[    6.580920] random: nonblocking pool is initialized
+[    6.899107] systemd[1]: RTC configured in localtime, applying delta of -180 minutes to system time.
+[    6.920348] systemd[1]: systemd 215 running in system mode. (+PAM +AUDIT +SELINUX +IMA +SYSVINIT +LIBCRYPTSETUP +GCRYPT +ACL +XZ -SECCOMP -APPARMOR)
+[    6.920719] systemd[1]: Detected architecture 'x86'.
+[    7.061779] systemd[1]: Inserted module 'autofs4'
+[    7.062405] systemd[1]: Set hostname to <dell6320>.
+[    7.062491] systemd[1]: Initializing machine ID from random generator.
+[    7.062589] systemd[1]: Installed transient /etc/machine-id file.
+[    8.776236] systemd[1]: Starting Forward Password Requests to Wall Directory Watch.
+[    8.776371] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    8.776400] systemd[1]: Starting Remote File Systems (Pre).
+[    8.776449] systemd[1]: Reached target Remote File Systems (Pre).
+[    8.776479] systemd[1]: Starting Encrypted Volumes.
+[    8.776498] systemd[1]: Reached target Encrypted Volumes.
+[    8.776537] systemd[1]: Starting Arbitrary Executable File Formats File System Automount Point.
+[    8.776712] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[    8.776742] systemd[1]: Expecting device dev-disk-by\x2duuid-69eee759\x2d405e\x2d4f14\x2dac56\x2d9a70c06c03b8.device...
+[    8.776765] systemd[1]: Starting Root Slice.
+[    8.776809] systemd[1]: Created slice Root Slice.
+[    8.776830] systemd[1]: Starting User and Session Slice.
+[    8.776901] systemd[1]: Created slice User and Session Slice.
+[    8.776923] systemd[1]: Starting /dev/initctl Compatibility Named Pipe.
+[    8.776991] systemd[1]: Listening on /dev/initctl Compatibility Named Pipe.
+[    8.777013] systemd[1]: Starting Delayed Shutdown Socket.
+[    8.777059] systemd[1]: Listening on Delayed Shutdown Socket.
+[    8.777079] systemd[1]: Starting Journal Socket (/dev/log).
+[    8.777131] systemd[1]: Listening on Journal Socket (/dev/log).
+[    8.777158] systemd[1]: Starting udev Control Socket.
+[    8.777199] systemd[1]: Listening on udev Control Socket.
+[    8.777223] systemd[1]: Starting udev Kernel Socket.
+[    8.777259] systemd[1]: Listening on udev Kernel Socket.
+[    8.777284] systemd[1]: Starting Journal Socket.
+[    8.777338] systemd[1]: Listening on Journal Socket.
+[    8.777376] systemd[1]: Starting System Slice.
+[    8.777444] systemd[1]: Created slice System Slice.
+[    8.777476] systemd[1]: Started File System Check on Root Device.
+[    8.777499] systemd[1]: Mounted VMware vmblock fuse mount.
+[    8.777517] systemd[1]: Starting system-getty.slice.
+[    8.777645] systemd[1]: Created slice system-getty.slice.
+[    8.777689] systemd[1]: Starting Increase datagram queue length...
+[    8.778362] systemd[1]: Mounting POSIX Message Queue File System...
+[    8.779025] systemd[1]: Mounting Huge Pages File System...
+[    8.780047] systemd[1]: Mounting Debug File System...
+[    8.780773] systemd[1]: Starting Create list of required static device nodes for the current kernel...
+[    8.825133] systemd[1]: Started Set Up Additional Binary Formats.
+[    8.825195] systemd[1]: Starting udev Coldplug all Devices...
+[    8.865966] systemd[1]: Starting Load Kernel Modules...
+[    8.866763] systemd[1]: Starting Slices.
+[    8.866789] systemd[1]: Reached target Slices.
+[    9.054316] systemd[1]: Started udev Coldplug all Devices.
+[    9.080231] systemd[1]: Started Create list of required static device nodes for the current kernel.
+[    9.080600] systemd[1]: Starting Create Static Device Nodes in /dev...
+[    9.471487] lp: driver loaded but no devices found
+[    9.515927] ppdev: user-space parallel port driver
+[    9.517480] parport_pc 00:04: [io  0x0378-0x037b]
+[    9.517568] parport_pc 00:04: [irq 5]
+[    9.528450] systemd[1]: Started Create Static Device Nodes in /dev.
+[    9.528719] systemd[1]: Starting udev Kernel Device Manager...
+[    9.543498] systemd[1]: Mounted Debug File System.
+[    9.543586] systemd[1]: Mounted Huge Pages File System.
+[    9.543647] systemd[1]: Mounted POSIX Message Queue File System.
+[    9.544160] systemd[1]: Started Increase datagram queue length.
+[    9.561453] systemd-udevd[191]: starting version 215
+[    9.561722] systemd[1]: Started udev Kernel Device Manager.
+[    9.561821] systemd[1]: Starting Copy rules generated while the root was ro...
+[    9.562429] systemd[1]: Starting LSB: Set preliminary keymap...
+[    9.563124] systemd[1]: Starting Syslog Socket.
+[    9.563210] systemd[1]: Listening on Syslog Socket.
+[    9.563252] systemd[1]: Starting Journal Service...
+[    9.563931] systemd[1]: Started Journal Service.
+[    9.672601] parport_pc 00:04: activated
+[    9.672613] parport_pc 00:04: reported by Plug and Play ACPI
+[    9.672767] parport_pc 00:04: disabled
+[    9.907371] fuse init (API version 7.23)
+[   10.001642] Guest personality initialized and is inactive
+[   10.001783] VMCI host device registered (name=vmci, major=10, minor=59)
+[   10.001788] Initialized host personality
+[   10.819120] ACPI Warning: SystemIO range 0x0000000000000428-0x000000000000042F conflicts with OpRegion 0x0000000000000400-0x000000000000047F (\PMIO) (20140424/utaddress-254)
+[   10.819126] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[   10.819130] ACPI Warning: SystemIO range 0x0000000000000540-0x000000000000054F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20140424/utaddress-254)
+[   10.819132] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[   10.819133] ACPI Warning: SystemIO range 0x0000000000000530-0x000000000000053F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20140424/utaddress-254)
+[   10.819136] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[   10.819137] ACPI Warning: SystemIO range 0x0000000000000500-0x000000000000052F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20140424/utaddress-254)
+[   10.819139] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[   10.819140] lpc_ich: Resource conflict(s) found affecting gpio_ich
+[   10.965839] ACPI: AC Adapter [AC] (off-line)
+[   10.976910] ACPI: Battery Slot [BAT0] (battery present)
+[   11.075576] ACPI: Battery Slot [BAT1] (battery absent)
+[   11.084896] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[   11.159185] ACPI: Battery Slot [BAT2] (battery absent)
+[   11.173275] mei_me 0000:00:16.0: irq 43 for MSI/MSI-X
+[   11.207550] input: PC Speaker as /devices/platform/pcspkr/input/input9
+[   11.281349] dcdbas dcdbas: Dell Systems Management Base Driver (version 5.6.0-3.2)
+[   11.332839] iTCO_vendor_support: vendor-support=0
+[   11.383605] iTCO_wdt: Intel TCO WatchDog Timer Driver v1.11
+[   11.383634] iTCO_wdt: Found a Cougar Point TCO device (Version=2, TCOBASE=0x0460)
+[   11.383689] iTCO_wdt: initialized. heartbeat=30 sec (nowayout=0)
+[   11.650293] input: Dell WMI hotkeys as /devices/virtual/input/input10
+[   11.664096] snd_hda_intel 0000:00:1b.0: irq 44 for MSI/MSI-X
+[   11.982087] cfg80211: Calling CRDA to update world regulatory domain
+[   12.048154] Intel(R) Wireless WiFi driver for Linux, in-tree:
+[   12.048159] Copyright(c) 2003- 2014 Intel Corporation
+[   12.048359] iwlwifi 0000:02:00.0: can't disable ASPM; OS doesn't have ASPM control
+[   12.048454] iwlwifi 0000:02:00.0: irq 45 for MSI/MSI-X
+[   12.090325] iwlwifi 0000:02:00.0: firmware: direct-loading firmware iwlwifi-6000-4.ucode
+[   12.090540] iwlwifi 0000:02:00.0: loaded firmware version 9.221.4.1 build 25532 op_mode iwldvm
+[   12.193691] iwlwifi 0000:02:00.0: CONFIG_IWLWIFI_DEBUG disabled
+[   12.193708] iwlwifi 0000:02:00.0: CONFIG_IWLWIFI_DEBUGFS disabled
+[   12.193711] iwlwifi 0000:02:00.0: CONFIG_IWLWIFI_DEVICE_TRACING disabled
+[   12.193715] iwlwifi 0000:02:00.0: Detected Intel(R) Centrino(R) Ultimate-N 6300 AGN, REV=0x74
+[   12.193786] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[   12.392622] sound hdaudioC0D0: autoconfig: line_outs=1 (0xe/0x0/0x0/0x0/0x0) type:line
+[   12.392631] sound hdaudioC0D0:    speaker_outs=1 (0xd/0x0/0x0/0x0/0x0)
+[   12.392635] sound hdaudioC0D0:    hp_outs=1 (0xb/0x0/0x0/0x0/0x0)
+[   12.392639] sound hdaudioC0D0:    mono: mono_out=0x0
+[   12.392642] sound hdaudioC0D0:    inputs:
+[   12.392646] sound hdaudioC0D0:      Dock Mic=0xf
+[   12.392650] sound hdaudioC0D0:      Internal Mic=0x11
+[   12.392654] sound hdaudioC0D0:      Mic=0xa
+[   12.455901] alg: No test for crc32 (crc32-pclmul)
+[   12.612095] input: HDA Digital PCBeep as /devices/pci0000:00/0000:00:1b.0/sound/card0/hdaudioC0D0/input11
+[   12.612755] input: HDA Intel PCH Dock Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input12
+[   12.612820] input: HDA Intel PCH Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input13
+[   12.612883] input: HDA Intel PCH Dock Line Out as /devices/pci0000:00/0000:00:1b.0/sound/card0/input14
+[   12.612939] input: HDA Intel PCH Headphone as /devices/pci0000:00/0000:00:1b.0/sound/card0/input15
+[   12.612996] input: HDA Intel PCH HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:1b.0/sound/card0/input16
+[   12.613055] input: HDA Intel PCH HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:1b.0/sound/card0/input17
+[   12.613114] input: HDA Intel PCH HDMI/DP,pcm=8 as /devices/pci0000:00/0000:00:1b.0/sound/card0/input18
+[   12.652180] ieee80211 phy0: Selected rate control algorithm 'iwl-agn-rs'
+[   13.036715] intel_rapl: Found RAPL domain package
+[   13.036721] intel_rapl: Found RAPL domain core
+[   13.036724] intel_rapl: Found RAPL domain uncore
+[   13.036731] intel_rapl: RAPL package 0 domain package locked by BIOS
+[   13.067000] EXT4-fs (sda5): re-mounted. Opts: errors=remount-ro
+[   13.366397] systemd-journald[199]: Received request to flush runtime journal from PID 1
+[   13.515487] media: Linux media interface: v0.10
+[   13.570973] Linux video capture interface: v2.00
+[   13.985502] uvcvideo: Found UVC 1.00 device Laptop_Integrated_Webcam_HD (1bcf:2980)
+[   14.003039] input: Laptop_Integrated_Webcam_HD as /devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.5/1-1.5:1.0/input/input19
+[   14.003215] usbcore: registered new interface driver uvcvideo
+[   14.003218] USB Video Class driver (1.1.1)
+[   14.888335] cfg80211: World regulatory domain updated:
+[   14.888345] cfg80211:  DFS Master region: unset
+[   14.888349] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[   14.888356] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   14.888362] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz, 92000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[   14.888367] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+[   14.888372] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[   14.888378] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+[   14.888382] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[   14.888387] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[   14.888391] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+[   15.213326] Adding 6277116k swap on /dev/sda6.  Priority:-1 extents:1 across:6277116k FS
+[   16.084063] RPC: Registered named UNIX socket transport module.
+[   16.084089] RPC: Registered udp transport module.
+[   16.084092] RPC: Registered tcp transport module.
+[   16.084095] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[   16.126125] FS-Cache: Loaded
+[   16.176539] FS-Cache: Netfs 'nfs' registered for caching
+[   16.261832] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+[   24.974817] e1000e 0000:00:19.0: irq 40 for MSI/MSI-X
+[   25.076590] e1000e 0000:00:19.0: irq 40 for MSI/MSI-X
+[   25.076914] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   25.081982] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[   25.082247] iwlwifi 0000:02:00.0: Radio type=0x0-0x3-0x1
+[   25.302436] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[   25.302664] iwlwifi 0000:02:00.0: Radio type=0x0-0x3-0x1
+[   25.410344] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[   29.472248] wlan0: authenticate with 06:18:d6:93:b5:f7
+[   29.478941] wlan0: send auth to 06:18:d6:93:b5:f7 (try 1/3)
+[   29.483550] wlan0: authenticated
+[   29.483860] wlan0: waiting for beacon from 06:18:d6:93:b5:f7
+[   29.558661] wlan0: associate with 06:18:d6:93:b5:f7 (try 1/3)
+[   29.614959] wlan0: RX AssocResp from 06:18:d6:93:b5:f7 (capab=0x431 status=0 aid=6)
+[   29.630209] wlan0: associated
+[   29.630286] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+[ 1879.573251] wlan0: deauthenticating from 06:18:d6:93:b5:f7 by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 1879.576158] cfg80211: Calling CRDA to update world regulatory domain
+[ 1879.586059] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[ 1879.586732] cfg80211: World regulatory domain updated:
+[ 1879.586736] cfg80211:  DFS Master region: unset
+[ 1879.586738] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[ 1879.586740] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[ 1879.586743] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz, 92000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[ 1879.586745] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+[ 1879.586747] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[ 1879.586749] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+[ 1879.586751] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[ 1879.586753] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[ 1879.586755] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+[ 1880.627550] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.627564] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.627566] pci 0000:00:00.0: using default PCI settings
+[ 1880.627573] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.627574] i915 0000:00:02.0: using default PCI settings
+[ 1880.627580] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.627581] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.627591] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.627592] serial 0000:00:16.3: using default PCI settings
+[ 1880.627601] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.627603] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.627611] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.627613] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.627637] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.627641] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.627645] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.627679] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.627682] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.627685] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.627689] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.627700] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.627704] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.627706] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.627714] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.627716] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.627726] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.627728] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.627736] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.627737] pci 0000:00:1f.3: using default PCI settings
+[ 1880.627765] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.627771] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.627773] pci 0000:00:00.0: using default PCI settings
+[ 1880.627778] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.627780] i915 0000:00:02.0: using default PCI settings
+[ 1880.627785] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.627787] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.627796] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.627797] serial 0000:00:16.3: using default PCI settings
+[ 1880.627806] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.627808] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.627816] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.627818] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.627826] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.627830] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.627833] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.627865] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.627868] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.627872] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.627875] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.627885] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.627888] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.627890] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.627898] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.627899] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.627908] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.627910] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.627918] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.627919] pci 0000:00:1f.3: using default PCI settings
+[ 1880.627937] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.627943] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.627945] pci 0000:00:00.0: using default PCI settings
+[ 1880.627950] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.627952] i915 0000:00:02.0: using default PCI settings
+[ 1880.627957] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.627959] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.627968] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.627970] serial 0000:00:16.3: using default PCI settings
+[ 1880.627978] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.627980] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.627988] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.627990] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.627999] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.628003] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.628006] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.628040] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.628044] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.628048] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.628051] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.628062] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.628066] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.628067] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.628076] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.628078] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.628087] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.628089] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.628097] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.628099] pci 0000:00:1f.3: using default PCI settings
+[ 1880.628323] pci_bus 0000:01: Allocating resources
+[ 1880.628338] pcieport 0000:00:1c.0: bridge window [io  0x1000-0x0fff] to [bus 01] add_size 1000
+[ 1880.628342] pcieport 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 01] add_size 200000
+[ 1880.628344] pcieport 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff] to [bus 01] add_size 200000
+[ 1880.628354] pci_bus 0000:02: Allocating resources
+[ 1880.628403] pcieport 0000:00:1c.1: bridge window [io  0x1000-0x0fff] to [bus 02] add_size 1000
+[ 1880.628406] pcieport 0000:00:1c.1: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 02] add_size 200000
+[ 1880.628416] pci_bus 0000:03: Allocating resources
+[ 1880.628434] pci_bus 0000:09: Allocating resources
+[ 1880.628452] pci_bus 0000:0a: Allocating resources
+[ 1880.628473] pcieport 0000:00:1c.5: bridge window [io  0x1000-0x0fff] to [bus 0a] add_size 1000
+[ 1880.628476] pcieport 0000:00:1c.5: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 0a] add_size 200000
+[ 1880.628479] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.628485] pcieport 0000:00:1c.0: res[14]=[mem 0x00100000-0x000fffff] get_res_add_size add_size 200000
+[ 1880.628488] pcieport 0000:00:1c.0: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+[ 1880.628490] pcieport 0000:00:1c.1: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+[ 1880.628492] pcieport 0000:00:1c.5: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+[ 1880.628495] pcieport 0000:00:1c.0: res[13]=[io  0x1000-0x0fff] get_res_add_size add_size 1000
+[ 1880.628497] pcieport 0000:00:1c.1: res[13]=[io  0x1000-0x0fff] get_res_add_size add_size 1000
+[ 1880.628499] pcieport 0000:00:1c.5: res[13]=[io  0x1000-0x0fff] get_res_add_size add_size 1000
+[ 1880.628505] pcieport 0000:00:1c.0: BAR 14: assigned [mem 0xcfa00000-0xcfbfffff]
+[ 1880.628513] pcieport 0000:00:1c.0: BAR 15: assigned [mem 0xcfc00000-0xcfdfffff 64bit pref]
+[ 1880.628519] pcieport 0000:00:1c.1: BAR 15: assigned [mem 0xcfe00000-0xcfffffff 64bit pref]
+[ 1880.628527] pcieport 0000:00:1c.5: BAR 15: assigned [mem 0xe2f00000-0xe30fffff 64bit pref]
+[ 1880.628532] pcieport 0000:00:1c.0: BAR 13: assigned [io  0x5000-0x5fff]
+[ 1880.628535] pcieport 0000:00:1c.1: BAR 13: assigned [io  0x6000-0x6fff]
+[ 1880.628539] pcieport 0000:00:1c.5: BAR 13: assigned [io  0x7000-0x7fff]
+[ 1880.628546] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.628548] pci 0000:00:00.0: using default PCI settings
+[ 1880.628553] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.628555] i915 0000:00:02.0: using default PCI settings
+[ 1880.628560] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.628562] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.628570] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.628572] serial 0000:00:16.3: using default PCI settings
+[ 1880.628581] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.628582] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.628591] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.628592] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.628601] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.628604] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.628608] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.628641] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.628644] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.628648] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.628651] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.628662] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.628666] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.628668] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.628676] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.628678] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.628687] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.628688] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.628696] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.628697] pci 0000:00:1f.3: using default PCI settings
+[ 1880.628761] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.628766] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.628767] pci 0000:00:00.0: using default PCI settings
+[ 1880.628770] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.628771] i915 0000:00:02.0: using default PCI settings
+[ 1880.628775] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.628776] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.628782] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.628784] serial 0000:00:16.3: using default PCI settings
+[ 1880.628792] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.628794] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.628802] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.628804] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.628812] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.628815] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.628818] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.628851] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.628854] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.628857] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.628860] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.628870] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.628873] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.628875] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.628883] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.628885] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.628894] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.628896] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.628903] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.628905] pci 0000:00:1f.3: using default PCI settings
+[ 1880.628971] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.628980] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.628982] pci 0000:00:00.0: using default PCI settings
+[ 1880.628986] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.628987] i915 0000:00:02.0: using default PCI settings
+[ 1880.628993] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.628995] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.629003] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.629005] serial 0000:00:16.3: using default PCI settings
+[ 1880.629014] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.629015] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.629023] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.629024] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.629032] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.629035] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.629038] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.629070] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.629073] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.629076] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.629079] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.629090] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.629093] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.629094] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.629103] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.629105] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.629116] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.629117] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.629126] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.629127] pci 0000:00:1f.3: using default PCI settings
+[ 1880.629253] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1880.629260] pci 0000:00:00.0: no hotplug settings from platform
+[ 1880.629261] pci 0000:00:00.0: using default PCI settings
+[ 1880.629266] i915 0000:00:02.0: no hotplug settings from platform
+[ 1880.629269] i915 0000:00:02.0: using default PCI settings
+[ 1880.629274] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1880.629276] mei_me 0000:00:16.0: using default PCI settings
+[ 1880.629283] serial 0000:00:16.3: no hotplug settings from platform
+[ 1880.629285] serial 0000:00:16.3: using default PCI settings
+[ 1880.629293] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1880.629294] e1000e 0000:00:19.0: using default PCI settings
+[ 1880.629302] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1880.629304] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1880.629312] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1880.629315] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1880.629318] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1880.629351] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1880.629354] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1880.629358] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1880.629360] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1880.629371] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1880.629373] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1880.629375] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1880.629384] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1880.629387] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1880.629397] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1880.629398] ahci 0000:00:1f.2: using default PCI settings
+[ 1880.629407] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1880.629409] pci 0000:00:1f.3: using default PCI settings
+[ 1880.935936] PM: Syncing filesystems ... done.
+[ 1881.172731] PM: Preparing system for mem sleep
+[ 1881.173166] (NULL device *): firmware: direct-loading firmware iwlwifi-6000-4.ucode
+[ 1881.173217] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[ 1881.175047] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[ 1881.176223] PM: Entering mem sleep
+[ 1881.176375] Suspending console(s) (use no_console_suspend to debug)
+[ 1881.176778] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[ 1881.192374] e1000e: EEE TX LPI TIMER: 00000011
+[ 1881.277854] sd 0:0:0:0: [sda] Stopping disk
+[ 1881.989575] PM: suspend of devices complete after 814.071 msecs
+[ 1882.005590] PM: late suspend of devices complete after 16.026 msecs
+[ 1882.006897] ehci-pci 0000:00:1d.0: System wakeup enabled by ACPI
+[ 1882.007242] ehci-pci 0000:00:1a.0: System wakeup enabled by ACPI
+[ 1882.007688] e1000e 0000:00:19.0: System wakeup enabled by ACPI
+[ 1882.021506] PM: noirq suspend of devices complete after 15.933 msecs
+[ 1882.021837] ACPI: Preparing to enter system sleep state S3
+[ 1882.024001] PM: Saving platform NVS memory
+[ 1882.025706] Disabling non-boot CPUs ...
+[ 1882.025761] intel_pstate CPU 1 exiting
+[ 1882.026275] Broke affinity for irq 45
+[ 1882.027311] kvm: disabling virtualization on CPU1
+[ 1882.129241] smpboot: CPU 1 is now offline
+[ 1882.129930] intel_pstate CPU 2 exiting
+[ 1882.131417] kvm: disabling virtualization on CPU2
+[ 1882.233112] smpboot: CPU 2 is now offline
+[ 1882.233726] intel_pstate CPU 3 exiting
+[ 1882.234105] Broke affinity for irq 41
+[ 1882.235133] kvm: disabling virtualization on CPU3
+[ 1882.336977] smpboot: CPU 3 is now offline
+[ 1882.339297] ACPI: Low-level resume complete
+[ 1882.339341] PM: Restoring platform NVS memory
+[ 1882.340039] Enabling non-boot CPUs ...
+[ 1882.340134] x86: Booting SMP configuration:
+[ 1882.340135] smpboot: Booting Node 0 Processor 1 APIC 0x2
+[ 1882.350349] Initializing CPU#1
+[ 1882.351044] Leaving ESR disabled.
+[ 1882.351107] kvm: enabling virtualization on CPU1
+[ 1882.353346] Intel pstate controlling: cpu 1
+[ 1882.353392] CPU1 is up
+[ 1882.353443] smpboot: Booting Node 0 Processor 2 APIC 0x1
+[ 1882.363761] Initializing CPU#2
+[ 1882.364450] Leaving ESR disabled.
+[ 1882.364509] kvm: enabling virtualization on CPU2
+[ 1882.366753] Intel pstate controlling: cpu 2
+[ 1882.366802] CPU2 is up
+[ 1882.366864] smpboot: Booting Node 0 Processor 3 APIC 0x3
+[ 1882.377176] Initializing CPU#3
+[ 1882.377871] Leaving ESR disabled.
+[ 1882.377929] kvm: enabling virtualization on CPU3
+[ 1882.380219] Intel pstate controlling: cpu 3
+[ 1882.380274] CPU3 is up
+[ 1882.383822] ACPI: Waking up from system sleep state S3
+[ 1882.412312] ehci-pci 0000:00:1a.0: System wakeup disabled by ACPI
+[ 1882.413092] ehci-pci 0000:00:1d.0: System wakeup disabled by ACPI
+[ 1882.413151] PM: noirq resume of devices complete after 17.513 msecs
+[ 1882.413404] PM: early resume of devices complete after 0.229 msecs
+[ 1882.413472] mei_me 0000:00:16.0: irq 40 for MSI/MSI-X
+[ 1882.414354] snd_hda_intel 0000:00:1b.0: irq 43 for MSI/MSI-X
+[ 1882.422598] e1000e 0000:00:19.0: System wakeup disabled by ACPI
+[ 1882.427346] sd 0:0:0:0: [sda] Starting disk
+[ 1882.483834] [drm] Wrong MCH_SSKPD value: 0x16040307
+[ 1882.483836] [drm] This can cause pipe underruns and display issues.
+[ 1882.483837] [drm] Please upgrade your BIOS to fix this.
+[ 1882.531359] e1000e 0000:00:19.0: irq 44 for MSI/MSI-X
+[ 1882.643055] usb 1-1.5: reset high-speed USB device number 3 using ehci-pci
+[ 1882.758939] ata5: SATA link down (SStatus 0 SControl 300)
+[ 1882.766901] ata4: SATA link down (SStatus 0 SControl 300)
+[ 1882.774865] ata6: SATA link down (SStatus 0 SControl 300)
+[ 1882.782887] ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[ 1882.958148] ata2.00: configured for UDMA/100
+[ 1883.005142] PM: resume of devices complete after 592.496 msecs
+[ 1883.005697] PM: Finishing wakeup.
+[ 1883.005700] Restarting tasks ... done.
+[ 1883.010644] video LNXVIDEO:00: Restoring backlight state
+[ 1883.534353] [drm] Enabling RC6 states: RC6 on, RC6p off, RC6pp off
+[ 1883.570465] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.570513] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.570532] pci 0000:00:00.0: using default PCI settings
+[ 1883.570552] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.570570] i915 0000:00:02.0: using default PCI settings
+[ 1883.570589] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.570596] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.570631] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.570638] serial 0000:00:16.3: using default PCI settings
+[ 1883.570672] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.570689] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.570713] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.570730] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.570754] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.570779] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.570793] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.570867] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.570891] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.570904] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.570918] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.570958] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.570982] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.570988] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.571023] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.571029] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.571063] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.571069] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.571102] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.571108] pci 0000:00:1f.3: using default PCI settings
+[ 1883.571217] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.571239] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.571256] pci 0000:00:00.0: using default PCI settings
+[ 1883.571275] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.571292] i915 0000:00:02.0: using default PCI settings
+[ 1883.571310] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.571317] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.571350] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.571357] serial 0000:00:16.3: using default PCI settings
+[ 1883.571392] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.571398] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.571431] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.571438] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.571474] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.571496] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.571509] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.571556] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.571566] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.571588] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.571598] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.571634] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.571645] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.571662] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.571685] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.571703] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.571727] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.571745] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.571768] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.571785] pci 0000:00:1f.3: using default PCI settings
+[ 1883.571850] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.571882] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.571889] pci 0000:00:00.0: using default PCI settings
+[ 1883.571918] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.571925] i915 0000:00:02.0: using default PCI settings
+[ 1883.571953] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.571960] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.571992] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.571998] serial 0000:00:16.3: using default PCI settings
+[ 1883.572031] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.572038] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.572072] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.572078] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.572112] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.572126] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.572150] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.572203] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.572227] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.572240] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.572254] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.572292] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.572315] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.572321] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.572355] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.572361] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.572395] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.572401] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.572435] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.572442] pci 0000:00:1f.3: using default PCI settings
+[ 1883.594475] pci_bus 0000:01: Allocating resources
+[ 1883.594527] pci_bus 0000:02: Allocating resources
+[ 1883.594639] pci_bus 0000:03: Allocating resources
+[ 1883.594692] pci_bus 0000:09: Allocating resources
+[ 1883.594737] pci_bus 0000:0a: Allocating resources
+[ 1883.594786] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.594825] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.594843] pci 0000:00:00.0: using default PCI settings
+[ 1883.594861] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.594867] i915 0000:00:02.0: using default PCI settings
+[ 1883.594896] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.594902] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.594934] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.594940] serial 0000:00:16.3: using default PCI settings
+[ 1883.594972] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.594977] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.595010] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.595017] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.595050] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.595065] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.595089] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.595142] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.595166] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.595178] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.595190] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.595229] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.595254] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.595260] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.595293] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.595299] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.595333] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.595340] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.595373] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.595379] pci 0000:00:1f.3: using default PCI settings
+[ 1883.596745] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.617772] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.617782] pci 0000:00:00.0: using default PCI settings
+[ 1883.617814] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.617821] i915 0000:00:02.0: using default PCI settings
+[ 1883.617850] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.617856] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.617889] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.617895] serial 0000:00:16.3: using default PCI settings
+[ 1883.617928] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.617934] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.617968] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.617973] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.618006] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.618019] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.618031] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.618101] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.618125] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.618137] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.618164] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.618191] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.618213] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.618219] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.618253] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.618258] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.618292] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.618298] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.618331] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.618337] pci 0000:00:1f.3: using default PCI settings
+[ 1883.618588] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.618620] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.618626] pci 0000:00:00.0: using default PCI settings
+[ 1883.618654] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.618660] i915 0000:00:02.0: using default PCI settings
+[ 1883.618688] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.618694] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.618727] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.618733] serial 0000:00:16.3: using default PCI settings
+[ 1883.618766] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.618772] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.618805] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.618811] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.618845] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.618858] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.618870] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.618939] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.618951] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.618974] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.618987] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.619021] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.619034] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.619050] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.619073] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.619089] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.619112] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.619129] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.619152] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.619169] pci 0000:00:1f.3: using default PCI settings
+[ 1883.619653] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1883.619673] pci 0000:00:00.0: no hotplug settings from platform
+[ 1883.619691] pci 0000:00:00.0: using default PCI settings
+[ 1883.619708] i915 0000:00:02.0: no hotplug settings from platform
+[ 1883.619714] i915 0000:00:02.0: using default PCI settings
+[ 1883.619742] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1883.619748] mei_me 0000:00:16.0: using default PCI settings
+[ 1883.619780] serial 0000:00:16.3: no hotplug settings from platform
+[ 1883.619786] serial 0000:00:16.3: using default PCI settings
+[ 1883.619819] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1883.619825] e1000e 0000:00:19.0: using default PCI settings
+[ 1883.619858] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1883.619864] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1883.619895] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1883.619908] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1883.619931] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1883.619983] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1883.620007] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1883.620019] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1883.620031] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1883.620063] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1883.620075] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1883.620092] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1883.620115] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1883.620132] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1883.620155] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1883.620172] ahci 0000:00:1f.2: using default PCI settings
+[ 1883.620195] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1883.620212] pci 0000:00:1f.3: using default PCI settings
+[ 1883.761844] acpi PNP0401:00: Already enumerated
+[ 1883.851240] e1000e: eth0 NIC Link is Down
+[ 1883.852483] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[ 1883.857695] acpi PNP0501:00: Still not present
+[ 1883.985762] e1000e 0000:00:19.0: irq 44 for MSI/MSI-X
+[ 1884.089316] e1000e 0000:00:19.0: irq 44 for MSI/MSI-X
+[ 1884.089714] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[ 1884.092658] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[ 1884.093015] iwlwifi 0000:02:00.0: Radio type=0x0-0x3-0x1
+[ 1884.319034] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[ 1884.319401] iwlwifi 0000:02:00.0: Radio type=0x0-0x3-0x1
+[ 1884.424016] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[ 1884.468664] ata1: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+[ 1884.697731] ata1.00: ACPI cmd 00/00:00:00:00:00:a0 (NOP) rejected by device (Stat=0x51 Err=0x04)
+[ 1884.868737] ata1.00: ACPI cmd 00/00:00:00:00:00:a0 (NOP) rejected by device (Stat=0x51 Err=0x04)
+[ 1884.869152] ata1.00: configured for UDMA/133
+[ 1887.512143] wlan0: authenticate with 06:18:d6:93:b5:f7
+[ 1887.520358] wlan0: send auth to 06:18:d6:93:b5:f7 (try 1/3)
+[ 1887.566803] wlan0: authenticated
+[ 1887.568621] wlan0: associate with 06:18:d6:93:b5:f7 (try 1/3)
+[ 1887.592391] wlan0: RX AssocResp from 06:18:d6:93:b5:f7 (capab=0x431 status=0 aid=6)
+[ 1887.635902] wlan0: associated
+[ 1887.635975] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+[ 1910.922804] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.922846] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.922851] pci 0000:00:00.0: using default PCI settings
+[ 1910.922863] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.922867] i915 0000:00:02.0: using default PCI settings
+[ 1910.922878] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.922882] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.922898] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.922901] serial 0000:00:16.3: using default PCI settings
+[ 1910.922918] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.922921] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.922938] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.922941] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.922957] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.922965] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.922972] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.923015] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.923023] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.923030] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.923038] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.923057] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.923064] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.923067] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.923083] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.923087] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.923104] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.923107] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.923123] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.923126] pci 0000:00:1f.3: using default PCI settings
+[ 1910.923178] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.923190] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.923193] pci 0000:00:00.0: using default PCI settings
+[ 1910.923204] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.923207] i915 0000:00:02.0: using default PCI settings
+[ 1910.923218] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.923221] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.923237] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.923240] serial 0000:00:16.3: using default PCI settings
+[ 1910.923256] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.923259] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.923275] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.923278] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.923294] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.923301] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.923308] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.923349] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.923356] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.923363] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.923370] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.923388] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.923395] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.923398] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.923414] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.923417] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.923434] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.923437] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.923453] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.923457] pci 0000:00:1f.3: using default PCI settings
+[ 1910.923488] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.923500] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.923503] pci 0000:00:00.0: using default PCI settings
+[ 1910.923514] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.923517] i915 0000:00:02.0: using default PCI settings
+[ 1910.923528] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.923531] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.923547] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.923550] serial 0000:00:16.3: using default PCI settings
+[ 1910.923566] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.923569] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.923585] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.923589] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.923605] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.923612] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.923619] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.923659] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.923666] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.923673] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.923680] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.923697] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.923704] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.923707] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.923723] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.923727] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.923742] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.923746] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.923762] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.923765] pci 0000:00:1f.3: using default PCI settings
+[ 1910.924149] pci_bus 0000:01: Allocating resources
+[ 1910.924179] pci_bus 0000:02: Allocating resources
+[ 1910.924260] pci_bus 0000:03: Allocating resources
+[ 1910.924287] pci_bus 0000:09: Allocating resources
+[ 1910.924313] pci_bus 0000:0a: Allocating resources
+[ 1910.924342] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.924353] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.924356] pci 0000:00:00.0: using default PCI settings
+[ 1910.924367] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.924371] i915 0000:00:02.0: using default PCI settings
+[ 1910.924381] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.924385] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.924400] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.924404] serial 0000:00:16.3: using default PCI settings
+[ 1910.924419] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.924423] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.924438] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.924442] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.924458] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.924465] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.924472] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.924512] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.924520] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.924527] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.924534] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.924551] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.924558] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.924561] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.924577] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.924580] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.924597] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.924600] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.924616] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.924619] pci 0000:00:1f.3: using default PCI settings
+[ 1910.924756] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.924767] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.924770] pci 0000:00:00.0: using default PCI settings
+[ 1910.924781] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.924785] i915 0000:00:02.0: using default PCI settings
+[ 1910.924795] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.924799] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.924815] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.924818] serial 0000:00:16.3: using default PCI settings
+[ 1910.924841] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.924844] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.924860] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.924863] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.924879] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.924886] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.924893] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.924933] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.924940] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.924947] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.924954] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.924972] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.924979] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.924982] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.924998] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.925002] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.925018] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.925022] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.925038] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.925041] pci 0000:00:1f.3: using default PCI settings
+[ 1910.925148] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.925159] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.925163] pci 0000:00:00.0: using default PCI settings
+[ 1910.925174] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.925177] i915 0000:00:02.0: using default PCI settings
+[ 1910.925188] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.925191] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.925207] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.925210] serial 0000:00:16.3: using default PCI settings
+[ 1910.925226] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.925229] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.925245] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.925248] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.925264] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.925271] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.925279] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.925318] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.925325] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.925332] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.925339] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.925357] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.925364] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.925367] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.925383] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.925387] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.925403] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.925406] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.925422] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.925425] pci 0000:00:1f.3: using default PCI settings
+[ 1910.925653] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1910.925664] pci 0000:00:00.0: no hotplug settings from platform
+[ 1910.925667] pci 0000:00:00.0: using default PCI settings
+[ 1910.925678] i915 0000:00:02.0: no hotplug settings from platform
+[ 1910.925681] i915 0000:00:02.0: using default PCI settings
+[ 1910.925692] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1910.925695] mei_me 0000:00:16.0: using default PCI settings
+[ 1910.925711] serial 0000:00:16.3: no hotplug settings from platform
+[ 1910.925714] serial 0000:00:16.3: using default PCI settings
+[ 1910.925730] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1910.925733] e1000e 0000:00:19.0: using default PCI settings
+[ 1910.925749] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1910.925753] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1910.925768] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1910.925775] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1910.925783] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1910.925829] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1910.925837] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1910.925844] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1910.925851] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1910.925869] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1910.925876] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1910.925880] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1910.925896] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1910.925899] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1910.925915] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1910.925919] ahci 0000:00:1f.2: using default PCI settings
+[ 1910.925935] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1910.925938] pci 0000:00:1f.3: using default PCI settings
+[ 1911.211864] wlan0: deauthenticating from 06:18:d6:93:b5:f7 by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 1911.305043] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+[ 1911.306088] cfg80211: Calling CRDA to update world regulatory domain
+[ 1911.314753] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[ 1911.318699] cfg80211: World regulatory domain updated:
+[ 1911.318704] cfg80211:  DFS Master region: unset
+[ 1911.318706] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[ 1911.318709] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[ 1911.318713] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz, 92000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[ 1911.318715] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+[ 1911.318718] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[ 1911.318722] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+[ 1911.318725] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[ 1911.318728] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[ 1911.318731] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+[ 1916.113583] PM: Syncing filesystems ... done.
+[ 1916.317374] PM: Preparing system for mem sleep
+[ 1916.317863] (NULL device *): firmware: direct-loading firmware iwlwifi-6000-4.ucode
+[ 1916.317933] Freezing user space processes ... (elapsed 0.002 seconds) done.
+[ 1916.320104] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[ 1916.321427] PM: Entering mem sleep
+[ 1916.321635] Suspending console(s) (use no_console_suspend to debug)
+[ 1916.322181] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[ 1916.340844] e1000e: EEE TX LPI TIMER: 00000011
+[ 1916.457280] sd 0:0:0:0: [sda] Stopping disk
+[ 1917.074556] PM: suspend of devices complete after 753.666 msecs
+[ 1917.090522] PM: late suspend of devices complete after 15.977 msecs
+[ 1917.092042] ehci-pci 0000:00:1d.0: System wakeup enabled by ACPI
+[ 1917.092589] ehci-pci 0000:00:1a.0: System wakeup enabled by ACPI
+[ 1917.093205] e1000e 0000:00:19.0: System wakeup enabled by ACPI
+[ 1917.106590] PM: noirq suspend of devices complete after 16.084 msecs
+[ 1917.107083] ACPI: Preparing to enter system sleep state S3
+[ 1917.109789] PM: Saving platform NVS memory
+[ 1917.112043] Disabling non-boot CPUs ...
+[ 1917.112122] intel_pstate CPU 1 exiting
+[ 1917.113557] kvm: disabling virtualization on CPU1
+[ 1917.214242] smpboot: CPU 1 is now offline
+[ 1917.214939] intel_pstate CPU 2 exiting
+[ 1917.216473] kvm: disabling virtualization on CPU2
+[ 1917.318110] smpboot: CPU 2 is now offline
+[ 1917.318717] intel_pstate CPU 3 exiting
+[ 1917.320119] kvm: disabling virtualization on CPU3
+[ 1917.421972] smpboot: CPU 3 is now offline
+[ 1917.424271] ACPI: Low-level resume complete
+[ 1917.424315] PM: Restoring platform NVS memory
+[ 1917.425019] Enabling non-boot CPUs ...
+[ 1917.425120] x86: Booting SMP configuration:
+[ 1917.425121] smpboot: Booting Node 0 Processor 1 APIC 0x2
+[ 1917.435336] Initializing CPU#1
+[ 1917.436030] Leaving ESR disabled.
+[ 1917.436091] kvm: enabling virtualization on CPU1
+[ 1917.438356] Intel pstate controlling: cpu 1
+[ 1917.438414] CPU1 is up
+[ 1917.438478] smpboot: Booting Node 0 Processor 2 APIC 0x1
+[ 1917.448768] Initializing CPU#2
+[ 1917.449485] Leaving ESR disabled.
+[ 1917.449540] kvm: enabling virtualization on CPU2
+[ 1917.451772] Intel pstate controlling: cpu 2
+[ 1917.451817] CPU2 is up
+[ 1917.451873] smpboot: Booting Node 0 Processor 3 APIC 0x3
+[ 1917.462142] Initializing CPU#3
+[ 1917.462879] Leaving ESR disabled.
+[ 1917.462930] kvm: enabling virtualization on CPU3
+[ 1917.465195] Intel pstate controlling: cpu 3
+[ 1917.465244] CPU3 is up
+[ 1917.468703] ACPI: Waking up from system sleep state S3
+[ 1917.492410] ehci-pci 0000:00:1d.0: System wakeup disabled by ACPI
+[ 1917.493826] ehci-pci 0000:00:1a.0: System wakeup disabled by ACPI
+[ 1917.493984] PM: noirq resume of devices complete after 17.527 msecs
+[ 1917.494336] PM: early resume of devices complete after 0.318 msecs
+[ 1917.494441] mei_me 0000:00:16.0: irq 40 for MSI/MSI-X
+[ 1917.494868] snd_hda_intel 0000:00:1b.0: irq 43 for MSI/MSI-X
+[ 1917.500606] e1000e 0000:00:19.0: System wakeup disabled by ACPI
+[ 1917.508332] sd 0:0:0:0: [sda] Starting disk
+[ 1917.560875] [drm] Wrong MCH_SSKPD value: 0x16040307
+[ 1917.560878] [drm] This can cause pipe underruns and display issues.
+[ 1917.560879] [drm] Please upgrade your BIOS to fix this.
+[ 1917.619529] e1000e 0000:00:19.0: irq 44 for MSI/MSI-X
+[ 1917.724047] usb 1-1.5: reset high-speed USB device number 3 using ehci-pci
+[ 1917.835912] ata5: SATA link down (SStatus 0 SControl 300)
+[ 1917.843892] ata4: SATA link down (SStatus 0 SControl 300)
+[ 1917.851889] ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[ 1917.859884] ata6: SATA link down (SStatus 0 SControl 300)
+[ 1918.046031] ata2.00: configured for UDMA/100
+[ 1918.085960] PM: resume of devices complete after 592.380 msecs
+[ 1918.086597] PM: Finishing wakeup.
+[ 1918.086601] Restarting tasks ... done.
+[ 1918.089797] video LNXVIDEO:00: Restoring backlight state
+[ 1918.564525] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.564564] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.564569] pci 0000:00:00.0: using default PCI settings
+[ 1918.564595] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.564599] i915 0000:00:02.0: using default PCI settings
+[ 1918.564622] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.564627] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.564644] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.564648] serial 0000:00:16.3: using default PCI settings
+[ 1918.564677] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.564680] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.564710] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.564714] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.564732] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.564752] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.564761] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.564809] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.564818] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.564837] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.564845] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.564878] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.564886] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.564890] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.564919] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.564923] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.564942] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.564957] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.564974] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.564978] pci 0000:00:1f.3: using default PCI settings
+[ 1918.565055] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.565080] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.565084] pci 0000:00:00.0: using default PCI settings
+[ 1918.565096] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.565100] i915 0000:00:02.0: using default PCI settings
+[ 1918.565124] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.565128] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.565157] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.565160] serial 0000:00:16.3: using default PCI settings
+[ 1918.565178] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.565181] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.565208] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.565212] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.565241] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.565249] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.565257] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.565303] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.565311] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.565330] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.565339] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.565358] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.565378] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.565382] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.565410] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.565414] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.565432] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.565436] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.565463] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.565467] pci 0000:00:1f.3: using default PCI settings
+[ 1918.565514] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.565538] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.565542] pci 0000:00:00.0: using default PCI settings
+[ 1918.565554] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.565558] i915 0000:00:02.0: using default PCI settings
+[ 1918.565582] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.565586] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.565614] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.565618] serial 0000:00:16.3: using default PCI settings
+[ 1918.565635] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.565639] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.565668] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.565672] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.565699] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.565707] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.565715] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.565759] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.565768] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.565775] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.565795] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.565827] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.565835] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.565839] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.565868] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.565872] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.579017] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.579030] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.579067] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.579073] pci 0000:00:1f.3: using default PCI settings
+[ 1918.580401] pci_bus 0000:01: Allocating resources
+[ 1918.580453] pci_bus 0000:02: Allocating resources
+[ 1918.580555] pci_bus 0000:03: Allocating resources
+[ 1918.580613] pci_bus 0000:09: Allocating resources
+[ 1918.580660] pci_bus 0000:0a: Allocating resources
+[ 1918.580709] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.580748] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.580755] pci 0000:00:00.0: using default PCI settings
+[ 1918.580786] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.580793] i915 0000:00:02.0: using default PCI settings
+[ 1918.580823] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.580830] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.580866] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.580873] serial 0000:00:16.3: using default PCI settings
+[ 1918.580909] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.580915] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.580951] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.580969] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.580993] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.581017] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.581030] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.581084] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.581109] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.581371] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.581395] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.581433] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.581447] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.581454] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.581489] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.581506] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.581532] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.581550] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.581574] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.581592] pci 0000:00:1f.3: using default PCI settings
+[ 1918.600226] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.600274] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.600283] pci 0000:00:00.0: using default PCI settings
+[ 1918.600316] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.600323] i915 0000:00:02.0: using default PCI settings
+[ 1918.600353] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.600359] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.600393] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.600400] serial 0000:00:16.3: using default PCI settings
+[ 1918.600433] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.600440] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.600475] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.600482] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.600517] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.600542] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.600556] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.600612] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.600637] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.600651] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.600675] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.600714] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.600728] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.600734] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.600767] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.600773] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.600808] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.600814] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.600846] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.600852] pci 0000:00:1f.3: using default PCI settings
+[ 1918.601119] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.601154] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.601161] pci 0000:00:00.0: using default PCI settings
+[ 1918.601180] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.601198] i915 0000:00:02.0: using default PCI settings
+[ 1918.601217] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.601235] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.601259] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.601276] serial 0000:00:16.3: using default PCI settings
+[ 1918.601300] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.601318] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.614941] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.614952] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.614992] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.615017] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.615029] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.615085] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.615109] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.615122] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.615147] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.615188] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.615202] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.615209] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.615243] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.615250] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.615284] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.615290] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.615323] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.615330] pci 0000:00:1f.3: using default PCI settings
+[ 1918.615871] i915 0000:00:02.0: BAR 6: [??? 0x00000000 flags 0x2] has bogus alignment
+[ 1918.615909] pci 0000:00:00.0: no hotplug settings from platform
+[ 1918.615915] pci 0000:00:00.0: using default PCI settings
+[ 1918.615935] i915 0000:00:02.0: no hotplug settings from platform
+[ 1918.615952] i915 0000:00:02.0: using default PCI settings
+[ 1918.615971] mei_me 0000:00:16.0: no hotplug settings from platform
+[ 1918.615989] mei_me 0000:00:16.0: using default PCI settings
+[ 1918.616013] serial 0000:00:16.3: no hotplug settings from platform
+[ 1918.616031] serial 0000:00:16.3: using default PCI settings
+[ 1918.616067] e1000e 0000:00:19.0: no hotplug settings from platform
+[ 1918.616074] e1000e 0000:00:19.0: using default PCI settings
+[ 1918.616108] ehci-pci 0000:00:1a.0: no hotplug settings from platform
+[ 1918.616113] ehci-pci 0000:00:1a.0: using default PCI settings
+[ 1918.616136] snd_hda_intel 0000:00:1b.0: no hotplug settings from platform
+[ 1918.616159] pcieport 0000:00:1c.0: no hotplug settings from platform
+[ 1918.616174] pcieport 0000:00:1c.1: no hotplug settings from platform
+[ 1918.616247] iwlwifi 0000:02:00.0: no hotplug settings from platform
+[ 1918.616272] pcieport 0000:00:1c.2: no hotplug settings from platform
+[ 1918.616286] pcieport 0000:00:1c.3: no hotplug settings from platform
+[ 1918.616310] pcieport 0000:00:1c.5: no hotplug settings from platform
+[ 1918.616348] sdhci-pci 0000:0a:00.0: no hotplug settings from platform
+[ 1918.616362] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+[ 1918.616368] ehci-pci 0000:00:1d.0: using default PCI settings
+[ 1918.616403] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+[ 1918.616410] lpc_ich 0000:00:1f.0: using default PCI settings
+[ 1918.616443] ahci 0000:00:1f.2: no hotplug settings from platform
+[ 1918.616450] ahci 0000:00:1f.2: using default PCI settings
+[ 1918.616482] pci 0000:00:1f.3: no hotplug settings from platform
+[ 1918.616489] pci 0000:00:1f.3: using default PCI settings
+[ 1918.740384] acpi PNP0401:00: Already enumerated
+[ 1918.814198] e1000e: eth0 NIC Link is Down
+[ 1918.815537] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[ 1918.833623] acpi PNP0501:00: Still not present
+[ 1918.950799] e1000e 0000:00:19.0: irq 44 for MSI/MSI-X
+[ 1919.054414] e1000e 0000:00:19.0: irq 44 for MSI/MSI-X
+[ 1919.054839] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[ 1919.057172] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[ 1919.057477] iwlwifi 0000:02:00.0: Radio type=0x0-0x3-0x1
+[ 1919.279729] iwlwifi 0000:02:00.0: L1 Enabled - LTR Disabled
+[ 1919.280070] iwlwifi 0000:02:00.0: Radio type=0x0-0x3-0x1
+[ 1919.386722] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[ 1919.489757] [drm] Enabling RC6 states: RC6 on, RC6p off, RC6pp off
+[ 1919.741481] ata1: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+[ 1920.013656] ata1.00: ACPI cmd 00/00:00:00:00:00:a0 (NOP) rejected by device (Stat=0x51 Err=0x04)
+[ 1920.157480] ata1.00: ACPI cmd 00/00:00:00:00:00:a0 (NOP) rejected by device (Stat=0x51 Err=0x04)
+[ 1920.157909] ata1.00: configured for UDMA/133
+[ 1922.358010] wlan0: authenticate with 06:18:d6:93:b5:f7
+[ 1922.367256] wlan0: send auth to 06:18:d6:93:b5:f7 (try 1/3)
+[ 1922.394682] wlan0: authenticated
+[ 1922.398019] wlan0: associate with 06:18:d6:93:b5:f7 (try 1/3)
+[ 1922.414854] wlan0: RX AssocResp from 06:18:d6:93:b5:f7 (capab=0x431 status=0 aid=3)
+[ 1922.440918] wlan0: associated
+[ 1922.440972] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready

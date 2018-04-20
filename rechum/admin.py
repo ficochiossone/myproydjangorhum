@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.contrib import admin
-
+from django.http import HttpResponse,HttpResponseRedirect
 #para usar export a excel
 from django.core.exceptions import PermissionDenied
 from pyExcelerator import *
@@ -22,26 +21,27 @@ from models import Ausencia_trb
 from entornos.models import Func_grl
 
 
-
-
 def export_as_xls(modeladmin,request,queryset):
 	fields = []
 	exclude_fields = []
 	extras = ['']
 	if not request.user.is_staff:
 		raise PermissionDenied
+
+
 	for f in modeladmin.list_display:
 		if f not in exclude_fields:
-			fiels.append(f)
+			fields.append(f)
 	fields.extend(extras)
 
-	opts = modelsadmin.model._meta
-	wb = workbook()
+	opts = modeladmin.model._meta
+	wb = Workbook()
 	ws0 = wb.add_sheet('ss')
 	col = 0
 	field_names = []
 	# describe cabecera fila
-	for field in field_names:
+##	for field in field_names:
+	for field in fields:
 		ws0.write(0,col,field)
 		field_names.append(field)
 		col=col+1
@@ -60,7 +60,7 @@ def export_as_xls(modeladmin,request,queryset):
 					val= lookup_field(field,obj,modeladmin)
 				except:
 					val = ['None']
-			ws0,write(row,col,str((val[-1])).strip())
+			ws0.write(row,col,str((val[-1])).strip())
 			col=col+1
 		row=row+1
 	wb.save('/tmp/output.xls')
