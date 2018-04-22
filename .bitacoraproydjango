@@ -1074,8 +1074,34 @@ Ver prsgrechum
 blado con personal rsp , agregar fecha de nueva junta medica cuando trabajamos con tares diferentes :q
 
 
+abado 21 de abril en funes 
+ayer presente el doprhum a of personal en roque saenz peña
+ademas solicitud de maternidad, baci , de reemplazo de libro de nacimientos.
 
+anteauer presente a jefa de personal de mmartin y secretarias de obstetricia y neo y jefa puig de neo y 
+guido paz jefe obstetricia.
+
+
+
+y hoy trabajaremos con tema respaldo mutt etc....
+
+--------------------------------------------------------------
+HASTA ACA 	ENtendido mysqldump y bzip2 perfecto con variables 
+ver .manejobackup
+falta entender configuracion  de envio data con mutt y como 
+se conecta a servidor definido por sistema operativo...
+usariamos el dopgrhum@gmail.com
 	
+se agrego en home/fico/BACKUP  UN script bash que 
+mysqldumpee y luego mutee 
+
+para eso hay que configurar el mutt como cliente 
+de mail 
+apuntando a gmail
+dopgrhum@gmail.com   Fico@doprhum
+
+crear en mutt  muttrc
+
 
 
 

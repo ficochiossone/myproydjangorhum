@@ -123,11 +123,11 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 class SolictrbAdmin(admin.ModelAdmin):
 	list_display = ('fecha_solicitud','tipo','motivo','institucion','codigo','trb')
-	search_fields = ('trb__apellido','trb__mr_legajo','codigo','institucion__codigo')
+	search_fields = ('trb__apellido','trb__mr_legajo','codigo','trb__profesion__codigo','trb__especialidad_1__codigo')
 	fields = (('fecha_solicitud','trb'),(),('areadep','institucion'),('motivo','tipo'),(),(),('comentarios'))
 	raw_id_fields = ('trb',)
 	date_hierarchy = 'fecha_solicitud'
-	list_filter = ('tipo','areadep','institucion')
+	list_filter = ('tipo','institucion','areadep')
 	actions = [export_as_xls]
 
 class DispoAdmin(admin.ModelAdmin):
