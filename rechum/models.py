@@ -829,7 +829,7 @@ class Ausencia_trb (models.Model):
 
 				"""%cnst
 		return cnst
-    haysolicrhum.short_description="Reclamo"
+    haysolicrhum.short_description="Sol Cambio "
 		    
     def __unicode__(self):
         ape=smart_unicode(self.trabajador_ausente)

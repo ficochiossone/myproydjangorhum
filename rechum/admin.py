@@ -144,11 +144,11 @@ class ConcursoAdmin(admin.ModelAdmin):
 
 class RegstatusAdmin(admin.ModelAdmin):
 	list_display = ('fecha_ini_vigencia','status','trabajador')
-	search_fields = ('trabajador__apellido','trb__mr_legajo',)
+	search_fields = ('trabajador__apellido','trabajador__mr_legajo',)
 	fields = (('fecha_ini_vigencia','trabajador'),('status'),('comentarios'))
 	raw_id_fields = ('trabajador',)
 	date_hierarchy = 'fecha_ini_vigencia'
-	list_filter = ('status',)
+	list_filter = ('status','trabajador__especialidad_1')
 	actions = [export_as_xls]
 class AustAdmin(admin.ModelAdmin):
 	list_display = ('fecha_inicio','ausvigahoy','areadep','institucion','tipoausup','trabajador_ausente','detcausaauc','haysolicrhum','fecha_fin')

@@ -13,7 +13,7 @@ from django.contrib import messages
 from models import Areadependencia,Dds,ciediez
 from models import Profesion,Especialidad,Servicio
 from models import Func_grl,Grupogestion,ActaGG
-
+from models import Institucion
 #from forms.py import ClamForm
 
 
@@ -136,6 +136,13 @@ class ActaggAdmin(admin.ModelAdmin):
 	date_hierarchy = 'fecha'
 	raw_id_fields =('participantes',)	
 
+class InstitAdmin(admin.ModelAdmin):
+	list_display = ('nombre','codigo','telefonos')
+	search_fields = ('codigo','nombre')
+	#date_hierarchy = 'fecha'
+	#raw_id_fields =('participantes',)	
+
+admin.site.register(Institucion,InstitAdmin)
 admin.site.register(ActaGG,ActaggAdmin)
 admin.site.register(Grupogestion,GrupogAdmin)
 admin.site.register(Func_grl,FuncgAdmin)

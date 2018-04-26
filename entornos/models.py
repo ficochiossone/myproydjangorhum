@@ -12,8 +12,8 @@ from django.utils.encoding import smart_unicode, smart_str
 
 # Create your models here.
 class Func_grl(models.Model):
-    nombre = models.CharField(max_length=14)
-    codigo = models.CharField(max_length=6)
+    nombre = models.CharField(max_length=36)
+    codigo = models.CharField(max_length=18)
     descripcion = models.CharField(max_length=128,default='Descripcion de tarea...',verbose_name='Descripcion')
     def __unicode__(self):
         nom=smart_unicode(self.nombre)
@@ -25,8 +25,8 @@ class Func_grl(models.Model):
 
     class Meta:
         #db_table = 'sqlscripts'
-        verbose_name_plural ='Funciones Generales'        
-        verbose_name ='Tipo Funcion'        
+        verbose_name_plural ='Tipos de Tarea'        
+        verbose_name ='Tipo Tarea'        
         #db_table = ''
 
 
