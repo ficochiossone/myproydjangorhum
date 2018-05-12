@@ -18,7 +18,7 @@ SECRET_KEY = 'ip-tke#hm_k+66#_=6iklgytt9xw6g6w@-sl-h6q8hg8=btvia'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.66.136','0.0.0.0','127.0.0.1','127',u'localhost']
+ALLOWED_HOSTS = ['192.168.66.136','0.0.0.0','127.0.0.1','127',u'localhost','192.168.166.145']
 
 
 
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 #		'django.contrib.flatpages',
 #    aplicaciones para admin...
-		'servicios','entornos','rechum','oytred',
+		'servicios','entornos','rechum','oytred','libronacs'
 ]
 
 MIDDLEWARE = [

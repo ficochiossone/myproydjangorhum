@@ -70,4 +70,35 @@ El script de bash
  mutt -s "Copia de seguridad base de datos ${DB_NAME}: $(date +%B) de $(date +%Y)" ${USER_MAIL} -a ${BACKUP_FILE}.bz2 < ${BACKUP_DIR}${MESSAGE_FILE}
 1
 2
+ aca esta el tema que al intentar enviar con mutt un mail obtengo error 
+
+ Era por una boludez 
+estaba mal configurado el .mutrc
+en vez de dopghrum decia otra cosa parecida  
+
+este es el .muttrc que anda....
+
+/home/fico/.mutrc  ini
+# creado para utilizar mutt para backupear y etcccccc...en la panaderia de funes 
+#AJUSTES PARA CORREO SALIENTE SMTP
+set from = "dopghrum@gmail.com"
+set realname = "FICO en DOPRHUM "
+
+set smtp_url = "smtps://dopghrum@gmail.com@smtp.gmail.com:465/"
+set imap_user = "dopghrum@gmail.com"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+set smtp_pass ="Fico@dop"
+set imap_pass = "Fico@dop"
+set move = no
+set imap_keepalive = 900
+
+# fin de .muttrc
+
+
+
 

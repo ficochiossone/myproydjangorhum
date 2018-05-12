@@ -104,15 +104,15 @@ def trbplus(trb_asignado):
 
 
 class TDAdmin(admin.ModelAdmin):
-	fields =(('fecha_asignacion'),('areadep','trb_asignado'),('tipo','causaif'),('institucion','instdst'),('xsolictrab'),('xjunta_medica'),('xdispodecidec'),('funcsg_previas','funcsg_tdif'),('detallecambiox'))
+	fields =(('fecha_asignacion','fecha_terminacion'),('areadep','trb_asignado'),('tipo','causaif'),('institucion','instdst'),('xsolictrab'),('xjunta_medica'),('xdispodecidec'),('funcsg_previas','funcsg_tdif'),('detallecambiox'))
 	raw_id_fields =('trb_asignado','xjunta_medica','xdispodecidec','xsolictrab')
-	list_display=('fecha_asignacion','trb_asignado','institucion','instdst','tipo','causaif',)
+	list_display=('fecha_asignacion','trb_asignado','institucion','instdst','tipo','causaif','detallecambiox')
 	search_fields = ('trb_asignado__apellido','trb_asignado__mr_legajo','instdst__codigo')
 	ordering = ['fecha_asignacion','trb_asignado__apellido']
 	date_hierarchy = 'fecha_asignacion'
-	list_filter = ('causaif','trb_asignado__profesion','areadep','instdst')
+	list_filter = ('causaif','trb_asignado__profesion','areadep','instdst','trb_asignado__especialidad_1')
 	#fields = (('fecha_asignacion','codigo',),('institucion'),('profesion','espec'),(),(),('xjunta_medica','xdispodecidec','xsolictrab'),('detalle'))
-
+	actions = [export_as_xls]
 class Resultado_juntaAdmin(admin.ModelAdmin):
 	list_display = ('codigo','nombre')
 	ordering = ['codigo']
@@ -159,6 +159,7 @@ class AustAdmin(admin.ModelAdmin):
 	date_hierarchy = 'fecha_inicio'
 	list_filter = ('tipo_ausencia','areadep','institucion')
 	ordering = ('trabajador_ausente__apellido',)
+
 admin.site.register(Ausencia_trb,AustAdmin)
 admin.site.register(Registro_status,RegstatusAdmin)
 admin.site.register(DispoDesiDec,DispoAdmin)

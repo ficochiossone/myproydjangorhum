@@ -507,7 +507,7 @@ class Paciente(models.Model):
     dtpacid = models.CharField(max_length=36,blank=True,null=True,verbose_name='NDTech')
     fecha_nacimiento = models.DateField()
     estado_civil = models.CharField(max_length=2, choices=ESTADOS_CIVILES,blank=True,null=True)
-    sexo = models.CharField(max_length=1, choices=SEXOS,blank=True,null=True)
+    sexo = models.CharField(max_length=1,choices=SEXOS,default='F')
     nacionalidad = models.CharField(max_length=36,choices=PAISES,default='ARG')
     provincia = models.CharField(max_length=2,choices=PROVINCIAS,default='13')
     localidad = models.ForeignKey('Localidad',blank=True,null=True)
@@ -616,7 +616,7 @@ class cie10(models.Model):
     categoria = models.CharField(max_length=32,null=True,blank=True)
     descripcion = models.CharField(max_length=64)
     codigo = models.CharField(max_length=8)
-    comentarios = models.CharField(max_length=128)
+    comentarios = models.CharField(max_length=128,null=True,blank=True)
     habilitado = models.NullBooleanField(blank=True,null=True,default=False)
 
     class Meta:
@@ -822,30 +822,33 @@ class Perfil(models.Model):
     class Meta:
         db_table = "oytred_perfiles"
 
-##class Evolucion(models.Model):
-##    fecha = models.DateTimeField()
-##    profesional = models.ForeignKey("Profesional")
-##    texto = models.TextField()
-##    content_type = models.ForeignKey(ContentType)
-##    object_id = models.PositiveIntegerField()
-##    content_object = generic.GenericForeignKey('content_type', 'object_id')
-##    
-##    class Meta:
-##        db_table = "evoluciones"
-
 class Evolucion(models.Model):
     fecha = models.DateTimeField()
     profesional = models.ForeignKey("Profesional")
     texto = models.TextField()
-    institucion = models.ForeignKey("Institucion")
-    servicio = models.ForeignKey("Servicio")
+    content_type = models.ForeignKey(ContentType)
+#    object_id = models.PositiveIntegerField()
+#    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    
+    class Meta:
+        db_table = "evoluciones"
+
+
+class Consulta(models.Model):
+    fecha = models.DateTimeField()
+    paciente = models.ForeignKey("oytred.Paciente")
+    profesional = models.ForeignKey("oytred.Profesional")
+#    texto = models.TextField()
+    obscl = models.ForeignKey("entornos.Obrasocial",null=True,blank=True,verbose_name="Obra Social")
+    comentarios = models.TextField(default ="Hallazgos",verbose_name="Comentarios y Hallazgos")
+#    servicio = models.ForeignKey("Servicio")
     internacion = models.ForeignKey("Internacion")
     #content_type = models.ForeignKey(ContentType)
     #object_id = models.PositiveIntegerField()
     #content_object = generic.GenericForeignKey('content_type', 'object_id')
     
     class Meta:
-        db_table = "oytred_evoluciones"
+        db_table = "aconsultorio_consultas"
 
 class EvolucionCardio(models.Model):
     evolucion = models.ForeignKey("Evolucion")

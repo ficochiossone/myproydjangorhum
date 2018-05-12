@@ -23,29 +23,6 @@ def default_user_id():
 dfu=default_user_id()
 
 
-
-
-print """ 
-
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-
-
-DEFAULTS DE servicios models.py
-
-
-
-
-el usr id por defecto es %s 
-
-el time def es %s
-
-
-
-
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-""" %(str(dfu),str(default_hora_ini))
-
 #  atencion para manejo de imagenes x ahora , antes de usar otro server como apache
 
 ##from django.core.files.storage import FyleSystemStorage
@@ -53,22 +30,10 @@ from django.core.files.storage import FileSystemStorage
 
 print """
 
-     Vamos a preparar para guardar fotos de trabajadores...
+     en myprojdjango/servicios/models.py
 
 """
 fs=FileSystemStorage(location='/media/Fotostrb')
-print """
-
-las fotostrtb estan en
-
-       %s
-
-------------------------------------
-------------------------------------
-"""% str(fs)
-
-print "servicios models.py  va a def fecha actual ......"
-
 
 def fechaactual():
     factl=time.strftime('%Y-%m-%d')

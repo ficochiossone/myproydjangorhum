@@ -1101,6 +1101,130 @@ apuntando a gmail
 dopgrhum@gmail.com   Fico@doprhum
 
 crear en mutt  muttrc
+ BUENO 
+
+resuelto tema backup y mutt juntos 
+hoy lunes 7 de mayo luego de un par de semanas de lidiar con scripts bash 
+tenemos probado en dell lattitude script que funciona. 
+
+lo voy a transcribir aqui a continuacion y tambien la configuracion de mutt...
+para que usando el server gmail del recien creado 
+dopghrum@gmail.com   pass  Fico@dop 
+le envie te3xto y db comprimida a ficochiossone@yahoo.com
+
+
+a continuacion el script probado que reside en directorio /home/fico/bin 
+y es ejecutable....
+###-----------------------------------------------------------------------------------------------------------------------
+###ini script bckp 
+
+#!/bin/bash
+## ini variables onfigurar ##
+DB_USER="root"
+DB_PASS="Fico@mysql"
+DB_NAME="dbrhum"
+BACKUP_DIR="/home/fico/BACKUP/"
+DATE=$(date +"%Y-%m-%d")
+HORA=$(date +"%T")
+MESSAGE_FILE="/home/fico/backup.mail.message"
+USER_MAIL="ficochiossone@yahoo.com"
+## fin variables a configurar ##
+echo "Ya estan cargadas las variables"
+echo "la fecha es "${DATE}
+
+###-----config nombre de file de bk y lo genera-----------------------
+echo "-----------------------------------------------------------"
+BACKUP_FILE="$BACKUP_DIR$DATE$HORA.sql"
+
+
+echo "El archivo bakpeado sera : "${BACKUP_FILE}
+echo "la base de datos es "${DB_NAME}
+echo "---------------------------------------------"
+
+mysqldump --opt -uroot -pFico@mysql dbrhum > ${BACKUP_FILE}
+
+
+echo "Se dumpeo la base de datos"
+###----  lo comprime -------------------------------------------------
+
+bzip2 ${BACKUP_FILE}
+echo "Se comprimio"
+echo "----------- intentara enviar con mutt  ----------------------- "
+#---------   lo envia con mutt -----------------------------------------------------------
+
+mutt -s "Copia Seg DB" ${USER_MAIL} -a ${BACKUP_FILE}.bz2 < ${MESSAGE_FILE}
+
+###echo "Se envio x mutt"
+
+
+
+###fin script bckp
+###----------------------------------------------------------------------------------------------------------------------
+el script que se ve arriba entre ini script bckp y fin script bckp esta guardado
+en /home/fico/bin  como BakupDop
+
+PREGUNTA 
+se podra enviar con mutt desde maquina virtual de cemar  ..
+para hablarlo con Ramiro...
+
+
+
+Tambien probe de conectar esta dell lattitude a la red de cemar donde
+toma autom  DHCP  el ip 192.168.166.145
+
+y desde ella servir el sistema dop a todas las maquinas del Cemar , por lo menos 
+anda..
+pero por ahora con el runserver_plus
+
+
+
+AL MOMENTO ACTUAL miercoles 9 de mayo 2018 @ cemar 
+
+accediendo a traumasrv.cema.salud.rosario.gov.ar
+
+root   quai123
+fico   Fico@srv
+
+desde pc notebook dell latitude 6320 via ssh
+
+ssh fico@traumasrv.cema.salud.rosario.gov.ar
+
+instalado en traumasrv.cema.salud.rosario.gov.ar//home/fico/myprojdjango
+una serie de aplicaciones varias
+entorno virtual que a continuacion copio .
+
+le copie peque desde dell latitude esas aplicaciones 
+y modifico el settings.py que queda dentro de myprhum para 
+que funcione con db y seteos que anden de ese servidor 
+mysql root quai123
+
+si corro el runserver o runserver_plus  desde ahi el sitio es visto 
+admin incluido desde pc ame123 y otras 
+
+creado superuser fico fico8399 pero resto de tablas vacias .....
+
+ vamos bien , muy bien.....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
