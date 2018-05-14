@@ -96,6 +96,8 @@ class Func_labAdmin(admin.ModelAdmin):
     search_fields = ('nombre',)
 
 #### ini para neuvo listfilter#####
+##  para poder usar una def del model AsignaLab que se llama  esxausencia
+##  hay que construir esta clase ...
 class SiXaustrabListFilter(admin.SimpleListFilter):
     #human leible tituloen sidebar
     title = ('X Cobertura Ausencia')

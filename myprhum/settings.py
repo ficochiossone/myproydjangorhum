@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 #		'django.contrib.flatpages',
 #    aplicaciones para admin...
-		'servicios','entornos','rechum','oytred','libronacs'
+		'servicios','entornos','rechum','oytred','libronacs','acupor'
 ]
 
 MIDDLEWARE = [

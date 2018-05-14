@@ -247,39 +247,3 @@ class Obrasocial(models.Model):
         ordering = ['nombre']
 
 
-
-class cuporServicio(models.Model):
-    nombre = models.CharField(max_length=32)
-    codigo = models.CharField(max_length=10)
-    descripcion = models.CharField(max_length=612)
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return " %s" % (cod)
-
-    class Meta:
-        db_table = 'cupor_servicios'
-        verbose_name ='Servicio Cuporizable'        
-        verbose_name_plural ='Servicios Cuporizables'        
-        ordering = ['nombre']
-
-class cuporEspecialidad(models.Model):
-    dqserv = models.ForeignKey('cuporServicio',verbose_name='Servicio Referente')
-    nombre = models.CharField(max_length=32)
-    codigo = models.CharField(max_length=12)
-    areadep = models.ForeignKey('Areadependencia',verbose_name='Area de Dependencia')
-    descripcion = models.CharField(max_length=124,default = 'Descripcion')
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return " %s" % (cod)
-
-    class Meta:
-        db_table = 'cupor_especialidades'
-        verbose_name ='Especialidad Cuporizable'        
-        verbose_name_plural ='Especialidades Cuporizables'        
-        ordering = ['nombre']

@@ -1205,6 +1205,30 @@ creado superuser fico fico8399 pero resto de tablas vacias .....
 
  vamos bien , muy bien.....
 
+AVANZADO TEMA SERVIDOR 
++lunes 14 mayo 2018
+
+estoy medio dejado con proceso real , no virtual , de cuporizacion
+avanzado cuporizacion en sistema django admin
+acupor es ala lla aplicacion
+
+a revisar y continuar 
+
+
+registros de reemplazos en servicios.remplazo
+y     homologado en acupor 
+
+vinculo entre asignaciones laborales y reemplazos 
+similar poner entre asignaciones laborales y paquetes de oferta Pakof
+
+revisar tema many to many mostrado y registrado en admin 
+
+cuales son los modulos de asignacion laboral que se toman para cada reemplazo 
+y  cuales son los modulos de laburo de consultorio externo y o practicas que se toman para paketes ofrecidos..
+
+
+
+
 
 
 
