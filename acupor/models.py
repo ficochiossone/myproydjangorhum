@@ -33,7 +33,7 @@ class cuporServicio(models.Model):
         verbose_name_plural ='Servicios Troncales'        
         ordering = ['codigo']
 
-class cuporEspecialidad(models.Model):
+class PkSrvEsp(models.Model):
     dqserv = models.ForeignKey('cuporServicio',verbose_name='Servicio Referente')
     nombre = models.CharField(max_length=32)
     codigo = models.CharField(max_length=12)
@@ -53,58 +53,84 @@ class cuporEspecialidad(models.Model):
         verbose_name_plural ='SubServicios'        
         ordering = ['codigo']
 
-## objeto clase que muestra pakete de turnos de esa esp en esa inst en oferta total
-class Pak_of(models.Model):
+## objeto clase que muestra pakete de turnos de esa SERVesp en  UNAinst
+## expresa como se integra asglabs y cuantos turnos totales y cuantos a dispo del resto de la red.
+class Pak_of_inst(models.Model):
     PERIODO = ((u'SMNL', u'Semanal'),
                        (u'QNCNL', u'Quincenal'),
                        (u'MNSL', u'Mensual'))
+    SISTEMA= ((u'DTTECH', u'Datatech'),
+                       (u'SISR', u'Sist-APS'),
+                       (u'OTROS', u'Otros'))
 
 
-    srvcupor = models.ForeignKey('cuporEspecialidad',verbose_name='SRV-ESP')
+    activo = models.BooleanField(default=True,verbose_name='Validez')
+    sistema = models.CharField(choices=SISTEMA,max_length=6,default='DTTECH',verbose_name='SIST AGENDA')
+    srvcupor = models.ForeignKey('PkSrvEsp',verbose_name='PKSRVESP')
     fecha_ini = models.DateField(null=True,blank=True,verbose_name='Fecha Cons')
     institucion = models.ForeignKey('entornos.Institucion',verbose_name = 'INST RFRNTE')
     periodo = models.CharField(choices=PERIODO,max_length=12,default='SMNL',verbose_name='Periodo')
-    toturnos = models.IntegerField(default = 100,verbose_name='Turnos Tots')
+    turnos = models.IntegerField(default = 100,verbose_name='Turnos Tots')
     acupturnos = models.IntegerField(default = 80,verbose_name='Dispo x CUP')
     asglabs = models.ManyToManyField('servicios.Asigna_lab',verbose_name = 'Modulos Asignados')
     fecha_fin = models.DateField(null=True,blank=True,verbose_name='Fin de Validez')
     comentarios = models.CharField(max_length=369,default='Comentarios',verbose_name='Comentarios')
-    def xfActivo(self):
-        if not self.fecha_fin:
-            esactv='Activo'
-        else:
-            esactv='Finalizado'
-        return esactv
-    xfActivo.short_description = 'PktOfActivo'
+
+# una funcion para obtener un campo que muestre las asignaciones laborales vinculadas 
+# a este pakete ofrecido..  vinculamos tablas  en tabla mixta many to many
+#   tabla mixta es acupor_ofertas_inst_asglabs  se unen pak_of_inst_id   y asigna_lab_id
+
+    def Ofrnts(self):
+        rp=self.pk # identificamos el pakete of
+        lista = ""
+        if rp:
+            pakof=Pak_of_inst.objects.get(pk=rp)
+            asgofs=pakof.asglabs.all()
+            lista=""
+            for n in asgofs:
+                prof=str(n.trabajador)
+                lista+=prof+"-"          
+                           
+        return lista
+    Ofrnts.short_description = 'Profesionales'
+
+
  
     def __unicode__(self):
-        #print "-------    en unicode de class Pakof -------------------"
+        #print "-tien que tener total cupos disp  institucion y especialidad--"
+        ins=self.institucion.codigo
         if self.fecha_fin:
             ea='No'
         else:
             ea='Si'
         #print ea
-        fcons=self.fecha_ini
-        qcupor=str(self.srvcupor)
-        return "%s %s-%s:"%(ea,qcupor,fcons)       
+        tott=self.acupturnos
+        qcupor=str(self.srvcupor.codigo)
+        return "#%s:%s>%s-(%s)"%(str(self.id),ins,qcupor,str(tott))       
 
     class Meta:
-        db_table = 'acupor_ofertas'
+        db_table = 'acupor_ofertas_inst'
         verbose_name ='Paquete InstSrvEsp'        
-        verbose_name_plural ='Pktes Cuporizables'        
+        verbose_name_plural ='Pktes X INST'        
         ordering = ['institucion','srvcupor']
 
 
+# clase que define una institucion que es priorizada para un srvesp con un numero de turnos..
+# define de que inst viene.......
 class Pak_cupo(models.Model):
-    PERIODO = ((u'DTTECH', u'Datatech'),
-                       (u'SISR', u'Sist-APS'),
-                       (u'OTROS', u'Otros'))
+    PERIODO = ((u'SMNL', u'Semanal'),
+                       (u'QNCNL', u'Quincenal'),
+                       (u'MNSL', u'Mensual'),
+                       (u'OTROS',u'OTROS'))
 
-    inst = models.ForeignKey('entornos.Institucion',verbose_name='Cupo Para ')
-    depak = models.ForeignKey('Pak_of',verbose_name='Origen')
+    inst = models.ForeignKey('entornos.Institucion',verbose_name='Institucion')
+    depak = models.ForeignKey('Pak_of_inst',verbose_name='Origen Turnos')
+    #nturnos = models.IntegerField(default=1,verbose_name='TotalTurnos')
     fecha_ini = models.DateField(null=True,blank=True,verbose_name='Fecha Hab')
-    sistema = models.CharField(choices=PERIODO,max_length=12,default='SISR',verbose_name='Sist Agenda')
+    periodo = models.CharField(choices=PERIODO,max_length=12,default='SMNL',verbose_name='PERIODO')
     ncupo = models.IntegerField(default = 2,verbose_name='Cupo')
+    #asgpaks = models.ManyToManyField('Pak_of_inst',verbose_name = 'Paketes integrantes')
+ 
     #fecha_fin = models.DateField(null=True,blank=True,verbose_name='Fin de Validez')
     comentarios = models.TextField(default = 'Comentarios')
 

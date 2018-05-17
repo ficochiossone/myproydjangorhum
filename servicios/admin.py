@@ -158,6 +158,7 @@ class Asigna_labAdmin(admin.ModelAdmin):
     raw_id_fields = ('trabajador','xausenciatrab') 
     ordering =['trabajador__apellido','funcion','institucion']
     filter_horizontal=('dds',)
+#notese en ReemplazoAdmin el inline...
 class AsgInline(admin.StackedInline):
     model = Reemplazo.asglabs.through
 class ReemplazoAdmin(admin.ModelAdmin):
@@ -169,7 +170,7 @@ class ReemplazoAdmin(admin.ModelAdmin):
     #list_editable = ('asglabs',)
     search_fields = ('trabajador__apellido',)
     raw_id_fields = ('trabajador','asglabs',) 
-    list_filter=('fecha_inicio',)
+    list_filter=('trabajador__profesion','trabajador__especialidad_1')
     date_hierarchy=('fecha_inicio')
 
 

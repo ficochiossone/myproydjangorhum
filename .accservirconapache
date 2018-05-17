@@ -1,0 +1,100 @@
+aCA 
+en .accservirconapache
+desarrollamos tema de como 
+no usar mas runserver y pasar a un apache 
+desde maqujina virtual y o desde dell 6320
+
+pasos
+aPACHE bien instlado
+con herramientas a2tools 
+a2query y a2ensite por ejemplo
+
+maquina dell 6320 esta sirviendo version vieja de rhssp con apche
+evaluemos como lo hace y referimos aca 
+
+hago un query con a2query -s
+
+fico@dell6320:~/myprojdjango$ sudo a2query -s
+000-default (enabled by site administrator)
+
+ut supra me dice el terminal que el archivo de conf de apache habilitado es el  000-default
+
+
+ousco en directorios donde esta ...
+apache2.conf    conf-enabled  magic           mods-enabled  sites-available
+conf-available  envvars       mods-available  ports.conf    sites-enabled
+fico@dell6320:/etc/apache2$ ls -l
+total 80
+-rw-r--r-- 1 root root  7194 ene 15 11:37 apache2.conf
+drwxr-xr-x 2 root root  4096 abr 29 18:20 conf-available
+drwxr-xr-x 2 root root  4096 ene 15 11:35 conf-enabled
+-rw-r--r-- 1 root root  1782 sep 19  2017 envvars
+-rw-r--r-- 1 root root 31063 sep 19  2017 magic
+drwxr-xr-x 2 root root 12288 abr 29 18:20 mods-available
+drwxr-xr-x 2 root root  4096 ene 21 22:42 mods-enabled
+-rw-r--r-- 1 root root   320 sep 19  2017 ports.conf
+drwxr-xr-x 2 root root  4096 abr 29 18:20 sites-available
+drwxr-xr-x 2 root root  4096 ene 15 11:10 sites-enabled
+
+ut supra notese que configuracion de apache en dell6320 debian
+esta determinado por este directorio /etc/apache2 y sus files y dirs
+sites-available son files que son habilitables por el a2ensite  site-enabled es el file habilitado , un link ...
+
+dentro del sites-enabled , enesta pc esta 
+
+
+fico@dell6320:/etc/apache2$ ls sites-enabled -l
+total 0
+lrwxrwxrwx 1 root root 35 ene 15 11:10 000-default.conf -> ../sites-available/000-default.conf
+fico@dell6320:/etc/apache2$ 
+
+ut supra notese que hay un solo archivo , en realidad un link a un archivo 
+en sites-enabled 
+ese archivo linkeado es el que determina la configuracioon del apache habilitada.
+
+
+voy a poner ut infra algunas lineas de ese archivo y dejar una copia en este directorio del archivo 
+000-default.conf en uso en la dell 6320 y que esta sirviendo un wsgi ....
+
+
+##### UT INFRA AGREGADOS PARA SERVIR DJANGO
+####  TEMA static files
+###   declaramos los Alias y habilitamos lo Directorys
+        Alias /media /home/fico/Dropbox/programacion/django/rhssp/media
+        Alias /static /home/fico/Dropbox/programacion/django/rhssp/static
+
+
+        <Directory /home/fico/Dropbox/programacion/django/rhssp/static>
+                Require all granted
+        </Directory>
+
+        <Directory /home/fico/Dropbox/programacion/django/rhssp/media>
+                Require all granted
+        </Directory>
+
+###  Seguimos ahora habilitandoel file wsgi...
+###   un directory con un File section dentro...
+
+        <Directory /home/fico/Dropbox/programacion/django/rhssp/rhssp>
+                <Files wsgi.py>
+                        Require all granted
+                </Files>
+        </Directory>
+
+###  AHORA EL WSGI PASS usando daemon mode 
+
+###  AHORA EL WSGI PASS usando daemon mode 
+
+        WSGIDaemonProcess rhssp python-path=/home/fico/Dropbox/programacion/django/rhssp
+        WSGIProcessGroup rhssp
+        WSGIScriptAlias / /home/fico/Dropbox/programacion/django/rhssp/rhssp/wsgi.py
+
+ Para que esta forma de wsgi sea serviida con apache 
+el mod_wsgi debe estar instalado y andando
+
+
+primero veamos que tiene el apache de esta maquina y que tiene el apache de la
+maquina virtual con la que trabajamos...
+
+
+

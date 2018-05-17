@@ -1228,6 +1228,107 @@ y  cuales son los modulos de laburo de consultorio externo y o practicas que se 
 
 
 
+A PARTIR DE LO HECHO Y PENSADO DE CUPORIZACION
+
+### a) OFERTAS
+Hay turnos disponibles basados en asignaciones laborales , de cons y de practicas varias 
+Esos turnos son provenientes , x cada serv y esp , de instituciones.
+el paquete ofrecido Pakof se compone , esta vinculado many to many a asignaciones laborales...
+
+--------------------------------------------------------------------------------------------------------------
+CONSTRUIDO EL PAQUETE DEL SERVICIO ESPECIALIDAD se reparte en cupos de tunros 
+
+utilizado en grupos de turnos x semana x institucion que puede tomar el turno , asignarlo a un paciente...
+
+### b) CONSUMO
+instituciones diversas reciben , de ese SERv ESP  una cantidad , cupo 
+ese cupo puede provernir de distintas institucs
+
+primero diseñar la oferta , para un mismo serv esp , 
+esto es la clase objeto 
+
+class PakOf
+
+
+------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+DESARROLLO ANALISIS DE CUPORIZACION
+
+Existen varios objetos , entes , que se vinculan...
+
+
+#1  
+un objeto virtual   PkSrvEsp
+identifica un tipo de  practica o consulta especializada 
+Esta vinculada a una disciplina principal , especialidad y o subespecialidad 
+
+vg: 
+una espirometria , una interconsulta con cardio 
+una inmunizacion antitetanica , un electrocardiograma 
+una consulta con un equipo de acto unico por patologia compleja cronica
+Por homologia con estructura de tablas sis rosario pensemos en un Servicio y dentro del mismo 
+una Especialidad
+
+------------------------------------------------------------------------------------------------
+#2
+un objeto Pakofinst 
+
+ es  un array de turnos disponibles, del mismo PKsRVeSP, DE una  institucion.
+aca se vincula a consultorios donde se realiza y quizas a jefe de servicios distintos 
+pero siempre la misma areadep 
+
+vg: 50 turnos semanales de traumato-rodilla  en el Cemar , pueden ser distintos profesionales
+horarios y consultorios.
+------------------------------------------------------------------------------------------------
+#3
+un objeto virtual  PakofRed
+
+reune varios modulos turnosdisponibles  (Pakofinst)   de muchas instituciones...
+vg:
+el Pakof de Traumato Traumato 
+o el Pakof de Neumonologia Espirometria 
+esta formado por   varios modulos  de agendas cargadas x sistema datatech y o  sisrosario 
+de varias instituciones. varios profesionales ..
+
+--------------------------------------------------------------------------------------------
+
+# 4 
+un objeto Pakcupor
+es un valor para 
+una institucion , centro de salud, hospital de segundo nivel, etc 
+con un numero de turnos disponibles prioritariamente asignables para esa institucion....
+
+-------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+MIERCOLES 16 DE MAYO 
+PAREMOS un poco con django y mysql , quye ya tenemos bastante visto cuporizacion y reemplazos y modulos y
+vamos a tema servicdor apache en maq virtual 192.168.66.136
+traumasrv.cema.salud.rosario.gov.ar
+haciendo andar un runserver desde traumasrv.cema.salud.rosario.gov.ar/home/fico/myprdjango
+con python manage.py runserver_plus 0000:8000
+las maquinas de cemar ven el serviddor 
+
+vamos por mas 
+
+referimos link a 
+
+.accservirconapache 
+en este mismo directorio...
+ver AHI
+ 
+seguimos con cuporizaciones 
+
+dos sistemas de generacion de agendas 
+datatech y sisrosario
+
+hospitales generan agenda y toman turnos con datatech
+
+cemar genera agenda y toma turnos con sis rosario
+
+centros de salud toman turnos de agendas generadas de las dos formas por sis rosario....
+
+
 
 
 

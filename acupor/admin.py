@@ -14,7 +14,7 @@ from django.contrib import messages
 from datetime import date
 
 
-from models import cuporServicio,cuporEspecialidad,Pak_of,Pak_cupo
+from models import cuporServicio,PkSrvEsp,Pak_of_inst,Pak_cupo
 
 ###para exportar a excel
 def export_as_xls(modeladmin,request,queryset):
@@ -107,28 +107,32 @@ class SiXaustrabListFilter(admin.SimpleListFilter):
         
         if self.value()=='noxaus':
             return queryset.filter(xausenciatrab__isnull=True)
-    
-        
-class cuporSrvEspAdmin(admin.ModelAdmin):
+
+       
+class PkSrvEspAdmin(admin.ModelAdmin):
     list_display = ('dqserv','nombre','codigo',)
-    fields = ('codigo','nombre',),('dqserv'),('areadep')
-    #list_editable = ('asglabs',)
-    search_fields = ('codigo',)
+    fields = ('codigo','nombre',),('dqserv'),('areadep')#    #list_editable = ('asglabs',)
+    search_fields = ('codigo','areadep__codigo')
     raw_id_fields = ('areadep','dqserv',) 
     list_filter=('areadep',)
     #date_hierarchy=('fecha_inicio')
 
+ 
 class PakofAdmin(admin.ModelAdmin):
-    list_display = ('fecha_ini','xfActivo','institucion','srvcupor','toturnos','acupturnos')
-    search_fields = ('inst__codigo','srvcupor__codigo')
+    list_display = ('activo','fecha_ini','institucion','srvcupor','turnos','acupturnos','Ofrnts')
+    search_fields = ('institucion__codigo','srvcupor__codigo')
+    #para poder poner una funcion en fields hay que ponerla en radonly_fields!!!
+    readonly_fields = ('Ofrnts',)
+    fields = ('activo','fecha_ini'),('srvcupor','sistema','institucion'),('periodo','turnos','acupturnos'),('asglabs','Ofrnts'),(),()
     raw_id_fields = ('srvcupor','asglabs') 
     date_hierarchy = ('fecha_ini')
-    list_filter = ('institucion',)  
+    list_filter = ('activo','sistema','institucion',)  
 
+#NOTESE search_field doble encadenado depak srvcupor codigo.... funciona....
 class PakcupoAdmin(admin.ModelAdmin):
-    list_display = ('fecha_ini','depak','inst','sistema','ncupo',)
-    search_fields = ('inst__codigo','depak__codigo')
-    raw_id_fields = ('depak',) 
+    list_display = ('fecha_ini','inst','depak','ncupo',)
+    search_fields = ('inst__codigo','depak__srvcupor__codigo')
+    raw_id_fields = ('depak','inst') 
     date_hierarchy = ('fecha_ini')
     list_filter = ('inst',)  
 
@@ -136,6 +140,6 @@ class PakcupoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(cuporServicio,cuporSrvAdmin)
-admin.site.register(cuporEspecialidad,cuporSrvEspAdmin)
-admin.site.register(Pak_of,PakofAdmin)
+admin.site.register(PkSrvEsp,PkSrvEspAdmin)
+admin.site.register(Pak_of_inst,PakofAdmin)
 admin.site.register(Pak_cupo,PakcupoAdmin)

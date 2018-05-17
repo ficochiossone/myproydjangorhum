@@ -520,7 +520,6 @@ class Paciente(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
     fecha_modificacion = models.DateTimeField(auto_now = True,null=True,blank=True)
     dtlocalidad = models.CharField(max_length=64,verbose_name='DTloc',blank=True,null=True)
-
     def EdadActual(self):
         #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
         if self.fecha_nacimiento:
