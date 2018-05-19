@@ -127,56 +127,26 @@ class Contrato (models.Model):
 
 class Reemplazo (models.Model):
     trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador')
-    #validado = models.BooleanField(verbose_name='Validado',default=False)
+    validado = models.BooleanField(verbose_name='Validado SRVSS',default=False)
+    msgvalidacion = models.CharField(max_length=512,null=True,blank=True,default='Valmsg..',verbose_name='Msg Revision')
     nhoras=models.IntegerField(null=True,blank=True,verbose_name='N de horas ')    
 ### se integrarra con asignaciones laborales que sohn variadas.
     asglabs=models.ManyToManyField('Asigna_lab',verbose_name = 'Modulo asignado')
     fecha_inicio = models.DateField(verbose_name='Fecha Inicio Actividad')
     # como paquete reemp es mensual se usa solo fecha ...una 
     #fecha_fin = models.DateTimeField(verbose_name='Fecha Finalizacion Actividad')
-    areadep = models.ForeignKey('entornos.Areadependencia',null=True,verbose_name='Area Responsable')
+    areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Resp Reemplazo')
     fecha_solicitud = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Solicitud')
-    
-    #data registro
     #trabajador = models.ForeignKey('Trabajador',related_name = 'TrRespSol',verbose_name='Responsable de Soliciud')   
-    usuario_registro = models.ForeignKey(to = User,null=True,blank=True, verbose_name = 'Registrado por')
     fecha_insert = models.DateField(auto_now = True)
     fecha_cobro = models.DateTimeField(null=True,blank=True,verbose_name='FechaCobro')
     #monto_cobro = models.
     comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
-    #registro_adm = models.ForeignKey(to = User, verbose_name = 'Registro X')
 
     #vamos a ver que asignaciones tiene ese reemplazo
     def InddAsgn(self):
-        print """
-
-                            def IndAsign en models.py m2m  en class Reemplazo
-
-                            
-
-                            """
-        rp= self.pk
-
-   ####  esta funcion , tiene un valor rp .pk  cuando esta modificando existetes
-   ####   hay que pararla cuando esta creando uno nuevo , no tiene id todavia ....     
-        print """
-
-                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    obt el unicode de este reemplazo es
-
-                    
-
-                    """
-
-
-        #################################ininuevo
-
+        rp=self.pk
         if rp:
-            print"""
-                    estamos en un rp existente
-                    laboramos vpara generar Indasgn
-
-                        """
             sq2="select asigna_lab_id from reemplazos_asglabs where reemplazo_id =%s"%str(rp)
             ##queaslabs==""
             curbas=connection.cursor()
@@ -196,25 +166,11 @@ class Reemplazo (models.Model):
                     cad=abinst+':'+dd+' -'
                     queaslabs+=cad
             
-            
-            
         else:
-
-            print"""
-
-                    NONE  NO HAY REGISTRO TODAVIA
-                    
-                        SIN HACER RUIDO SALIMOS..
-
-                                            """
-
 
             queaslabs=""
         return queaslabs
-    
-        
     InddAsgn.short_description ='Modulos--AsgLab'    
-            
 
     def MesDelAnio(self):
         m=self.fecha_inicio.strftime('%b')
@@ -222,19 +178,33 @@ class Reemplazo (models.Model):
         mda = m +' del '+ a
         
         return mda
-
-    MesDelAnio.short_description ='MesAño Trabajado'    
+    MesDelAnio.short_description ='PRDO TRABAJO'    
 
 
 
     def cuantosmesesatras(self):
-        
         #fecha_nula = datetime.strptime('0000-00-00', "%Y-%m-%d")
         if self.fecha_inicio:
             today = date.today()
             return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
         else:
             return "N/D"
+#funcion que ve si fue revisado por servicios de salud
+    def Revxsvs(self):
+        rp=self.pk # identificamos el reemplazo
+        lista = ""
+        if rp:
+            pakof=Pak_of_inst.objects.get(pk=rp)
+            asgofs=pakof.asglabs.all()
+            lista=""
+            for n in asgofs:
+                prof=str(n.trabajador)
+                lista+=prof+"-"          
+                           
+        return lista
+    Revxsvs.short_description = 'Rev x SS'
+
+
 
 
     def anioreemp(self):

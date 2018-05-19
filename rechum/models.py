@@ -843,6 +843,67 @@ class Ausencia_trb (models.Model):
         verbose_name_plural='Ausencias de Personal'
         verbose_name='Ausencia TRB'
 
+#
+class Registro_status(models.Model):
+    trabajador = models.ForeignKey('Trabajador',verbose_name ='Trabajador')
+    status = models.ForeignKey('Status_lab',verbose_name ='Estado Laboral registrado')
+    fecha_ini_vigencia = models.DateField(blank=True,null=True,verbose_name='Fecha Inicio Vigencia')
+    #profesion = models.ForeignKey('Profesion',verbose_name ='Profesion')
+    comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
+
+    fecha_creacion = models.DateTimeField(auto_now_add = True,null=True,blank=True)
+    usuario_registro = models.ForeignKey(to = User,null=True,blank=True, verbose_name = 'Registrado por')
+    #para usar cuando ya tenemos en otra clase el trabajador y traer solo info de cambio de estado	
+    def brevis(self):
+        nom=smart_unicode(self.trabajador)
+        pasoa = smart_unicode(self.status)
+        cod=smart_unicode(self.fecha_ini_vigencia)
+        #cod=cod.upper()
+        #nom=nom.upper()
+
+        return "%s => %s" %(cod,pasoa)
+
+
+
+
+    def __unicode__(self):
+        nom=smart_unicode(self.trabajador)
+        pasoa = smart_unicode(self.status)
+        cod=smart_unicode(self.fecha_ini_vigencia)
+        #cod=cod.upper()
+        #nom=nom.upper()
+
+        return "%s - %s => %s" %(cod,nom,pasoa)
+
+    class Meta:
+        db_table = 'registros_status'
+        verbose_name = 'Cambio Estado'
+        verbose_name_plural=' Modificaciones de Estado '
+
+#este obj es el reg de un reemplazo firmado por un responsable, areadep 
+#desde servicios.reemplazo  que es avalado por srvs salud...
+# incorpora un comentario y modificaciones ....
+
+class Registro_reemplazo(models.Model):
+    reemplazo = models.ForeignKey('servicios.Reemplazo',verbose_name ='MODULO DE REEMPLAZO')
+    msgrevision = models.TextField(null=True,blank=True,verbose_name='Revision')
+    fecha_revision = models.DateTimeField(auto_now_add = True,null=True,blank=True)
+    usuario_registro = models.ForeignKey(to = User,null=True,blank=True, verbose_name = 'Registrado por')
+    avaladoxsrvsalud = models.BooleanField(default=False,verbose_name='Aval SS')
+    #para usar cuando ya tenemos en otra clase el trabajador y traer solo info de cambio de estado	
+
+    def __unicode__(self):
+        nom=smart_unicode(self.reemplazo.trabajador.apellido)
+        pasoa = smart_unicode(self.reemplazo.asglabs)
+        cod=smart_unicode(self.fecha_revision)
+
+        return "%s - %s => %s" %(cod,nom,pasoa)
+
+    class Meta:
+        db_table = 'reemplazo_avalado'
+        verbose_name = 'Reemplazo Revisado'
+        verbose_name_plural='Revision Reemplazos'
+
 
 
 # aca vendrian class Contrato 

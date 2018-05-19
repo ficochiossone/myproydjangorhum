@@ -162,17 +162,17 @@ class Asigna_labAdmin(admin.ModelAdmin):
 class AsgInline(admin.StackedInline):
     model = Reemplazo.asglabs.through
 class ReemplazoAdmin(admin.ModelAdmin):
-    inlines = [AsgInline]
+#    inlines = [AsgInline]
     readonly_fields = ('InddAsgn','MesDelAnio')
-    list_display = ('trabajador','MesDelAnio','nhoras','InddAsgn',)
-    fields = (('trabajador','MesDelAnio','nhoras',),('fecha_inicio','areadep')
-              ,('asglabs'),('InddAsgn',),('comentarios'),'usuario_registro')
+    list_display = ('areadep','trabajador','MesDelAnio','nhoras','validado','InddAsgn',)
+    fields = (('trabajador','MesDelAnio'),('nhoras','validado'),('msgvalidacion'),('fecha_inicio','areadep')
+              ,('asglabs'),('InddAsgn',),('comentarios'))
     #list_editable = ('asglabs',)
-    search_fields = ('trabajador__apellido',)
+    search_fields = ('trabajador__apellido','areadep__codigo')
     raw_id_fields = ('trabajador','asglabs',) 
-    list_filter=('trabajador__profesion','trabajador__especialidad_1')
+    list_filter=('validado','trabajador__profesion','areadep','trabajador__especialidad_1')
     date_hierarchy=('fecha_inicio')
-
+    actions = [export_as_xls]
 
 
 

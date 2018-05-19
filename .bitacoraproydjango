@@ -1328,6 +1328,35 @@ cemar genera agenda y toma turnos con sis rosario
 
 centros de salud toman turnos de agendas generadas de las dos formas por sis rosario....
 
+VIERNES MAYO 17
+TRABAJAO CON MARIANA S SS 
+tema reemplazos
+tilde de visado p facturacion
+agregar a modelo reemplazos
+:
+kPAKETE REEMPLAZO
+que viene de cada areadep 
+y en servs mariana los junta
+
+tiene que ser una sumatoria de areas de dep.
+
+DE AHI ME FUI A ROQUE SAENZ PEÑA 
+mostre acupor a ines gaona , bien ...
+hable de tema reemplazos con yanina jefa personal..
+bien...gusta idea de achicar papeles 
+
+ahora moche funes viernes modificando 
+models reemplazos , forzando que se ponga areadep 
+osea que cada hospital se reponsabilize de la carga de los reemplazos 
+
+agregamos una tabla en rechum que es revision de reemplazo 
+
+ahi se le visa el reemplazo solicitado por el areadep....
+y se agregan comentarios ...
+
+
+en admin se reflejara en una funcion del model reemplazo que 
+revisa si fue visto y cargado en model revision reemplazo....
 
 
 

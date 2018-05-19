@@ -127,7 +127,7 @@ class PakofAdmin(admin.ModelAdmin):
     raw_id_fields = ('srvcupor','asglabs') 
     date_hierarchy = ('fecha_ini')
     list_filter = ('activo','sistema','institucion',)  
-
+    actions = [export_as_xls]
 #NOTESE search_field doble encadenado depak srvcupor codigo.... funciona....
 class PakcupoAdmin(admin.ModelAdmin):
     list_display = ('fecha_ini','inst','depak','ncupo',)
@@ -135,7 +135,7 @@ class PakcupoAdmin(admin.ModelAdmin):
     raw_id_fields = ('depak','inst') 
     date_hierarchy = ('fecha_ini')
     list_filter = ('inst',)  
-
+    actions = [export_as_xls]
 
 
 

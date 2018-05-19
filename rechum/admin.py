@@ -15,7 +15,7 @@ from models import Registro_especialidad,DispoDesiDec
 from models import Junta_medica,Tarea_diferente
 from models import Solic_modif_trb,Resultado_junta
 from models import Registro_status
-from models import Ausencia_trb
+from models import Ausencia_trb,Registro_reemplazo
 
 
 from entornos.models import Func_grl
@@ -160,6 +160,17 @@ class AustAdmin(admin.ModelAdmin):
 	list_filter = ('tipo_ausencia','areadep','institucion')
 	ordering = ('trabajador_ausente__apellido',)
 
+class RevReempAdmin(admin.ModelAdmin):
+	list_display = ('fecha_revision','avaladoxsrvsalud','reemplazo','msgrevision')
+	search_fields = ('reemplazo__areadep__codigo',)
+	#fields = (('fecha_solicitud','trb'),(),('areadep','institucion'),('motivo','tipo'),(),(),('comentarios'))
+	raw_id_fields = ('reemplazo',)
+	date_hierarchy = 'fecha_revision'
+	#list_filter = ('tipo','institucion','areadep')
+	actions = [export_as_xls]
+
+
+admin.site.register(Registro_reemplazo,RevReempAdmin)
 admin.site.register(Ausencia_trb,AustAdmin)
 admin.site.register(Registro_status,RegstatusAdmin)
 admin.site.register(DispoDesiDec,DispoAdmin)
