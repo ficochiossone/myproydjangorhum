@@ -163,13 +163,13 @@ class AsgInline(admin.StackedInline):
     model = Reemplazo.asglabs.through
 class ReemplazoAdmin(admin.ModelAdmin):
 #    inlines = [AsgInline]
-    readonly_fields = ('InddAsgn','MesDelAnio')
+    readonly_fields = ('InddAsgn','MesDelAnio','Trbs_remps')
     list_display = ('areadep','trabajador','MesDelAnio','nhoras','validado','InddAsgn',)
-    fields = (('trabajador','MesDelAnio'),('nhoras','validado'),('msgvalidacion'),('fecha_inicio','areadep')
+    fields = (('trabajador','MesDelAnio'),('nhoras','validado'),('msgvalidacion'),('trbs_reemp','Trbs_remps'),('fecha_inicio','areadep')
               ,('asglabs'),('InddAsgn',),('comentarios'))
     #list_editable = ('asglabs',)
     search_fields = ('trabajador__apellido','areadep__codigo')
-    raw_id_fields = ('trabajador','asglabs',) 
+    raw_id_fields = ('trabajador','asglabs','trbs_reemp') 
     list_filter=('validado','trabajador__profesion','areadep','trabajador__especialidad_1')
     date_hierarchy=('fecha_inicio')
     actions = [export_as_xls]

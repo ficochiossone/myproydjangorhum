@@ -127,7 +127,7 @@ class Contrato (models.Model):
 
 class Reemplazo (models.Model):
     trabajador = models.ForeignKey('rechum.Trabajador',verbose_name='Trabajador')
-    validado = models.BooleanField(verbose_name='Validado SRVSS',default=False)
+    validado = models.BooleanField(verbose_name='Visto SRS',default=False)
     msgvalidacion = models.CharField(max_length=512,null=True,blank=True,default='Valmsg..',verbose_name='Msg Revision')
     nhoras=models.IntegerField(null=True,blank=True,verbose_name='N de horas ')    
 ### se integrarra con asignaciones laborales que sohn variadas.
@@ -137,7 +137,7 @@ class Reemplazo (models.Model):
     #fecha_fin = models.DateTimeField(verbose_name='Fecha Finalizacion Actividad')
     areadep = models.ForeignKey('entornos.Areadependencia',verbose_name='Resp Reemplazo')
     fecha_solicitud = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Solicitud')
-    #trabajador = models.ForeignKey('Trabajador',related_name = 'TrRespSol',verbose_name='Responsable de Soliciud')   
+    trbs_reemp = models.ManyToManyField('rechum.Trabajador',blank=True,related_name = 'TrReemps',verbose_name='Reemplazados')   
     fecha_insert = models.DateField(auto_now = True)
     fecha_cobro = models.DateTimeField(null=True,blank=True,verbose_name='FechaCobro')
     #monto_cobro = models.
@@ -205,8 +205,19 @@ class Reemplazo (models.Model):
     Revxsvs.short_description = 'Rev x SS'
 
 
-
-
+    def Trbs_remps(self):
+        rp=self.pk
+        if rp:
+            if self.trbs_reemp:
+                todos=self.trbs_reemp.all()
+                lista='' 
+                for n in todos:
+                    lista+=n.apellido.title()+'-'
+            else:
+                lista='N-R'
+        return lista
+    Trbs_remps.short_description = 'RMPLZDOS'      
+         
     def anioreemp(self):
         anio=self.fecha_inicio.strftime("%Y")
         return anio

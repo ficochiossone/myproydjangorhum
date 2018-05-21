@@ -190,7 +190,8 @@ class Trabajador(models.Model):
         nom=nom.upper()
         lennom=len(nom)
         nf=lennom-3
-        nom=nom[:5]	
+        nom=nom[:5]
+        prof=prof[:3]     	
         return "%s  %s-- (%s_%s)" % (ape,nom,prof,sp1)
 ## otra func para props del trabajador
 
