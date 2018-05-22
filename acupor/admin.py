@@ -132,6 +132,8 @@ class PakofAdmin(admin.ModelAdmin):
 class PakcupoAdmin(admin.ModelAdmin):
     list_display = ('fecha_ini','inst','depak','ncupo',)
     search_fields = ('inst__codigo','depak__srvcupor__codigo')
+    readonly_fields = ('Qofrnts','AtendEn')
+    fields = (('fecha_ini','inst'),('depak','ncupo','periodo'),(),('AtendEn'),('Qofrnts'),('comentarios'))
     raw_id_fields = ('depak','inst') 
     date_hierarchy = ('fecha_ini')
     list_filter = ('inst',)  
