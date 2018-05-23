@@ -12,13 +12,6 @@ from django.contrib.auth.models import User
 from datetime import datetime, date
 from django.contrib.contenttypes.models import ContentType
 
-class Servicio(models.Model):
-    nombre = models.CharField(max_length=32)
-    codigo = models.CharField(max_length=8)
-    descripcion = models.TextField()
-
-    class Meta:
-	db_table = 'zcons_servicios'
 
 
 class Especialidad(models.Model):
@@ -28,6 +21,16 @@ class Especialidad(models.Model):
     class Meta:
 	db_table = 'zcons_especialidades'
 
+
+class Obrasocial(models.Model):
+    nombre = models.CharField(max_length=32)
+    codigo = models.CharField(max_length=8)
+
+    class Meta:
+	db_table = 'zcons_obscs'
+
+
+
 class Profesional(models.Model):
     matricula = models.CharField(max_length=16,blank=True,null=True)
     apellido = models.CharField(max_length=128)
@@ -35,14 +38,14 @@ class Profesional(models.Model):
     tipodoc = models.CharField(max_length=5)
     nrodoc = models.IntegerField()
     nacionalidad = models.ForeignKey('Nacionalidad',null=True)
-    hospital = models.ForeignKey('Institucion',null=True,blank=True,verbose_name='Referencia Institucional')
+#    hospital = models.ForeignKey('Institucion',null=True,blank=True,verbose_name='Referencia Institucional')
     grupo = models.ForeignKey('Grupo',null=True,blank=True,verbose_name='Grupo Prof')
-    csr = models.ForeignKey('Centrosalud',blank=True,null=True)
+    #csr = models.ForeignKey('Centrosalud',blank=True,null=True)
 #    grupotpt = models.ForeignKey('Grupoterapeutico',blank=True,null=True)
-    delared = models.BooleanField(default=True,verbose_name='Revista en la Red')
-    cargahs = models.IntegerField(null=True,blank=True,verbose_name='Horas Semanales en Inst Ref')
+#    delared = models.BooleanField(default=True,verbose_name='Revista en la Red')
+#    cargahs = models.IntegerField(null=True,blank=True,verbose_name='Horas Semanales en Inst Ref')
     especialidad = models.ForeignKey('Especialidad',null=True)
-    categoria = models.ForeignKey('Categorizacion',null=True,blank=True,verbose_name='Categoria Profesional')   
+#    categoria = models.ForeignKey('Categorizacion',null=True,blank=True,verbose_name='Categoria Profesional')   
     domicilio = models.CharField(max_length=128, null=True, blank=True)
     telefono = models.CharField(max_length=16, null=True, blank=True)
     celular = models.CharField(max_length=16, blank=True)
@@ -50,7 +53,7 @@ class Profesional(models.Model):
     cuit = models.CharField(max_length=16,null=True,blank=True)
     activo = models.BooleanField(default=True)
     tipo = models.CharField(max_length=2,blank=True)
-    dtid=models.IntegerField(null=True,blank=True,editable=False)
+#    dtid=models.IntegerField(null=True,blank=True,editable=False)
     comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
 
     class Meta:
@@ -120,6 +123,39 @@ class Internacion(models.Model):
     class Meta:
 	db_table = 'zcons_internaciones'
 
+class Consulta(models.Model):
+    TIPOVEZ = (('NDTM', 'no determinado'),
+                       ('PRV', 'Primera Vez'),
+                       ('ULT', 'Ulterior'),)
+
+    institucion = models.ForeignKey('Institucion',verbose_name='Institucion',default=1)
+    obra_social = models.ForeignKey('Obscl',verbose_name='Obra Social',blank=True,null=True)  
+    #internacion = models.ForeignKey('Internacion',blank=True,null=True,verbose_name='Cons en Internacion')
+    #quirofano = models.CharField(max_length=4,verbose_name='QUIROFANO',blank=True,null=True)
+    fecha_consulta = models.DateField(verbose_name='Fecha de Consulta')
+    hora_consulta = models.TimeField(blank=True,null=True)
+    #hora_fin_cirugia = models.TimeField(blank=True,null=True)
+    paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
+    #clavecirugia = models.CharField(max_length=48,verbose_name='ClaveQ',default='cirugia')
+    tipo = models.CharField(choices=TIPOVEZ,default='PRV',max_length=4,null=True,blank=True)
+    prof = models.ForeignKey('Profesional',related_name='pcirujano',verbose_name='Cirujano')
+    #payudante = models.ForeignKey('Profesional',related_name='ayudante',verbose_name='Ayudante 1',null=True,blank = True)
+    interconsultante = models.ForeignKey('Profesional',null=True,blank=True,related_name='sayudante',verbose_name='PEDIDA X')
+    #anestesista = models.ForeignKey('Profesional',related_name='anestesista')
+    informe = models.TextField(default='Comentarios...',verbose_name='Texto Consulta')
+    diagnostico_principal = models.ForeignKey('Diagnostico',related_name='diagnosticoP')
+    diagnostico_B = models.ForeignKey('Diagnostico',related_name='diagnosticoB',blank=True,null=True)
+    diagnostico_C = models.ForeignKey('Diagnostico',related_name='diagnosticoC',blank=True,null=True)
+    diagnostico_D = models.ForeignKey('Diagnostico',related_name='diagnosticoD',blank=True,null=True)
+    practica_principal = models.ForeignKey('PracticaQ',related_name='practicaP',blank=True,null=True)
+    practica_B = models.ForeignKey('PracticaQ',related_name='practicaB',blank=True,null=True)
+    practica_C = models.ForeignKey('PracticaQ',related_name='practicaC',blank=True,null=True)
+    practica_D = models.ForeignKey('PracticaQ',related_name='practicaD',blank=True,null=True)
+    #implante_a = models.ForeignKey('ItemLic_solicitado',related_name='ItsA',blank=True,null=True,db_column='implante_a',verbose_name="ITLICA")
+
+    class Meta:
+	db_table = 'zcons_cirugias'
+
 
 class Cirugia(models.Model):
     PROBLEMATICA = (('NDTM', 'no determinado'),
@@ -128,14 +164,14 @@ class Cirugia(models.Model):
     hospital = models.ForeignKey('Institucion',verbose_name='Institucion',default=1)
     servicio = models.ForeignKey('Servicio',verbose_name='ServicioQ',blank=True,null=True)  
     internacion = models.ForeignKey('Internacion',blank=True,null=True)
-    quirofano = models.CharField(max_length=4,verbose_name='QUIROFANO',blank=True,null=True)
-    fecha_cirugia = models.DateField()
-    hora_ini_cirugia = models.TimeField(blank=True,null=True)
-    hora_fin_cirugia = models.TimeField(blank=True,null=True)
+    #quirofano = models.CharField(max_length=4,verbose_name='QUIROFANO',blank=True,null=True)
+    fecha_consulta = models.DateField()
+    hora_consulta = models.TimeField(blank=True,null=True)
+    #hora_fin_cirugia = models.TimeField(blank=True,null=True)
     paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
-    clavecirugia = models.CharField(max_length=48,verbose_name='ClaveQ',default='cirugia')
+    #clavecirugia = models.CharField(max_length=48,verbose_name='ClaveQ',default='cirugia')
     tipo = models.CharField(choices=PROBLEMATICA,max_length=4,null=True,blank=True)
-    cirujano = models.ForeignKey('Profesional',related_name='pcirujano',verbose_name='Cirujano')
+    consultado = models.ForeignKey('Profesional',related_name='pcirujano',verbose_name='Cirujano')
     payudante = models.ForeignKey('Profesional',related_name='ayudante',verbose_name='Ayudante 1',null=True,blank = True)
     sayudante = models.ForeignKey('Profesional',null=True,blank=True,related_name='sayudante',verbose_name='Ayudante2')
     anestesista = models.ForeignKey('Profesional',related_name='anestesista')
@@ -635,7 +671,7 @@ class Camas(models.Model):
     nombre = models.CharField(max_length=80)
  
     class Meta:
-	db_table = "oytred_camas"
+	db_table = "zcons_camas"
 
 class Lista_de_espera(models.Model):
     ###timestamp = models.DateTimeField(auto_now_add=True)
@@ -650,7 +686,7 @@ class Lista_de_espera(models.Model):
     payudante = models.ForeignKey('Profesional',related_name='lepay',verbose_name='Residente',null=True,blank = True)
 
     class Meta:
-	db_table = "oytred_listas_de_espera"
+	db_table = "zcons_listas_de_espera"
 
 ##class MultimediaInternacion(models.Model):
 ##    archivo = models.CharField(max_length=255)

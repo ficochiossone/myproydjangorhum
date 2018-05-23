@@ -507,8 +507,9 @@ class Guardia(models.Model):
     espec = models.ForeignKey('entornos.Especialidad',blank=True,null=True,verbose_name='Esp')
     fecha_inicio = models.DateTimeField(default=default_hora_ini,verbose_name='Fecha Inicio Actividad')
     fecha_fin = models.DateTimeField(blank=True,null=True,verbose_name='Fecha Fin Actividad')
-    #hora_inicio = models.TimeField(verbose_name='Fecha Inicio Actividad')
+    hora_inicio = models.TimeField(verbose_name='HORA INICIO')
     #hora_fin = models.TimeField(blank=True,null=True,verbose_name='Fecha Fin Actividad')
+    duracionhs = models.IntegerField(default=24,verbose_name='N hS')
     comentarios = models.TextField(max_length=128, null=True, blank=True)
 
     #### Vinculo a ver si es x ausencia especifica de alguien 

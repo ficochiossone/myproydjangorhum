@@ -92,9 +92,16 @@ voy a poner ut infra algunas lineas de ese archivo y dejar una copia en este dir
  Para que esta forma de wsgi sea serviida con apache 
 el mod_wsgi debe estar instalado y andando
 
+---------------------------------------------------------------------------------
+hoy  
+martes 22 de mayo 2018
 
 primero veamos que tiene el apache de esta maquina y que tiene el apache de la
 maquina virtual con la que trabajamos...
+
+veamos la maquina virtual que tenemos a disposicion
+el traumasrv.cema.salud.rosario.gov.ar
+
 
 
 

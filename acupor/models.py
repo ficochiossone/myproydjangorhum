@@ -94,8 +94,18 @@ class Pak_of_inst(models.Model):
         return lista
     Ofrnts.short_description = 'Profesionales'
 
+### una funcion para calcular estado actual de cuporizacion de ese paquete...
+    def StatusPakof(self):
+        rp=self.pk
+        if rp:
+            pakof=Pak_of_inst.objects.get(pk=rp)
 
- 
+        return status
+    StatusPakof.short_description = 'Estado cuprz paquete'
+
+
+
+
     def __unicode__(self):
         #print "-tien que tener total cupos disp  institucion y especialidad--"
         ins=self.institucion.codigo
