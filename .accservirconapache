@@ -101,6 +101,52 @@ maquina virtual con la que trabajamos...
 
 veamos la maquina virtual que tenemos a disposicion
 el traumasrv.cema.salud.rosario.gov.ar
+---------------------------------------------------------------------------
+
+23 DE MAYO frente al nodo rioja y laprida
+TOMADDO DE 
+
+
+
+---------------------------------------------------------------------------
+
+23 DE MAYO frente al nodo rioja y laprida
+TOMADDO DE 
+www.digitalocean.com/community/tutorials
+
+instalacion de pip   apache y mod_wsgi
+
+primero veamos que hay instalado en sistema de esta notebook dell latitude 6320
+en la cual tengo instalado prevs. un apache sirviendo via wsgi un django project
+
+
+le pido un listado de modulos habilitados en mi debian,,
+
+
+fico@dell6320:~/myprojdjango$ ls /etc/apache2/mods-enabled/
+access_compat.load  authz_host.load  dir.load          negotiation.conf  setenvif.load
+alias.conf          authz_user.load  env.load          negotiation.load  status.conf
+alias.load          autoindex.conf   filter.load       php5.conf         status.load
+auth_basic.load     autoindex.load   mime.conf         php5.load         wsgi.conf
+authn_core.load     deflate.conf     mime.load         reqtimeout.conf   wsgi.load
+authn_file.load     deflate.load     mpm_prefork.conf  reqtimeout.load
+authz_core.load     dir.conf         mpm_prefork.load  setenvif.conf
+fico@dell6320:~/myprojdjango$ 
+ 
+aparentemente la presencia en mods-enabled de wsgi.conf y wsgi.load es lo que habilita el func,
+
+tomado de 
+http://www.ducea.com/2006/05/30/managing-apache2-modules-the-debian-way/
+ en debian por defecto se habilitan pocos modulos...
+
+
+apache nos provee de herramientas a2enmod
+
+similar a a2ensite
+
+
+
+
 
 
 

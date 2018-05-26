@@ -150,8 +150,8 @@ class Asigna_labAdmin(admin.ModelAdmin):
     #inlines = [DdsInline]
     exclude = ['servicio']
     actions = [export_as_xls]
-    search_fields = ('trabajador__apellido',)
-    list_filter=('activo','institucion','trabajador__especialidad_1','funcion',SiXaustrabListFilter,'areadep','trabajador__mr_statuslab','profesion')
+    search_fields = ('trabajador__apellido','institucion__codigo',)
+    list_filter=('activo',SiXaustrabListFilter,'institucion','trabajador__especialidad_1','funcion','areadep','trabajador__mr_statuslab','profesion')
 #    list_filter=('activo','funcion','trabajador__mr_statuslab','trabajador__especialidad_1','institucion')
     date_hierarchy=('fecha_inicio')
 

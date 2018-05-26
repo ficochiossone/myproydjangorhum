@@ -157,7 +157,8 @@ class Pak_cupo(models.Model):
 
     def Qofrnts(self):
         rp=self.pk
-        print rp
+        print " el pk del es %s"%str(rp)
+        ofs = "  ....     ....  "
         if rp:
             #definimos el pakofinstdelque viene esta instancia de pakcupo
             estecupo=Pak_cupo.objects.get(pk=rp)
@@ -169,13 +170,24 @@ class Pak_cupo(models.Model):
 
     def AtendEn(self):
         rp=self.pk
+        print "En AtendEn el pk es %s"%rp
+        cadd ="-..Revisando datos.  ... ....-"
+        #print cadd
         if rp:
             este=Pak_cupo.objects.get(pk=rp)
             ddson = este.inst.nombre
             ddvan = este.depak.institucion
             qsrvesp = este.depak.srvcupor.nombre
+            #print "llego a qsrvesp %s"%qsrvesp
+            totdesepak = este.depak.turnos
+            totacupor = str(este.depak.acupturnos)
+            #print totdesepak
             cntos = str(este.ncupo)
-            cadd = "Del - %s - tomaran %s TURNOS de - %s - En %s"%(ddson,cntos,qsrvesp,ddvan)
+            cadd = " %s  DISPONE %s Turnos %s - EN %s-(tot %s-cups %s)-"%(ddson,cntos,qsrvesp,ddvan,totdesepak,totacupor)
+            print cadd
+        else:
+            print "No hay rp "
+            print rp  
         return cadd
 
     AtendEn.short_description = 'Derivacion Turnos'

@@ -130,7 +130,7 @@ class PakofAdmin(admin.ModelAdmin):
     actions = [export_as_xls]
 #NOTESE search_field doble encadenado depak srvcupor codigo.... funciona....
 class PakcupoAdmin(admin.ModelAdmin):
-    list_display = ('fecha_ini','inst','depak','ncupo',)
+    list_display = ('fecha_ini','inst','depak','ncupo','AtendEn')
     search_fields = ('inst__codigo','depak__srvcupor__codigo')
     readonly_fields = ('Qofrnts','AtendEn')
     fields = (('fecha_ini','inst'),('depak','ncupo','periodo'),(),('AtendEn'),('Qofrnts'),('comentarios'))
