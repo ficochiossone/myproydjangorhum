@@ -123,20 +123,20 @@ class PakofAdmin(admin.ModelAdmin):
     search_fields = ('institucion__codigo','srvcupor__codigo')
     #para poder poner una funcion en fields hay que ponerla en radonly_fields!!!
     readonly_fields = ('Ofrnts',)
-    fields = ('activo','fecha_ini'),('srvcupor','sistema','institucion'),('periodo','turnos','acupturnos'),('asglabs','Ofrnts'),(),()
+    fields = ('activo','fecha_ini'),('srvcupor','sistema','institucion'),('periodo','turnos','acupturnos'),('asglabs','Ofrnts'),(),('comentarios')
     raw_id_fields = ('srvcupor','asglabs') 
     date_hierarchy = ('fecha_ini')
     list_filter = ('activo','sistema','institucion',)  
     actions = [export_as_xls]
 #NOTESE search_field doble encadenado depak srvcupor codigo.... funciona....
 class PakcupoAdmin(admin.ModelAdmin):
-    list_display = ('fecha_ini','inst','depak','ncupo','AtendEn')
+    list_display = ('fecha_ini','inst','depak','vistoxdcs','ncupo','AtendEn')
     search_fields = ('inst__codigo','depak__srvcupor__codigo')
     readonly_fields = ('Qofrnts','AtendEn')
-    fields = (('fecha_ini','inst'),('depak','ncupo','periodo'),(),('AtendEn'),('Qofrnts'),('comentarios'))
+    fields = (('fecha_ini','inst'),('vistoxdcs'),('depak','ncupo','periodo'),(),('AtendEn'),('Qofrnts'),('comentarios'))
     raw_id_fields = ('depak','inst') 
     date_hierarchy = ('fecha_ini')
-    list_filter = ('inst',)  
+    list_filter = ('vistoxdcs','inst',)  
     actions = [export_as_xls]
 
 

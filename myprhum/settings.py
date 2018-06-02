@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 #		'django.contrib.flatpages',
 #    aplicaciones para admin...
-		'servicios','entornos','rechum','oytred','libronacs','acupor'
+		'servicios','entornos','rechum','oytred','libronacs','acupor','zcons'
 ]
 
 MIDDLEWARE = [
@@ -119,8 +119,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
-
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

@@ -206,6 +206,7 @@ class Reemplazo (models.Model):
 
 
     def Trbs_remps(self):
+        lista=" - EDefTrbs_renps - "
         rp=self.pk
         if rp:
             if self.trbs_reemp:

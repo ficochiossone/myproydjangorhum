@@ -137,7 +137,7 @@ class DdsInline(admin.TabularInline):
     
 class Asigna_labAdmin(admin.ModelAdmin):
 
-    list_display = ('trabajador','institucion','funcion','Inddsem','horasxdia','esxausencia','xausenciatrab')
+    list_display = ('trabajador','institucion','funcion','Inddsem','horasxdia','fecha_inicio','esxausencia','xausenciatrab','areadep')
     readonly_fields=('Inddsem',)
     list_display_editable = ('trabajador','institucion','funcion',)
     fields = [('activo','dependencia'),('trabajador','institucion','funcion'),('areadep'),
@@ -161,10 +161,11 @@ class Asigna_labAdmin(admin.ModelAdmin):
 #notese en ReemplazoAdmin el inline...
 class AsgInline(admin.StackedInline):
     model = Reemplazo.asglabs.through
+
 class ReemplazoAdmin(admin.ModelAdmin):
 #    inlines = [AsgInline]
     readonly_fields = ('InddAsgn','MesDelAnio','Trbs_remps')
-    list_display = ('areadep','trabajador','MesDelAnio','nhoras','validado','InddAsgn',)
+    list_display = ('areadep','validado','trabajador','MesDelAnio','nhoras','Trbs_remps','InddAsgn',)
     fields = (('trabajador','MesDelAnio'),('nhoras','validado'),('msgvalidacion'),('trbs_reemp','Trbs_remps'),('fecha_inicio','areadep')
               ,('asglabs'),('InddAsgn',),('comentarios'))
     #list_editable = ('asglabs',)

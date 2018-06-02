@@ -132,7 +132,7 @@ class Pak_cupo(models.Model):
                        (u'QNCNL', u'Quincenal'),
                        (u'MNSL', u'Mensual'),
                        (u'OTROS',u'OTROS'))
-
+    vistoxdcs = models.NullBooleanField(null=True,blank=True,default=False,verbose_name = 'Visto X DCS')
     inst = models.ForeignKey('entornos.Institucion',verbose_name='INST ADJUDICADA')
     depak = models.ForeignKey('Pak_of_inst',verbose_name='Origen Turnos')
     #nturnos = models.IntegerField(default=1,verbose_name='TotalTurnos')
