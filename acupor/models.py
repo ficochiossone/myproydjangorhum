@@ -10,6 +10,12 @@ from django.contrib.contenttypes.models import ContentType
 ### removed deprecated --> from django.contrib.contenttypes import generic
 from django.utils.encoding import smart_unicode, smart_str
 
+def diayhora():
+    dyh=datetime.now()
+    dyh=dyh.strftime('%a %d de %B de %Y - %H:%M')    
+    return str(dyh)
+ 
+
 # Create your models here.
 ## esta clase , vinc a uso de sistemas viejos dttech y sis rosario mezcla conceptos
 ## vg un servicio podria ser trumatologia o enfermeria
@@ -74,7 +80,7 @@ class Pak_of_inst(models.Model):
     acupturnos = models.IntegerField(default = 80,verbose_name='Dispo x CUP')
     asglabs = models.ManyToManyField('servicios.Asigna_lab',verbose_name = 'Modulos Asignados')
     fecha_fin = models.DateField(null=True,blank=True,verbose_name='Fin de Validez')
-    comentarios = models.CharField(max_length=369,default='Comentarios',verbose_name='Comentarios')
+    comentarios = models.CharField(max_length=369,default=diayhora,verbose_name='Comentarios')
 
 # una funcion para obtener un campo que muestre las asignaciones laborales vinculadas 
 # a este pakete ofrecido..  vinculamos tablas  en tabla mixta many to many

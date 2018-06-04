@@ -15,7 +15,7 @@ from django.contrib.contenttypes.models import ContentType
 #horahoy=datetime.date.now()
 #diadehoy=datetime.date.today()
 def diayhora():
-    dyh=datetime.datetime.now()
+    dyh=datetime.now()
     dyh=dyh.strftime('%a %d de %B de %Y - %H:%M')    
     return str(dyh)
  
@@ -49,7 +49,7 @@ class Profesional(models.Model):
 #    grupotpt = models.ForeignKey('Grupoterapeutico',blank=True,null=True)
 #    delared = models.BooleanField(default=True,verbose_name='Revista en la Red')
 #    cargahs = models.IntegerField(null=True,blank=True,verbose_name='Horas Semanales en Inst Ref')
-    especialidad = models.ManyToManyField('Especialidad',null=True,blank=True,verbose_name='Especialidad')
+    especialidad = models.ManyToManyField('Especialidad',blank=True,verbose_name='Especialidad')
     etiqueta= models.CharField(max_length=128,null=True,blank=True,default='Etiq..',verbose_name='Etiqueta')
     domicilio = models.CharField(max_length=128, null=True, blank=True,verbose_name = 'Domicilio')
     telefono = models.CharField(max_length=52, null=True, blank=True,verbose_name = 'Telefonos')
@@ -625,6 +625,13 @@ class PracticaQ(models.Model):
     descripcion = models.CharField(max_length=128)
     codigo = models.CharField(max_length=8)
     #descripcion = models.CharField(max_length=128)
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
 
     class Meta:
         db_table = 'zcons_practicas'
@@ -647,6 +654,13 @@ class cie10(models.Model):
     codigo = models.CharField(default='ABC1234',max_length=10)
     comentarios = models.CharField(max_length=128,null=True,blank=True)
     habilitado = models.NullBooleanField(default=False,verbose_name = 'Habilitado')
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
 
     class Meta:
         db_table = 'zcons_cie10'
@@ -655,6 +669,13 @@ class cie10(models.Model):
 class Localidad(models.Model):
     nombre = models.CharField(max_length=64)
     codigo = models.IntegerField()
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
 
     class Meta:
         db_table = 'zcons_localidades'
@@ -681,12 +702,19 @@ class Sala(models.Model):
     orden = models.IntegerField()
 
     class Meta:
-        db_table = "oytred_salas"
+        db_table = "zcons_salas"
 
 class Camas(models.Model):
     sala = models.ForeignKey('Sala')
     nombre = models.CharField(max_length=80)
- 
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+
     class Meta:
         db_table = "zcons_camas"
 
@@ -742,7 +770,99 @@ class Caso_pendiente(models.Model):
     def devInternaciones(self):
         i = Internacion.objects.filter(paciente__id=self.paciente.id)
         return i	
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
 
     class Meta:
         db_table = 'zcons_casos_pendientes'
+### ampollas supositorios comprimidos capsulas 
+class Presentacion():
+    nombre=models.CharField(max_length=32,verbose_name = 'Nombre Presntcn')
+    codigo=models.CharField(max_length=16)
+
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        verbose_name_plural = 'Presentaciones FRM'
+        verbose_name = 'Presentacion'
+        db_table = 'zcons_presentaciones'
+        ordering = ['nombre']
+
+
+## amicacina  escopolamina  solucion fisiologica   
+class Droga(models.Model):
+    nombre = models.CharField(max_length=32)
+    codigo = models.CharField(max_length=16)
+ 
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        verbose_name_plural = 'Drogas'
+        verbose_name = 'Droga'
+        db_table = 'zcons_drogas'
+        ordering = ['nombre']
+
+
+
+
+class Medicacion(models.Model):
+    nombre = models.CharField(max_length=36)
+    descripcion = models.CharField(max_length=124)
+    drogas = models.ManyToManyField('Droga',blank=True,verbose_name='Componente')
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        verbose_name_plural = 'Medicaciones'
+        verbose_name = 'Medicacion'
+        db_table = 'zcons_medicacionesbs'
+        ordering = ['nombre']
+
+
+
+class Prescripcion():
+    paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
+    profesional = models.ForeignKey('Profesional',verbose_name = 'Profesional')
+    droga = models.ForeignKey('Droga',verbose_name='Droga')
+    medicacion = models.ForeignKey('Medicacion',verbose_name = 'Medicamento')
+    forma = models.ForeignKey('Presentacion',verbose_name = 'Presentacion')
+    dosis = models.CharField(max_length=124,default = '1 ampolla...1 comprimido ...250 mg')
+    ndosis = models.IntegerField(default=1,verbose_name='Numero total')
+    periodo = models.IntegerField(default=8,verbose_name = 'Periodo en Horas')
+    fecha_ini = models.DateField(default=datetime.now,verbose_name = 'Inicio medicacion')
+    fecha_ini = models.DateField(default=datetime.today,verbose_name = 'Fin medicacion')
+    detalle = models.CharField(max_length=512,default='D',verbose_name = 'Detalle prescripcion.....')
+    #lapso = models.ForeignKey()
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        verbose_name_plural = 'Prescripciones'
+        verbose_name = 'Prescripcion'
+        db_table = 'zcons_prescripciones'
+        ordering = ['nombre']
+
 
