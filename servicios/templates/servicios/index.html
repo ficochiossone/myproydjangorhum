@@ -1,0 +1,13 @@
+<p>  LISTADO DE SERVICIOS OFRECIDOS A CUPORIZACION  </p>
+
+
+{% if esp_list %}
+    <ul>
+    {% for pak in esp_list %}
+        <li><a href="/servicio/{{ pak.id }}/" > {{pak.srvcupor.nombre }} {{ pak.institucion.codigo }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p> NO HAY REGISTROS      </p>
+{% endif %}
+
