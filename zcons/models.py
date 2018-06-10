@@ -123,7 +123,7 @@ class Reg_variable(models.Model):
 
     class Meta:
         db_table = 'zcons_reg_vrbles'
-        ordering = ['fecha',]
+        ordering = ['paciente__apellido',]
         verbose_name = 'Registro VRB'
         verbose_name_plural = 'RegsV'
  
@@ -202,13 +202,13 @@ class Consulta(models.Model):
 
     class Meta:
         db_table = 'zcons_consultas'
-        ordering = ['nombre',]
-        verbose_name = 'Internacion'
+        ordering = ['paciente__apellido',]
+        verbose_name = 'Consulta'
  
 
 # Indicacion de varioos examenes  para solicitud de examen quizas pdf que se imprima... a futuro
 class Solic_labs(models.Model):
-    fecha=DateField(verbose_name='Fecha Solicitud') 
+    fecha=models.DateField(verbose_name='Fecha Solicitud') 
     profesional=models.ForeignKey('Profesional',verbose_name='Prof Solicitante')
     paciente=models.ForeignKey('Paciente',verbose_name='Paciente')
     obrasocial=models.ForeignKey('Obrasocial',null=True,blank=True,verbose_name='Obra Social')
@@ -242,7 +242,7 @@ class Institucion(models.Model):
 
     class Meta:
         db_table = 'zcons_instituciones'
-        ordering = ['fecha',]
+        ordering = ['nombre',]
         verbose_name = 'Institucion'
  
 
@@ -578,7 +578,6 @@ class Paciente(models.Model):
     nacionalidad = models.CharField(max_length=36,choices=PAISES,default='ARG')
     provincia = models.CharField(max_length=2,choices=PROVINCIAS,default='13')
     localidad = models.ForeignKey('Localidad',blank=True,null=True)
-    csr = models.ForeignKey('Centrosalud',blank=True,null=True,verbose_name='Centro de Salud')	
     domicilio = models.CharField(max_length=128, blank=True)
     telefono = models.CharField(max_length=96,default = '341 .....')
     email = models.EmailField(blank=True)
@@ -675,7 +674,7 @@ class Localidad(models.Model):
  
 #class evolucion x ahora sacado... ver previos models en este dir 
 ### ampollas supositorios comprimidos capsulas 
-class Presentacion():
+class Presentacion(models.Model):
     nombre=models.CharField(max_length=32,verbose_name = 'Nombre Presntcn')
     codigo=models.CharField(max_length=16)
 
@@ -757,7 +756,7 @@ class Prescripcion(models.Model):
         verbose_name_plural = 'Prescripciones'
         verbose_name = 'Prescripcion'
         db_table = 'zcons_prescripciones'
-        ordering = ['nombre']
+        ordering = ['paciente__apellido']
 
 class Receta(models.Model):
     paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
@@ -783,6 +782,6 @@ class Receta(models.Model):
         verbose_name_plural = 'Prescripciones'
         verbose_name = 'Prescripcion'
         db_table = 'zcons_prescripciones'
-        ordering = ['nombre']
+        ordering = ['paciente__apellido']
 
 
