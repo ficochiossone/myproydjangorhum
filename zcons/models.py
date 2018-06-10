@@ -24,13 +24,23 @@ class Especialidad(models.Model):
     nombre = models.CharField(max_length=32)
     codigo = models.CharField(max_length=8)
 
+    def __unicode__(self):
+        cod=smart_unicode(self.codigo)
+        nom=smart_unicode(self.nombre)
+        return "%s" % (nom.upper())
     class Meta:
         db_table = 'zcons_especialidades'
+ 
 
 
 class Obrasocial(models.Model):
     nombre = models.CharField(max_length=32)
     codigo = models.CharField(max_length=8)
+    def __unicode__(self):
+        cod=smart_unicode(self.codigo)
+        nom=smart_unicode(self.nombre)
+        return "%s" % (nom.upper())
+
 
     class Meta:
         db_table = 'zcons_obscs'
@@ -61,12 +71,25 @@ class Profesional(models.Model):
 #    dtid=models.IntegerField(null=True,blank=True,editable=False)
     comentarios = models.TextField(null=True,blank=True,verbose_name='Comentarios')
 
+    def __unicode__(self):
+        cod=smart_unicode(self.matricula)
+        nom=smart_unicode(self.nombre)
+        return "%s - %s" % (nom.upper(),cod.upper())
+
     class Meta:
         db_table = 'zcons_profesionales'
+        ordering = ['nombre',]
+        verbose_name = 'Profesional'
+        verbose_name_plural = 'Profesionales'
 
 class GruposVrb(models.Model):
     nombre = models.CharField(max_length=56,default='GrupoV....',verbose_name = 'Nombre Grupo')
     codigo = models.CharField(max_length=10,default= 'GVLAB',verbose_name = 'Codigo Grupo')
+    def __unicode__(self):
+        cod=smart_unicode(self.codigo)
+        nom=smart_unicode(self.nombre)
+        return "%s" % (nom.upper())
+
 
     class Meta:
         db_table = 'zcons_gruposvrb'
@@ -76,8 +99,16 @@ class Variable(models.Model):
     nombre = models.CharField(max_length=54,default='..vg..Presion Arterial..gLICEMIa..',verbose_name='Nombre del Parametro')
     codigo = models.CharField(max_length=28,default='Codigo123........',verbose_name = 'Codigo')
     comentarios = models.CharField(max_length=256,default='Valores Normales hasta .....',verbose_name='Comentarios')
+    def __unicode__(self):
+        cod=smart_unicode(self.codigo)
+        nom=smart_unicode(self.nombre)
+        return "%s" % (nom.upper())
+
     class Meta:
         db_table = 'zcons_variables'
+        ordering = ['nombre',]
+        verbose_name = ''
+        verbose_name_plural = ''
  
 class Reg_variable(models.Model):
     fecha_reg = models.DateTimeField(default=datetime.now(),verbose_name='Resultado P Ex')   
@@ -85,7 +116,17 @@ class Reg_variable(models.Model):
     nomvrb = models.ForeignKey('Variable',verbose_name ='Variable ')
     valorvrb = models.CharField(max_length=64,default='ABC123...',verbose_name='Valor')
     comentarios = models.CharField (max_length=128,default='Coment....',verbose_name = 'Comentario' ) 
+    def __unicode__(self):
+        cod=smart_unicode(self.fecha)
+        nom=smart_unicode(self.paciente)
+        return "%s - %s" % (nom.upper(),fecha_reg)
 
+    class Meta:
+        db_table = 'zcons_reg_vrbles'
+        ordering = ['fecha',]
+        verbose_name = 'Registro VRB'
+        verbose_name_plural = 'RegsV'
+ 
 class Diagnostico(models.Model):
     GRUPOSDG = (('NC','no clasificado'),
                 ('TRMT','traumatologico'),
@@ -94,6 +135,7 @@ class Diagnostico(models.Model):
                 ('NFUR','nefrourodjango.contrib.contenttypeslogico'),
                 ('SNCO','sistema nervioso'),
                 ('CVSC','cardiovascular'))
+    nombre = models.CharField(max_length=64,verbose_name='Diagnostico')
     cie10 = models.ForeignKey('cie10',null=True,blank=True,verbose_name='ref Cie 10')
     #AOclasif = models.ForeignKey('AOclasif',null=True,blank=True,verbose_name='AO clasificacion')   
     grupodg = models.CharField(choices=GRUPOSDG,default='NC',max_length=4,null=True,blank=True)
@@ -102,53 +144,20 @@ class Diagnostico(models.Model):
     comentarios = models.CharField(max_length=128,blank=True,null=True)
     habilitado = models.NullBooleanField(blank=True,null=True,default=False)
 
+    def __unicode__(self):
+        cod=smart_unicode(self.grupodg.codigo)
+        nom=smart_unicode(self.nombre)
+        return "%s - %s" % (nom.upper(),cod.upper())
+
     class Meta:
         db_table = 'zcons_diagnosticos'
+        ordering = ['nombre',]
+        verbose_name = 'Diagnostico'
+        verbose_name_plural = 'Diagnosticos'
+
+
     
-### Internaciones
-class Internacion(models.Model):
-    
-    PROBLEMATICA = ((u'YNDT', u'no determinado'),
-                       (u'YUR', u'INTERNACION URGENCIA'),
-                       (u'YPG', u'INTERNACION PROGRAMADA'))
-
-    hospital = models.ForeignKey('Institucion')
-    hclint = models.CharField(max_length=16,default='HC123456789ABC..',verbose_name='Historia Clinica')
-    sala =  models.CharField(max_length=64,default='NO DETERMINADA',verbose_name='Sala')
-    cama = models.CharField(max_length = 12 ,blank=True, null =True,verbose_name = 'Cama')
-    #servicio = models.ForeignKey('Servicio',verbose_name='Servicio')
-    #grupo = models.ForeignKey('Grupo',blank=True,null=True,verbose_name='Grupo a Cargo')      
-    paciente = models.ForeignKey('Paciente')
-    tipo = models.CharField(choices=PROBLEMATICA,max_length=4,null=True,blank=True)
-    fecha_internacion = models.DateField(verbose_name='Ingreso')
-    fecha_egreso = models.DateField(verbose_name ='Alta',blank=True,null=True)
-    intediag = models.CharField(verbose_name='ClaveMotivo',blank=True,null=True,max_length=64,default='NR')
-    profesional_intgdia = models.ForeignKey('Profesional',related_name ='IprofG',blank=True,null=True,verbose_name='J Guardia')
-    profesional_acargo = models.ForeignKey('Profesional',null=True,related_name='IprofA',verbose_name='Prof a cargo')
-    profayudante = models.ForeignKey('Profesional',null=True,blank = True,related_name='Iresi',verbose_name='Profesional Junior(MF)')
-    clinico_a_cargo=models.ForeignKey('Profesional',null=True,blank=True,related_name='ClinicoAcargo',verbose_name='Clinico A Cargo')
-    profregint = models.ForeignKey('Profesional',null=True,related_name='pint',verbose_name='Internado por')    
-    #enfermero = models.ForeignKey('Enfermero',null=True,blank=True)
-    germen = models.CharField(verbose_name='Germen pr.',max_length=36,null=True,blank=True)
-    lab = models.TextField(verbose_name='laboratorio',default="Laboratorios")
-    diagnostico_principal = models.ForeignKey('Diagnostico',related_name='YdiagnosticoP',verbose_name='Diagnostico principal',blank=True,null=True)
-    diagnostico_secundario = models.ForeignKey('Diagnostico',related_name='YdiagnosticoB',verbose_name='Diagnostico secundario',blank=True,null=True)
-    diagnostico_terciario = models.ForeignKey('Diagnostico',related_name='YdiagnosticoT',verbose_name='Diagnostico Terc',blank=True,null=True)
-    diagnostico_cuarto = models.ForeignKey('Diagnostico',related_name='YdiagnosticoC',verbose_name='Diagnostico Cuart',blank=True,null=True)
-    #dieta = models.ForeignKey('Dieta',blank=True,null=True)
-    informe = models.TextField(blank=True,verbose_name='Informe Historia Clinica')
-    img1=models.ImageField(upload_to='internaciones/%Y/%m',blank=True,help_text="Archivo de imagen...")
-    img2=models.ImageField(upload_to='internaciones/%Y/%m',blank=True,help_text="Archivo de imagen")    
-    img3=models.ImageField(upload_to='internaciones/%Y/%m',blank=True,help_text="Archivo de imagen")    
-    hora_internacion = models.TimeField(auto_now_add=True)
-    texto_epicrisis = models.TextField(default='Condicion y Propuesta al alta ....',verbose_name='Texto Epicrisis')
-
-    def devCama(self):
-        c = Camas.objects.get(pk=self.cama)
-        return c
-
-    class Meta:
-        db_table = 'zcons_internaciones'
+### Internacione sacado por ahora buscar antec en este mismo directorio.  previomodels.py
 
 class Consulta(models.Model):
     TIPOVEZ = (('NDTM', 'no determinado'),
@@ -186,62 +195,56 @@ class Consulta(models.Model):
     practica_D = models.ForeignKey('PracticaQ',related_name='practicaD',blank=True,null=True)
     #implante_a = models.ForeignKey('ItemLic_solicitado',related_name='ItsA',blank=True,null=True,db_column='implante_a',verbose_name="ITLICA")
 
+    def __unicode__(self):
+        cod=smart_unicode(self.fecha_consulta)
+        nom=smart_unicode(self.paciente)
+        return "%s - %s" % (nom.upper(),cod.upper())
+
     class Meta:
         db_table = 'zcons_consultas'
+        ordering = ['nombre',]
+        verbose_name = 'Internacion'
+ 
 
-
+# Indicacion de varioos examenes  para solicitud de examen quizas pdf que se imprima... a futuro
 class Solic_labs(models.Model):
+    fecha=DateField(verbose_name='Fecha Solicitud') 
     profesional=models.ForeignKey('Profesional',verbose_name='Prof Solicitante')
     paciente=models.ForeignKey('Paciente',verbose_name='Paciente')
     obrasocial=models.ForeignKey('Obrasocial',null=True,blank=True,verbose_name='Obra Social')
     examenes = models.ManyToManyField('Variable',verbose_name='Examenes')
-    class Meta:
-        db_table = 'zcons_solic_labs'       
 
-
-class Cirugia(models.Model):
-    PROBLEMATICA = (('NDTM', 'no determinado'),
-                       ('QUR', 'CIRUGIA URGENCIA'),
-                       ('QPG', 'CIRUGIA PROGRAMADA'),)
-    hospital = models.ForeignKey('Institucion',verbose_name='Institucion',default=1)
-    #servicio = models.ForeignKey('Servicio',verbose_name='ServicioQ',blank=True,null=True)  
-    internacion = models.ForeignKey('Internacion',blank=True,null=True)
-    #quirofano = models.CharField(max_length=4,verbose_name='QUIROFANO',blank=True,null=True)
-    fecha_consulta = models.DateField()
-    hora_consulta = models.TimeField(blank=True,null=True)
-    #hora_fin_cirugia = models.TimeField(blank=True,null=True)
-    paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
-    #clavecirugia = models.CharField(max_length=48,verbose_name='ClaveQ',default='cirugia')
-    tipo = models.CharField(choices=PROBLEMATICA,max_length=4,null=True,blank=True)
-    consultado = models.ForeignKey('Profesional',related_name='pcirujano',verbose_name='Cirujano')
-    payudante = models.ForeignKey('Profesional',related_name='ayudante',verbose_name='Ayudante 1',null=True,blank = True)
-    sayudante = models.ForeignKey('Profesional',null=True,blank=True,related_name='sayudante',verbose_name='Ayudante2')
-    anestesista = models.ForeignKey('Profesional',related_name='anestesista')
-    informe = models.TextField(blank=True)
-    diagnostico_principal = models.ForeignKey('Diagnostico',related_name='diagcgP',blank=True,null=True)
-    diagnostico_B = models.ForeignKey('Diagnostico',related_name='diagcgB',blank=True,null=True)
-    diagnostico_C = models.ForeignKey('Diagnostico',related_name='diagcgC',blank=True,null=True)
-    diagnostico_D = models.ForeignKey('Diagnostico',related_name='diagcgD',blank=True,null=True)
-    practica_principal = models.ForeignKey('PracticaQ',related_name='prqP',blank=True,null=True)
-    practica_B = models.ForeignKey('PracticaQ',related_name='prqB',blank=True,null=True)
-    practica_C = models.ForeignKey('PracticaQ',related_name='prqC',blank=True,null=True)
-    practica_D = models.ForeignKey('PracticaQ',related_name='prqD',blank=True,null=True)
+    def __unicode__(self):
+        cod=smart_unicode(self.fecha)
+        nom=smart_unicode(self.examenes)
+        return "%s - %s" % (nom.upper(),cod.upper())
 
     class Meta:
-        db_table = 'zcons_cirugias'
+        db_table = 'zcons_solic_labs'
+        ordering = ['fecha',]
+        verbose_name = 'Solic de Examenes'
+ 
 
+#class cirugia sacadop x ahora
 class Institucion(models.Model):
     nombre = models.CharField(max_length=64,unique=True)
-    sigla = models.CharField(max_length=8)
+    codigo = models.CharField(max_length=8)
     domicilio = models.CharField(max_length=128)
     #codigo_postal = models.ForeignKey('CodigoPostal', blank=True, null=True)
     #categorizacion = models.ForeignKey('Complejidad_institucional',blank=True,null=True)
     email = models.EmailField(blank=True)
     ##web = models.URLField(blank=True, verify_exists=False)
     comentarios = models.TextField(null=True,blank=True,default='N')
+    def __unicode__(self):
+        cod=smart_unicode(self.codigo)
+        nom=smart_unicode(self.nombre)
+        return "%s - %s" % (nom.upper(),cod.upper())
 
     class Meta:
         db_table = 'zcons_instituciones'
+        ordering = ['fecha',]
+        verbose_name = 'Institucion'
+ 
 
 class Paciente(models.Model):
 
@@ -592,28 +595,16 @@ class Paciente(models.Model):
             return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
         else:
             return "N/D"
+    def __unicode__(self):
+        cod=smart_unicode(self.apellido)
+        nom=smart_unicode(self.nombre)
+        return "%s - %s" % (nom.upper(),cod.upper())
 
     class Meta:
         db_table = 'zcons_pacientes'
-
-class Centrosalud(models.Model):
-    TIPOCS = (('PRV', 'provincial'),
-             ('MNC', 'municipal'),
-             ('NCN', 'nacional'),
-             ('N/D', 'no determinado'))
-    nombre = models.CharField(max_length=128)
-    sigla = models.CharField(max_length=8,default='CS...')
-    #distrito = models.ForeignKey('Distrito',blank=True,null=True)
-    refdtt = models.CharField(max_length = 6,blank=True,verbose_name='Sigla efector DT')
-    referente = models.CharField(max_length=64,blank=True,null=True)
-    tipo = models.CharField(max_length=3,choices=TIPOCS,default = 'MNC')
-    telefono = models.CharField(max_length=16,blank=True)
-    domicilio = models.CharField(max_length=128,blank=True)
-    comentarios = models.TextField(blank=True,null=True)
-
-    class Meta:
-        db_table = 'zcons_centros_de_salud'
-
+        ordering = ['apellido',]
+        verbose_name = 'Paciente'
+ 
 
 class PracticaQ(models.Model):
     GRUPOSPQ = (('NC','no clasificado'),
@@ -655,12 +646,15 @@ class cie10(models.Model):
     comentarios = models.CharField(max_length=128,null=True,blank=True)
     habilitado = models.NullBooleanField(default=False,verbose_name = 'Habilitado')
     def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s" % (cod)
+        cod=smart_unicode(self.categoria)
+        nom=smart_unicode(self.codigo)
+        return "%s - %s" % (nom.upper(),cod.upper())
 
+    class Meta:
+        db_table = 'zcons_dgcie10'
+        ordering = ['codigo',]
+        verbose_name = 'Dg Cie 10'
+ 
 
     class Meta:
         db_table = 'zcons_cie10'
@@ -670,116 +664,16 @@ class Localidad(models.Model):
     nombre = models.CharField(max_length=64)
     codigo = models.IntegerField()
     def __unicode__(self):
+        cod=smart_unicode(self.apellido)
         nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s" % (cod)
-
+        return "%s - %s" % (nom.upper(),cod.upper())
 
     class Meta:
         db_table = 'zcons_localidades'
-
-
-
-class Evolucion(models.Model):
-    fecha = models.DateTimeField(verbose_name='Fecha Evolucion')
-    profesional = models.ForeignKey("Profesional",verbose_name = 'Profesional')
-    texto = models.TextField(default = 'Evolucion al .....',verbose_name='Evolucion')
-    institucion = models.ForeignKey("Institucion",verbose_name='Institucion')
-    especialidad = models.ForeignKey("Especialidad",blank=True,null=True,verbose_name= 'Especialidad')
-    internacion = models.ForeignKey("Internacion",verbose_name = 'Internacion')
-    #content_type = models.ForeignKey(ContentType)
-    #object_id = models.PositiveIntegerField()
-    #content_object = generic.GenericForeignKey('content_type', 'object_id')
-    
-    class Meta:
-        db_table = "zcons_evoluciones"
-
-class Sala(models.Model):
-    institucion = models.ForeignKey('Institucion')
-    nombre = models.CharField(max_length=80)
-    orden = models.IntegerField()
-
-    class Meta:
-        db_table = "zcons_salas"
-
-class Camas(models.Model):
-    sala = models.ForeignKey('Sala')
-    nombre = models.CharField(max_length=80)
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s" % (cod)
-
-
-    class Meta:
-        db_table = "zcons_camas"
-
-class Lista_de_espera(models.Model):
-    ###timestamp = models.DateTimeField(auto_now_add=True)
-    nombre = models.CharField(max_length=64)
-    fecha_creacion = models.DateField(verbose_name ='Fecha Creacion')
-    comentarios = models.TextField(verbose_name='Comentarios',default='Registro')
-    ###profesional_a_cargo = models.ForeignKey('controlmedico.Profesional',verbose_name='Profesional a cargo')
-    ###residente_a_cargo = models.ForeignKey('controlmedico.Medico_en_formacion',blank=True,null=True,verbose_name='Residente encargado')
-    pacargo = models.ForeignKey('Profesional',related_name='lep',verbose_name='A Cargo')
-    payudante = models.ForeignKey('Profesional',related_name='lepay',verbose_name='Residente',null=True,blank = True)
-
-    class Meta:
-        db_table = "zcons_listas_de_espera"
-
-##class MultimediaInternacion(models.Model):
-##    archivo = models.CharField(max_length=255)
- ##   internacion = models.ForeignKey('Internacion')
- ##   usuario = models.ForeignKey(User)
-  ##  fecha = models.DateField()
-   ## texto = models.TextField()
- ## 
-  ##  class Meta:
-##	db_table = "oytred_multimediaxint"
-
-class Caso_pendiente(models.Model):
-    resuelto = models.BooleanField(verbose_name='RESUELTO',default=False)   
-    qcgresol = models.ForeignKey('Cirugia',blank=True,null=True,verbose_name='Cirugia Resolvente')
-    paciente = models.ForeignKey('Paciente')
-    internacion = models.ForeignKey('Internacion',blank=True,null=True)
-    fecha_trauma = models.DateField(verbose_name ='Fecha Trauma',blank=True,null=True)
-    listado_espera = models.ForeignKey('Lista_de_espera',verbose_name = 'Lista de Espera')
-    fecha_registro = models.DateField(verbose_name='Fecha Registro')
-    ###hora_registro =models.TimeField(verbose_name='Hora',blank=True,null=True)
-    fecha_pre_quirurgico = models.DateField(verbose_name ='Fecha PRE Q',blank=True,null=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    fecha_resolucion = models.DateField(verbose_name ='Fecha Resolucion',blank=True,null=True)
-    informe = models.TextField(verbose_name='Registro',default='Comentarios del Caso')
-    pacargo = models.ForeignKey('Profesional',related_name='cppp',verbose_name='ProfResp')
-    payudante = models.ForeignKey('Profesional',related_name='cppa',verbose_name='Residente',null=True,blank = True)
-    intediag = models.CharField(verbose_name='Clave busqueda',max_length=64)
-    diagnos_a = models.ForeignKey('Diagnostico',related_name='gdiagnosticoP',db_column='diagnos_a',verbose_name='Diagnostico principal',blank=True,null=True)
-    #diagnostico_secundario = models.ForeignKey('Diagnostico',related_name='gdiagnosticoB',db_column='diagnos_b',verbose_name='Diagnostico secundario',blank=True,null=True)
-    #diagnostico_terciario = models.ForeignKey('controlmedico.Diagnostico',related_name='gdiagnosticoT',db_column='diagnos_c',verbose_name='Diagnostico Terc',blank=True,null=True)
-    img1=models.ImageField(upload_to='cpds/%Y/%m', blank=True,help_text="Busque archivo de imagen...")
-    img2=models.ImageField(upload_to='cpds/%Y/%m', blank=True,help_text="Busque archivo de imagen...")
-
-    def devCirugias(self):
-        c = Cirugia.objects.filter(paciente__id=self.paciente.id)
-        return c
-
-    def devInternaciones(self):
-        i = Internacion.objects.filter(paciente__id=self.paciente.id)
-        return i	
-    def __unicode__(self):
-        nom=smart_unicode(self.nombre)
-        cod=smart_unicode(self.codigo)
-        cod=cod.upper()
-        nom=nom.upper()
-        return "%s" % (cod)
-
-
-    class Meta:
-        db_table = 'zcons_casos_pendientes'
+        ordering = ['nombre',]
+        verbose_name = 'Localidad'
+ 
+#class evolucion x ahora sacado... ver previos models en este dir 
 ### ampollas supositorios comprimidos capsulas 
 class Presentacion():
     nombre=models.CharField(max_length=32,verbose_name = 'Nombre Presntcn')
@@ -839,10 +733,10 @@ class Medicacion(models.Model):
 
 
 
-class Prescripcion():
+class Prescripcion(models.Model):
     paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
     profesional = models.ForeignKey('Profesional',verbose_name = 'Profesional')
-    droga = models.ForeignKey('Droga',verbose_name='Droga')
+    #droga = models.ForeignKey('Droga',null=True,blank=True,verbose_name='Droga')
     medicacion = models.ForeignKey('Medicacion',verbose_name = 'Medicamento')
     forma = models.ForeignKey('Presentacion',verbose_name = 'Presentacion')
     dosis = models.CharField(max_length=124,default = '1 ampolla...1 comprimido ...250 mg')
@@ -851,6 +745,32 @@ class Prescripcion():
     fecha_ini = models.DateField(default=datetime.now,verbose_name = 'Inicio medicacion')
     fecha_ini = models.DateField(default=datetime.today,verbose_name = 'Fin medicacion')
     detalle = models.CharField(max_length=512,default='D',verbose_name = 'Detalle prescripcion.....')
+    #lapso = models.ForeignKey()
+    def __unicode__(self):
+        nom=smart_unicode(self.nombre)
+        cod=smart_unicode(self.codigo)
+        cod=cod.upper()
+        nom=nom.upper()
+        return "%s" % (cod)
+
+    class Meta:
+        verbose_name_plural = 'Prescripciones'
+        verbose_name = 'Prescripcion'
+        db_table = 'zcons_prescripciones'
+        ordering = ['nombre']
+
+class Receta(models.Model):
+    paciente = models.ForeignKey('Paciente',verbose_name='Paciente')
+    profesional = models.ForeignKey('Profesional',verbose_name = 'Profesional')
+    #droga = models.ForeignKey('Droga',null=True,blank=True,verbose_name='Droga')
+    medicacion = models.ForeignKey('Medicacion',verbose_name = 'Medicamento')
+    forma = models.ForeignKey('Presentacion',verbose_name = 'Presentacion')
+    dosis = models.CharField(max_length=124,default = '1 ampolla...1 comprimido ...250 mg')
+    ndosis = models.IntegerField(default=1,verbose_name='Numero total')
+    periodo = models.IntegerField(default=8,verbose_name = 'Periodo en Horas')
+    fecha_receta = models.DateField(default=datetime.now,verbose_name = 'Fecha RP')
+    fecha_ini = models.DateField(default=datetime.today,verbose_name = 'Fin medicacion')
+    detalle = models.TextField(max_length=512,default='R/P',verbose_name = 'R/P')
     #lapso = models.ForeignKey()
     def __unicode__(self):
         nom=smart_unicode(self.nombre)

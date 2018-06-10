@@ -145,6 +145,31 @@ apache nos provee de herramientas a2enmod
 similar a a2ensite
 
 
+l al 8 de junio de 2018 
+modwsgi sirviendo apache el proyectro 
+
+dopsinve   
+
+en traumasrv.cema.salud.rosario.gov.ar
+
+anduvo de primera pero sin virtual env 
+porrque o podia instalar via pip todos los modulos 
+como si estaban instalados todos , pyexcelerator pillow werkzeug lo instale 
+sin virtual env 
+}
+directo y anduvo 
+
+
+despues me puse a experimentar con servir el apache que andaba en la dell y lo cague ..
+
+???
+
+
+
+
+
+
+
 
 
 
